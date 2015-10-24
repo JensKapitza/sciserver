@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of www.
+
+    www is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    www is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with www.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+
+        <div class="well xspace">
+            <div class="header-panel">Such Beispiele <br/>
+                Das % Zeichen hat eine erweiterte Funktion, und hilft bei der Suche. Beispiele dafür hier zu finden.
+            </div>
+            <dl class="toppad">
+                <dt>Tags und Pfad leer</dt>
+                <dd>Sind Tags und Pfad leer werden alle Dateien angezeigt.</dd>
+                <dt>Tags: origin=</dt>
+                <dd>Suche nach allen Tags die mit origin starten und beliebigen Wert haben. z.b. origin=krefeld</dd>
+                <dt>Tags: =krefeld</dt>
+                <dd>Suche nach allen Tags die als Wert krefeld haben, der Schlüssel kann beliebig sein. z.b. origin=krefeld</dd>
+                <dt>Tags: origin%</dt>
+                <dd>Suche nach allen Tags die mit origin starten. z.b. origin=krefeld</dd>
+                <dt>Tags: %origin%</dt>
+                <dd>Suche nach allen Tags die origin enthalten. z.b. myoriginal, state=original, origin=krefeld</dd>
+                <dt>Tags: %true</dt>
+                <dd>Suche nach allen Tags die auf origin enden. z.b. gpl=true</dd>
+
+                <dt>Pfadteil: %musik.mp3</dt>
+                <dd>Suche nach Pfad der auf musik.mp3 endet.</dd>
+                <dt>Pfadteil: %musik%</dt>
+                <dd>Suche nach Pfad der musik enthält.</dd>
+                <dt>Pfadteil: %musik%peter%mp3</dt>
+                <dd>Suche nach Pfad der musik und peter enthält und auf mp3 endet.</dd>
+
+                <dt>Tags: home% AND windows</dt>
+                <dd>Tags und Attribute können mit AND verknüpft werden, z.b. alle windows getaggten Dateien die auch mind. home als Tag/Attribute enthalten.</dd>
+
+            </dl>
+
+        </div>
+
+
+        <div class="well xspace">
+
+            <div class="header-panel">Befehle Beispiele <br/>
+                Sollen auf dem provider Befehle der Art:
+                <br/>
+                befehl.path=PATH<br/>
+                befehl.replacewithpath=REGEX<br/>
+
+                konfiguriert sein, so kann dieser unter RUN durch "befehl +argument1 +argument2 ..." verwendet werden.
+                Dabei wird der befehl zu dem unter PATH angegebenen Programm expandiert und mit den argumenten, die entsprechend dem REGEX gefiltert und mit dem Pfad der Datei versehen werden, aufgerufen.
+            </div>
+
+        </div>
+
+    </ui:define>
+</ui:composition>
+

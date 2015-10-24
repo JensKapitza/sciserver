@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of www.
+
+    www is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    www is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with www.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+
+        <h:panelGrid columns="3" width="100%" columnClasses="well,well,well">
+            <h:panelGroup colspan="2" rendered="#{user.isActive()}">
+                <div class="header-panel">Dateien ohne Tags:</div>
+                <div class="mybox">
+                    <ui:repeat value="#{user.newestFiles}" var="f">
+                        <a href="redirect.xhtml?url=search.xhtml&amp;path=#{f}">
+                            #{f}
+                        </a>
+
+                        <br/>
+                    </ui:repeat>
+                </div>
+            </h:panelGroup>
+
+
+            <h:panelGroup>
+
+                <div class="header-panel">Vergangene Suchen(current Session):</div>
+
+                <div class="mybox">
+
+                    <ui:repeat value="#{search.searchHist}" var="hist">
+                        <a href="redirect.xhtml?url=search.xhtml&amp;tag=#{hist[0]}&amp;path=#{hist[1]}">
+
+                            <h:outputText value="Tags: #{hist[0]}" rendered="#{!hist[0].isEmpty()}"/>
+                            <h:outputText value=", " rendered="#{!hist[1].isEmpty() and !hist[0].isEmpty() }"/>
+                            <h:outputText value="Path:  #{hist[1]}" rendered="#{!hist[1].isEmpty()}"/>
+                        </a>
+                        <br/>
+                    </ui:repeat>
+                </div>
+
+
+            </h:panelGroup>
+
+
+        </h:panelGrid>
+
+        <div class="xspace"></div>
+
+        <h:panelGrid columns="3" width="100%" columnClasses="well,well,well">
+            <h:panelGroup>
+
+                <div class="header-panel">Tags (current session):</div>
+
+                <div class="mybox">
+
+                    <ui:repeat value="#{user.tagsLastSession}" var="tag">
+                        <a href="redirect.xhtml?url=search.xhtml&amp;tag=#{tag}">
+                            #{tag}
+                        </a>
+                        <br/>
+                    </ui:repeat>
+                </div>
+            </h:panelGroup>
+
+            <h:panelGroup>
+
+                <div class="header-panel">Tags (last used):</div>
+
+                <div class="mybox">
+                    <ui:repeat value="#{user.tagsLast}" var="tag">
+                        <a href="redirect.xhtml?url=search.xhtml&amp;tag=#{tag}">
+                            #{tag}
+                        </a> <br/>
+
+                    </ui:repeat>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup>
+
+                <div class="header-panel">Tags (most used):</div>
+
+                <div class="mybox">
+                    <ui:repeat value="#{user.tagsMost}" var="tag">
+                        <a href="redirect.xhtml?url=search.xhtml&amp;tag=#{tag}">
+                            #{tag}
+                        </a> <br/>
+
+                    </ui:repeat>
+                </div>
+            </h:panelGroup>
+        </h:panelGrid>
+
+
+    </ui:define>
+</ui:composition>
+

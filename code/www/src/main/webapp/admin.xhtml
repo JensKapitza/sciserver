@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of www.
+
+    www is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    www is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with www.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="content">
+        <ui:fragment rendered="#{user.admin}">
+
+            <h:form>
+                <h:commandButton action="#{admin.update}" value="Send Update"/>
+            </h:form>
+
+
+            <h:form styleClass='form-inline'>
+                <fieldset>
+                    <legend>
+                        Konfiguration
+                    </legend>
+
+                    <div class="well xspace">
+                        <dl class="toppad">
+                            <dt>config.admin=&#123;USER&#125;</dt>
+                            <dd>USER zum admin erklären</dd>
+                            <dt>config.&#123;PROVIDER&#125;.baseurl=PATH</dt>
+                            <dd>Pfad der Vorangeschoben wird: Pfad= BASEURL+(SUBPATH+RESTPFAD)</dd>
+                            <dt>config.&#123;PROVIDER&#125;.subpath=PATH</dt>
+                            <dd>Pfad der gelöscht werden soll: Pfad= BASEURL+(RESTPFAD)</dd>
+                            <dt>user.config.&#123;NAME&#125;.email=hier@dort.geh</dt>
+                            <dd>vgl. User config, als Admin aber auch Zwangsüberschreibung erlaubt</dd>
+                        </dl>
+
+                    </div>
+
+                    <div class="input-group">
+                        <h:outputLabel value="Key=Value"/>
+                        <h:inputText value="#{admin.input}" autocomplete="off"
+                                     pt:placeholder="Key=Value" styleClass="form-control"/>
+
+                    </div>
+
+
+                    <f:ajax render="@form" execute="@form">
+                        <div class="input-group">
+                            <br/>
+                            <h:commandButton value="Konfiguration hinzufügen" action="#{admin.addConfigLine}"
+                                             styleClass="btn-sm btn-primary space">
+                            </h:commandButton>
+                        </div>
+
+
+                        <br/>
+
+                        <h:selectManyCheckbox value="#{admin.configs}" styleClass="mydesign xspace"
+                                              layout="pageDirection">
+                            <f:selectItems value="#{admin.sessionCfg.entrySet()}" var="c" itemValue="#{c.key}"
+                                           itemLabel="#{c.key}=#{c.value}"/>
+
+                        </h:selectManyCheckbox>
+
+                        <h:commandButton value="Löschen" action="#{admin.deleteConfig}"
+                                         rendered="#{not empty admin.sessionCfg}"
+                                         styleClass="btn-sm btn-danger space"/>
+
+                    </f:ajax>
+
+                </fieldset>
+
+            </h:form>
+
+        </ui:fragment>
+
+
+    </ui:define>
+</ui:composition>
+

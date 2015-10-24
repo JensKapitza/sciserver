@@ -1,0 +1,59 @@
+.space {
+    margin: 5px;
+    padding: 5px;
+    max-width: 300px;
+}
+
+.mybigbox,#dialogj {
+    overflow-y: scroll;
+    min-height: 200px;
+    height: 400px;
+
+}
+.toppad dt {
+    padding-top: 15px;
+
+}
+
+.biggap {
+    margin: 10px;
+    padding: 10px;
+}
+.mybox {
+    overflow-y: scroll;
+    min-height: 200px;
+    height: 200px;
+}
+
+
+.scrollbox {
+    overflow-y: scroll;
+    overflow-x: scroll;
+    min-height: 200px;
+    height: 200px;
+}
+
+.alert {
+    margin: 0;
+}
+
+.xspace {
+    margin: 5px;
+    padding: 10px;
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.tag {
+    margin: 10px;
+    padding: 15px;
+    font-size: 12pt !important;
+    color: white !important;
+    background-color: gray;
+}
+
+.mydesign input:nth-of-type(2n) {
+    background-color: blue;
+}

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of www.
+
+    www is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    www is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with www.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="content">
+        <div class="center-block">
+            <div>
+                Das % Zeichen hat eine erweiterte Funktion, und hilft bei der Suche. Beispiele dafür in der Hilfe zu finden.
+            </div>
+
+
+            <h:form styleClass="form-inline">
+                <div class="input-group">
+                    <h:outputLabel value="Tags/Attribute:" for="tagsearch"/>
+                    <h:inputText id="tagsearch" value="#{search.input}"
+                                 pt:placeholder="bsp. windows AND system:%" styleClass="form-control"/>
+                </div>
+                <div class="input-group">
+                    <h:outputLabel value="Teile aus Pfad/Dateiname:" for="pathsearch"/>
+                    <h:inputText id="pathsearch" value="#{search.path}"
+                                 pt:placeholder="Teile aus Pfad/Dateiname  %musik.mp3" styleClass="form-control"/>
+                </div>
+                <div class="input-group">
+                    <br/>
+                    <h:commandButton value="Suche" action="#{search.search}"
+                                     styleClass="btn btn-primary space"/>
+                </div>
+            </h:form>
+
+        </div>
+
+
+        <div id="dialogj" class="hidden">
+
+            <h:panelGroup layout="block" id="xcontent">
+
+                <h:form styleClass='form-inline #{edit.item != null ?"":"hidden" }'>
+                    <div class="panel-danger">
+                        <h:outputText value="%,:,= sind nicht erlaubt in Tags und Schlüssel zu Verwenden!"/>
+                    </div>
+
+                    <f:ajax render="@form" execute="@form">
+
+                        <h:panelGrid columns="2" width="100%" rowClasses="well,biggap">
+                            <h:panelGroup>
+
+                                <div class="control-group">
+
+                                    <div class="controls form-inline">
+
+                                        <h:outputLabel value="Tag:" for="tagadd"/><h:message
+                                            errorClass="alert alert-danger" for="tagadd"/><br/>
+                                        <h:inputText id="tagadd" value="#{edit.input}" autocomplete="off"
+                                                     validator="#{edit.validateInput}"
+                                                     pt:placeholder="Tag" styleClass="form-control"/>
+                                        <h:commandButton value="Hinzufügen" action="#{edit.doAddTag}"
+                                                         styleClass="btn btn-primary space"/>
+
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <h:outputLabel styleClass="control-label" value="Attribute:" for="addattr"/>
+
+                                    <div class="controls form-inline">
+
+                                        <h:outputLabel value="Schlüssel:" for="addattr"/><h:message
+                                            errorClass="alert alert-danger" for="addattr"/>
+                                        <br/>
+                                        <h:inputText id="addattr" value="#{edit.keyInput}" autocomplete="off"
+                                                     validator="#{edit.validateInput}"
+                                                     pt:placeholder="Key z.b. origin" styleClass="form-control"/>
+
+                                        <br/>
+                                        <h:outputLabel value="Wert:" for="addattr2"/>
+                                        <h:message errorClass="alert alert-danger" for="addattr2"/><br/>
+                                        <h:inputText id="addattr2" value="#{edit.valueInput}" autocomplete="off"
+                                                     validator="#{edit.validateInput}"
+                                                     pt:placeholder="Value z.b. ude" styleClass="form-control"/>
+                                        <h:commandButton value="Hinzufügen" action="#{edit.doAddTag}"
+                                                         styleClass="btn btn-primary space"/>
+
+                                    </div>
+
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup>
+
+                                <div class="well-sm xspace bg-info">
+                                    <div class="header-panel">Tags und Attribute:</div>
+                                    <div class="mybox">
+
+                                        <h:selectManyCheckbox value="#{edit.tags}"
+                                                              layout="pageDirection">
+                                            <f:selectItems value="#{edit.itemTags()}" var="tag" itemValue="#{tag}"
+                                                           itemLabel="#{tag}"/>
+                                        </h:selectManyCheckbox>
+                                    </div>
+
+                                    <h:commandButton value="Löschen" action="#{edit.deleteTag}"
+                                                     styleClass="btn btn-danger space"/>
+                                    <h:commandButton value="Suche mit Tags" action="#{edit.searchTag}"
+                                                     styleClass="btn btn-info space"/>
+
+                                </div>
+
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <h:outputText value="Auf dem entsprechendem provider sind evtl. Befehle konfiguriert, fragen Sie beim Administrator nach oder schauen in die Hilfe."/>
+                                <h:inputText value="#{edit.runInput}" autocomplete="off"
+                                             pt:placeholder="CMD KOMMA -input KOMMA {}" styleClass="form-control"/>
+                                <h:commandButton value="Ausführen" action="#{edit.runCMD}"
+                                                 styleClass="btn btn-primary space"/>
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+                                <h:outputLabel value="waitfor Prozessende:" for="seperator1"/>
+                                <h:selectBooleanCheckbox value="#{edit.waitfor}" id="seperator1"/>
+                                <br/>
+                                <h:outputLabel value="Seperator:" for="seperator"/>
+                                <h:inputText id="seperator" value="#{edit.seperatorInput}" autocomplete="off" size="10"
+                                             pt:placeholder="SPACE, KOMMA, ..." styleClass="form-control"/>
+                            </h:panelGroup>
+                        </h:panelGrid>
+
+                        <div class="well">
+                            <h:inputTextarea style="width: 100%" readonly="true" value="#{edit.runOutput}"/>
+                        </div>
+                    </f:ajax>
+
+
+                </h:form>
+
+                <h:panelGroup layout="block"
+                              styleClass='#{edit.item == null ?"":"hidden" }'>
+                    <h:form>
+                        <h:inputText readonly="true" value="#{popup.item.path}" size="100"/>
+                    </h:form>
+
+                    <div class="well xspace">
+                        <div class="header-panel">Tags:</div>
+                        <ui:repeat value="#{popup.item.tags}" var="tag">
+                            <h:outputText styleClass="badge" value="#{tag}"
+                                          rendered="#{!tag.contains(':') and !tag.contains('=')}"/>
+                        </ui:repeat>
+                    </div>
+
+
+                    <div class="well xspace">
+                        <div class="header-panel">Attribute:</div>
+                        <div class="scrollbox">
+
+                            <ui:repeat value="#{popup.item.tags}" var="tag">
+
+                                <ui:fragment rendered="#{tag.contains(':') or tag.contains('=')}">
+                                    <h:outputText value="#{tag}"/>
+                                    <br/>
+                                </ui:fragment>
+                            </ui:repeat>
+                        </div>
+                    </div>
+
+                    <div>
+                        Provider: #{popup.item.provider}
+                        <br/>
+
+                        <a href="redirect.xhtml?url=search.xhtml&amp;path=#{popup.item.path}">
+                            direct link
+                        </a>
+
+                        <h:panelGrid columns="2" width="100%">
+                            <h:panelGroup>
+
+                                <a href="enterDir.vbs?os=windows&amp;path=#{popup.item.internetShortcut}">
+                                    open Dir - windows
+                                </a>
+
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+
+                                <a href="enterDir.vbs?os=windows&amp;path=#{popup.item.internetShortcutFull}">
+                                    open File - windows
+                                </a>
+
+
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+                                <a href="enterDir.sh?os=linux&amp;path=#{popup.item.internetShortcut}">
+                                    open Dir - linux
+                                </a>
+
+
+                            </h:panelGroup>
+
+                            <h:panelGroup>
+
+                                <a href="enterDir.sh?os=linux&amp;path=#{popup.item.internetShortcutFull}">
+                                    open File - linux
+                                </a>
+
+                            </h:panelGroup>
+                            <h:panelGroup>
+
+                                <a href="enterDir.sh?os=mac&amp;path=#{popup.item.internetShortcut}">
+                                    open Dir - mac
+                                </a>
+
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <a href="enterDir.sh?os=mac&amp;path=#{popup.item.internetShortcutFull}">
+                                    open File - mac
+                                </a>
+
+                            </h:panelGroup>
+
+                        </h:panelGrid>
+
+
+                    </div>
+
+
+                </h:panelGroup>
+
+            </h:panelGroup>
+
+
+        </div>
+
+        <div class="mybigbox">
+            <h:dataTable value="#{search.files}" var="f"
+                         styleClass="table table-striped">
+
+                <h:column>
+
+                    <h:form styleClass="form-horizontal">
+
+                        <h:commandLink value="Ausführen/ Tags Editieren" styleClass="btn btn-sm btn-danger space"
+                                       onclick="javascript: dialogFor('Actions for #{f.fileName}',$('#dialogj'));"
+                                       action="#{popup.redirect}" binding="#{popup.link}" rendered="#{user.active}">
+                            <f:ajax render=":xcontent"/>
+                            <f:param name="id" value="#{f.id}"/>
+                        </h:commandLink>
+
+                        <h:commandLink value="Details/Öffnen" styleClass="btn btn-sm btn-info space"
+                                       onclick="javascript: dialogFor('Details for #{f.fileName}',$('#dialogj'));"
+                                       action="#{popup.redirectView}" binding="#{popup.view}">
+                            <f:ajax render=":xcontent"/>
+                            <f:param name="id" value="#{f.id}"/>
+                        </h:commandLink>
+                    </h:form>
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Tags</f:facet>
+                    #{f.tagPrev}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Provider</f:facet>
+                    #{f.provider}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Pfad</f:facet>
+                    <span class="small">#{f.shortPath}</span>
+                    <h:panelGrid columns="2" width="100%">
+                        <h:panelGroup>
+                            <a href="#{redirect.getOpenURL(f.internetShortcut)}">
+                                open - dir
+                            </a>
+
+                        </h:panelGroup> <h:panelGroup>
+
+                        <a href="#{redirect.getOpenURL(f.internetShortcutFull)}">
+                            open - file
+                        </a>
+                    </h:panelGroup>
+                    </h:panelGrid>
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Dateibesitzer</f:facet>
+                    #{f.owner}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Größe[byte]</f:facet>
+                    #{f.size}
+                </h:column>
+
+
+            </h:dataTable>
+
+        </div>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of www.
+
+    www is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    www is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with www.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="content">
+        <div>
+
+            <h:form styleClass='form-inline'>
+                <fieldset>
+                    <legend>
+                        Dateibesitzer
+                    </legend>
+                    <div class="input-group">
+                        <h:outputLabel value="Dateibesitzer" for="add"/>
+
+                        <h:inputText id="add" value="#{user.input}" autocomplete="off"
+                                     pt:placeholder="Dateibesitzer" styleClass="form-control"/>
+
+                    </div>
+
+                    <f:ajax render="@form" execute="@form">
+                        <div class="input-group">
+                            <br/>
+                            <h:commandButton value="Dateibesitzer hinzufügen" action="#{user.addOwner}"
+                                             styleClass="btn-sm btn-primary space">
+                            </h:commandButton>
+                        </div>
+
+
+                        <br/>
+
+                        <h:selectManyCheckbox value="#{edit.owners}" styleClass="mydesign xspace"
+                                              layout="pageDirection">
+                            <f:selectItems value="#{user.owner}" var="tag" itemValue="#{tag}"
+                                           itemLabel="#{tag}"/>
+                        </h:selectManyCheckbox>
+
+                        <h:commandButton value="Löschen" action="#{edit.deleteOwner}" rendered="#{not empty user.owner}"
+                                         styleClass="btn-sm btn-danger space"/>
+
+                    </f:ajax>
+
+                </fieldset>
+
+            </h:form>
+
+
+            <h:form styleClass='form-inline'>
+                <fieldset>
+                    <legend>
+                        Konfiguration
+                    </legend>
+
+                    <div class="well xspace">
+                        <dl class="toppad">
+                            <dt>email.push=true</dt>
+                            <dd>Links sofort per E-Mail senden</dd>
+                            <dt>email=hier@dort.geh</dt>
+                            <dd>benötigt zum Mail versenden</dd>
+
+                            <dt>email.baseurl=HTTP_URL</dt>
+                            <dd> (OPTIONAL) Basis URL zum WWW-Server, default ist der master des senders  (abweichenden PORT mit angeben)</dd>
+
+
+                            <dt>config.	&#123;PROVIDER&#125;.replacefrom=REGEX</dt>
+                            <dd>REGEX um Path an das System anzupassen.  Achten Sie darauf Sonderzeichen mit einem Escape zu versehen.</dd>
+                            <dt>config.&#123;PROVIDER&#125;.replacewith=REGEX</dt>
+                            <dd>REGEX um Path an das System anzupassen.  Achten Sie darauf Sonderzeichen mit einem Escape zu versehen.</dd>
+
+                        </dl>
+
+                    </div>
+
+                    <div class="input-group">
+                        <h:outputLabel value="Key=Value"/>
+                        <h:inputText value="#{user.input}" autocomplete="off"
+                                     pt:placeholder="Key=Value" styleClass="form-control"/>
+
+                    </div>
+
+
+                    <f:ajax render="@form" execute="@form">
+                        <div class="input-group">
+                            <br/>
+                            <h:commandButton value="Konfiguration hinzufügen" action="#{user.addConfigLine}"
+                                             styleClass="btn-sm btn-primary space">
+                            </h:commandButton>
+                        </div>
+
+
+                        <br/>
+
+                        <h:selectManyCheckbox value="#{edit.owners}" styleClass="mydesign xspace"
+                                              layout="pageDirection">
+                            <f:selectItems value="#{user.config.entrySet()}" var="c" itemValue="#{c.key}"
+                                           itemLabel="#{c.key}=#{c.value}"/>
+
+                        </h:selectManyCheckbox>
+
+                        <h:commandButton value="Löschen" action="#{edit.deleteConfig}" rendered="#{not empty user.config}"
+                                         styleClass="btn-sm btn-danger space"/>
+
+                    </f:ajax>
+
+                </fieldset>
+
+            </h:form>
+
+
+        </div>
+    </ui:define>
+</ui:composition>
