@@ -388,12 +388,12 @@ Einschränkungen bleiben bei der Speicherung dennoch: Da zum Erstellungszeitpunk
 
 \section{Speicherung sehr großer Daten}
 
-Das Dateisystem unter OS X ist vorzugsweise {HFS+}, weitere Dateisysteme wie {FAT}, { NTFS} (Windows), {ZFS} (Solaris/BSD), {Ext4} (Linux) können durch entsprechende Treiber bei Bedarf nachinstalliert werden \cite{winext}, \cite{macntfs}. Das ist auch für Windows zutreffend, jedoch gibt es keine produktive Implementierungen anderer Dateisysteme für diese Plattform.
+Das Dateisystem unter OS X ist vorzugsweise {HFS+}, weitere Dateisysteme wie {FAT}, { NTFS} (Windows), {ZFS} (Solaris/BSD), {Ext4} (Linux) können durch entsprechende Treiber bei Bedarf nachinstalliert werden \cite{winext}, \cite{macntfs}. Das ist genauso für Windows zutreffend, jedoch gibt es keine produktive Implementierungen anderer Dateisysteme für diese Plattform.
 Nachfolgend wird von den jeweiligen bevorzugten Dateisystemen auf den Plattformen ausgegangen.
 
 Ab Mac OS X v10.5.3 unterstützt  {HFS+} bis zu 8 Exabytes \cite{maclimit}. In direktem Vergleich mit Linux Ext4, welches maximal im Petabyte Bereich Daten speichern kann, ist HFS+ zukunftssicherer entworfen \cite{kernelwiki}.
 
-Die meisten Distributionen von Linux unterstützen maximal ein Exabyte je Datei. Das soll sich erst ändern, wenn das als Linux Dateisystem angepriesene {Btrfs}, welches bis zu 16 Exabyte verwalten kann, veröffentlicht wird \cite{btrfs}. Es ist jedoch auch möglich, ZFS in Linux verwenden, welches bevorzugt in Solaris und FreeBSD eingesetzt wird \cite{zfslinux}.
+Die meisten Distributionen von Linux unterstützen maximal ein Exabyte je Datei. Das soll sich erst ändern, wenn das als Linux Dateisystem angepriesene {Btrfs}, welches bis zu 16 Exabyte verwalten kann, veröffentlicht wird \cite{btrfs}. Es ist jedoch möglich, ZFS in Linux verwenden, welches bevorzugt in Solaris und FreeBSD eingesetzt wird \cite{zfslinux}.
 
 NTFS bietet als das Windows-Dateisystem nur theoretische 16 Exabyte, die Implementierung soll lediglich 16 Terabyte unterstützen \cite{ntfslimit}. Ältere Dateisysteme wie {FAT} enden bereits mit knapp 4 Gigabyte je Datei und fallen damit vollständig aus dem Kontext der Arbeit \cite{fatlimit}.
  
@@ -411,9 +411,9 @@ Zur Realisierung eines \acrfull{rpc} bieten Protokolle wie \href{http://xmpp.org
 
 Das Bootstrapping Problem fasst Probleme zusammen, um den Einstieg in das P2P-Netzwerk zu finden. Bei IPv4 verstärkt eine mit \acrfull{nat} versehene Firewall die Problematik und ist für reine \acrshort{p2p}-Netzwerke kaum überwindbar.
 
-Mit IRC-Bootstrapping hat sich die Universität Duisburg-Essen beschäftigt und löst die Beschränkung im Chatnamen durch eine Zufallszahl \cite{5159226},\cite{RFC2812}. Diese Problematik wird auch in einem aktuelleren Protokoll wie \href{http://xmpp.org/extensions/xep-0045.html\#enter-conflict}{,,XMPP XEP 45''} aufgezeigt und ist durch ,,resources'' gelöst worden.
+Mit IRC-Bootstrapping hat sich die Universität Duisburg-Essen beschäftigt und löst die Beschränkung im Chatnamen durch eine Zufallszahl \cite{5159226},\cite{RFC2812}. Diese Problematik wird in einem aktuelleren Protokoll wie \href{http://xmpp.org/extensions/xep-0045.html\#enter-conflict}{,,XMPP XEP 45''} aufgezeigt und ist durch ,,resources'' gelöst worden.
 
-XMPP sieht auch eine \acrshort{p2p}-Übertragung vor, die mit ,,XEP-0066: Out of Band Data''  beschrieben ist. Die Unterstützung von Bibliotheken und Programmen ist jedoch nicht vollständig, daher wurde von einer Implementierung abgesehen.
+XMPP sieht zwar eine \acrshort{p2p}-Übertragung vor, die mit ,,XEP-0066: Out of Band Data''  beschrieben ist. Die Unterstützung von Bibliotheken und Programmen ist jedoch nicht vollständig, daher wurde von einer Implementierung abgesehen.
 
 Problematisch bleibt bei XMPP und IRC, dass diese Protokolle für menschliche Interaktion gedacht sind und Administratoren Bots den Serverzugang blockieren. Das Betreiben eigener Chatserver ist jedoch aufwändig und nicht praktikabel.
 
@@ -446,11 +446,11 @@ In diesem Zusammenhang ebenfalls betrachtenswert wird {JSON} als eine Alternativ
 \label{chap:jms}
 Beim \acrfull{jms} handelt es sich um eine ,,Message Oriented'' Middleware, welche die Kommunikation zwischen Programmen vereinheitlichen soll. Vergleichbare Ansätze finden sich im Protokoll XMPP wieder. Realisiert wird eine lose Kopplung einzelner Programmteile durch Nachrichtenaustausch.
 
-Neben der internen Java-VM Kommunikation wird auch eine {TCP/IP} Möglichkeit angeboten, die nicht nur von Java Anwendungen genutzt werden kann.
+Neben der internen Java-VM Kommunikation wird eine {TCP/IP} Möglichkeit angeboten, die nicht nur von Java Anwendungen genutzt werden kann.
 
 Durch ein Beobachter-Muster  wird ein Chatroom abgebildet, welcher durch Topic im  \acrshort{jms} realisiert ist.
-Wie in den meisten Mehrbenutzerchats existiert auch hier keine Historie, so dass neue Teilnehmer nur Nachrichten erhalten, wenn diese angemeldet sind.
-Anderes Verhalten weist eine Queue im \acrshort{jms} auf: Gespeicherte Nachrichten können auch später noch ausgelesen werden.
+Wie in den meisten Mehrbenutzerchats existiert keine Historie, so dass neue Teilnehmer nur Nachrichten erhalten, wenn diese angemeldet sind.
+Anderes Verhalten weist eine Queue im \acrshort{jms} auf: Gespeicherte Nachrichten können dadurch später noch ausgelesen werden.
 
 Das durch einen separaten Dienst bereitgestellte System fungiert als Vermittler zwischen Anwendungen und nutzt Javas interne Serialisierung zur korrekten Darstellung der Nachrichteninhalte.
  
@@ -469,7 +469,7 @@ In der Unterstützung unterscheiden sich die Dienste teils gravierend voneinande
 
 Bei vielen Diensten wird die Plattform Linux kaum unterstützt. Hierbei handelt es sich häufig um nicht offizielle Anwendungen, die nur wenige Funktionen anbieten. \href{https://one.ubuntu.com/}{Ubuntu One} stellt für die Wenigsten eine echte Alternative dar, da der Dienst keine Verbreitung besitzt und kaum Integration in anderen Produkten besitzt. Bei {Google Drive} ist der Hinweis zu finden, dass die Linux-Unterstützung noch in Arbeit ist \cite{googledrive}.
 
-{Dropbox} bietet auf den meisten Plattformen alle Funktionen gleichermaßen an, jedoch hat auch dieser Dienst Nachteile.
+{Dropbox} bietet auf den meisten Plattformen alle Funktionen gleichermaßen an, jedoch hat dieser Dienst Nachteile.
 Bei dem Client lassen sich nicht mehrere verschiedene Ordner verwalten. Dadurch werden gewisse Datenstrukturen erzwungen, was nicht immer erwünscht ist und zu Problemen führen kann, wenn Anwendungen bestimmte Pfade benötigen.
 
 Alle genannten Dienste haben für das Arbeiten mit wissenschaftlichen Daten den Nachteil, dass die Clients Dateien lokal synchronisieren. Da Verbindungen ins Internet immer noch langsam sind und da die nötigen Transfer-Kapazitäten enorme Kosten verursachen, ist dieser Ansatz nicht praktikabel \cite{telekomlahr}. Der Vorteil einer Cloud basierten Lösung, dem einfacheren Teilen der Daten, wiegt diese Nachteile nicht auf.
@@ -488,10 +488,10 @@ Meist darauf aufbauend haben speziell im Bereich Verschlagwortung und kooperativ
 
 Ein verteilter Ansatz lässt sich genauso wie die neuen Funktionen integrieren. Da die Anwendungen jedoch gängige Open-Source-Lösungen sind, benötigt die vorherige Einarbeitung in die Anwendung zu viel Zeit. 
 
-Die meisten Anwendungen im Open-Source Bereich haben nur eine mangelnde Unterstützung der 64 Bit Architektur. Für PHP auf Windows heißt es auf der Webseite, dass ,,large file support'' noch immer nicht vernünftig funktioniert und 64 Bit nicht stabil läuft \cite{phpw}. Diese Limitierung gilt auch für Horde und ownCloud, welche in PHP programmiert sind. Eine Implementierung der nötigen Funktionen kann wegen den Anforderungen nur schwerlich auf 32 Bit erfolgen. Inwieweit Konzepte wie \acrfull{pae} berücksichtigt werden können, muss noch evaluiert werden. Die 32 Bit Unterstützung ist aber nicht Gegenstand dieser Arbeit.
+Die meisten Anwendungen im Open-Source Bereich haben nur eine mangelnde Unterstützung der 64 Bit Architektur. Für PHP auf Windows heißt es auf der Webseite, dass ,,large file support'' noch immer nicht vernünftig funktioniert und 64 Bit nicht stabil läuft \cite{phpw}. Diese Limitierung gilt dabei genauso für Horde und ownCloud, welche in PHP programmiert sind. Eine Implementierung der nötigen Funktionen kann wegen den Anforderungen nur schwerlich auf 32 Bit erfolgen. Inwieweit Konzepte wie \acrfull{pae} berücksichtigt werden können, muss noch evaluiert werden. Die 32 Bit Unterstützung ist aber nicht Gegenstand dieser Arbeit.
 Da Java 64 Bit unterstützt, wird hier bei Verwendung sehr großer Dateien auf diese Technologie zurückgegriffen.
 
-{OpenKM}, wie Abbildung \ref{openkm:home} zeigt, ist einer Lösung des in der Einleitung beschriebenen Problems nah, jedoch sind hier immer noch nicht die genannten Funktionen wie die Berechnung der Prüfsumme ersichtlich. Diese sind wie auch bei  {Alfresco One} gegen passende Bezahlung integrierbar, da beide Systeme auch kommerziell vertrieben werden.
+{OpenKM}, wie Abbildung \ref{openkm:home} zeigt, ist einer Lösung des in der Einleitung beschriebenen Problems nah, jedoch sind hier immer noch nicht die genannten Funktionen wie die Berechnung der Prüfsumme ersichtlich. Diese sind wie bei  {Alfresco One} gegen passende Bezahlung integrierbar, da beide Systeme kommerziell vertrieben werden.
 
 Ein weiterer Nachteil ergibt sich aus dem Laden der Dateien, statt diese durch entsprechende Links im System zu öffnen. Ein Terabyte Download über HTTP dauern lange und wird auf einigen Plattformen wegen ihrer Limitierungen scheitern. 
 
@@ -522,7 +522,7 @@ Seit Java Version 7 ist die Einschätzung von James Gosling ,,Java ist wie C++ o
 
 Auch für die Programmierung von Weboberflächen bietet Java mit \href{http://www.oracle.com/technetwork/articles/java/enterprise-html5-2227136.html}{JSF und HTML} eine schnelle und einfache Möglichkeit, Web-Anwendungen zu erstellen.
 
-Die riesige Entwicklergemeinde hat auch viele Bibliotheken hervorgebracht, deren Ergebnisse heute in anderen Sprachen zur Anwendungsrealisierung verwendet werden. Die bekanntesten von ihnen werden von der
+Die riesige Entwicklergemeinde hat viele Bibliotheken hervorgebracht, deren Ergebnisse heute in anderen Sprachen zur Anwendungsrealisierung verwendet werden. Die bekanntesten von ihnen werden von der
 \href{http://www.apache.org/}{ Apache Software Foundation } gepflegt.
 
 
@@ -547,7 +547,7 @@ Folgende Ergebnisse können eintreten:
     
 	\item Verpassen von Modifikationen an Dateien.\\
      Lösung: Sollte der Verdacht existieren, dass sich die Datei geändert hat und dies, ohne Änderung im Änderungsdatum, sollte eine neue Berechnung erzwingbar sein.
-     Auslöser könnten Programme sein, die neben dem Inhalt der Datei auch deren Meta-Informationen verändern. Wie mit diesem Problem umgegangen werden sollte, ist der Aufgabenstellung nicht zu entnehmen. 
+     Auslöser könnten Programme sein, die neben dem Dateiinhalt deren Meta-Informationen verändern. Wie mit diesem Problem umgegangen werden sollte, ist der Aufgabenstellung nicht zu entnehmen. 
      Durch eine Aktualisierung z. B. mit \verb|touch FILE| unter Linux wird das Modifikationsdatum erneuert.
      
 \end{itemize}
@@ -592,7 +592,7 @@ Bis zu einer entsprechenden Entscheidung sollte das System bei Bedarf durch TLS 
 \section{Anwendungsserver}
 \label{chap:appserv}
 Die Anwendung baut auf etablierten Bibliotheken im Java Umfeld auf. Als Server im eingebetteten Modus wird ,,Glassfish'' verwendet.
-Lösungen mit Tomcat oder Jetty konnten wegen der JSF-API nicht verwendet werden, da viele genutzte Funktionen nicht vorhanden sind und es mehr Aufwand bedeutet, diese zu integrieren. Neben der gängigen Internet-Literatur gibt es auch Bücher, die das Einrichten und die ersten Schritte beschreiben wie \cite{glassfishee7}. Da sich aber für das Einbetten in die Anwendung beim ,,master'' entschieden wurde, werden nötige Konfigurationen vom Programm selbst erledigt.
+Lösungen mit Tomcat oder Jetty konnten wegen der JSF-API nicht verwendet werden, da viele genutzte Funktionen nicht vorhanden sind und es mehr Aufwand bedeutet, diese zu integrieren. Neben der gängigen Internet-Literatur gibt es Bücher, die das Einrichten und die ersten Schritte beschreiben wie \cite{glassfishee7}. Da sich aber für das Einbetten in die Anwendung beim ,,master'' entschieden wurde, werden nötige Konfigurationen vom Programm selbst erledigt.
 Die Entscheidung für einen eingebetteten Anwendungsserver ist darin begründet, dass die Administration möglichst einfach gehalten werden soll.
 Die Installation eines Anwendungsserver benötigt einen großen Konfigurationsaufwand und ist für normale Anwender ohne Vorwissen und Grundlagen nicht möglich.
 
@@ -622,7 +622,7 @@ Die wichtigsten Muster sind:
 
 Werden {CDI}, {JSF}, {JPA} in einer Anwendung verwendet, ergeben sich Synergien. So können Konfigurationen von Datenbanken lose gekoppelt werden und deren Transaktionen bei Bedarf durch einen Interceptor gestartet werden. Programme die {CDI} und {JPA} einsetzen, verwenden meistens das ,,Data Access Object''-Muster, welches notwendige Funktionen zum Datenspeicher nochmals vor der speichernden Anwendung kapselt. Es wirkt dadurch als Fassade vor der Datenbank und stellt sicher, dass nicht jedes Objekt eine eigene Suche implementiert und damit doppelten Code erzeugt.
 
-Die Kombination von {CDI} und {JSF} vereinfacht die Verwendung von ,,Java Beans'', indem in andere Objekte Eigenschaften injiziert werden können. Diese Flexibilität ist bei Webanwendungen und deren Formularen sehr wünschenswert, da einerseits Browser-Weichen so indirekt durch Muster wie  ,,Chain-of-Responsibility'' dem richtigen HTML-Generator übergeben werden können und andererseits durch das ,,lifecycle management'' auch Session und Request Kontexte einfach verwendbar werden. 
+Die Kombination von {CDI} und {JSF} vereinfacht die Verwendung von ,,Java Beans'', indem in andere Objekte Eigenschaften injiziert werden können. Diese Flexibilität ist bei Webanwendungen und deren Formularen sehr wünschenswert, da einerseits Browser-Weichen so indirekt durch Muster wie  ,,Chain-of-Responsibility'' dem richtigen HTML-Generator übergeben werden können und andererseits durch das ,,lifecycle management'' Session- und Request-Kontexte einfach verwendbar werden. 
 
 Durch die Aktualität von Java 8 treten Probleme im Zusammenspiel mit nicht aktualisierten Bibliotheken auf. Es werden wegen den neuen Streams Konzepten von Java 8 beim Evaluieren falsche Referenzen verwendet, was zu einer ,,Nullpointer Exception'' führt. Kontexte mit Javas ,,lambda'' Funktionen, sofern diese etwas komplexer sind, führen zu falschem Verhalten in der Anwendung.
 An dieser Stelle muss von der Verwendung von Java 8 Konzepten teilweise abgesehen werden, bis die Implementierungen des Containers die neuen Sprachelemente vernünftig unterstützen.
@@ -644,7 +644,7 @@ Optimierungspotential gibt es zudem durch angepasste SQL-Ausdrücke und der Nutz
 
 Die Problematik, dass in jedem Objekt die Datenbankinformationen ständig mit gespeichert werden, wird mittels {,,detach''} Operation vermieden. Dadurch wird auf die Objektverwaltung und Funktionen wie dem {lazy loading}, welche Daten erst bei Bedarf von der Datenbank liest, verzichtet, was in Anwendungen, die große Datenmengen verarbeiten, viel RAM spart und die Anwendung beschleunigt.
 
-Im  Zusammenhang mit Java 8 sind auch bei \acrshort{jpa} Probleme zu finden. Hier muss wiederum bedingt durch die Bibliothek gänzlich auf Java 8 verzichtet werden.
+Im  Zusammenhang mit Java 8 sind bei \acrshort{jpa} Probleme zu finden. Hier muss wiederum bedingt durch die Bibliothek gänzlich auf Java 8 verzichtet werden.
 Dies liegt an der internen Erweiterung von Java-Klassen. Mit \href{http://openjpa.apache.org/openjpa-2.4.x.html}{OpenJPA 2.4} wurde eine Java 8 Unterstützung implementiert. Der verwendete Anwendungsserver ist mit \href{http://www.eclipse.org/eclipselink/}{EclipseLink} ausgestattet und die neue Version mit Java 8 Unterstützung erst am 30.9.2015 erschienen, so dass zum Planungszeitpunkt keine entsprechende Unterstützung existierte.
 
 
@@ -694,8 +694,8 @@ Ein Rückblick auf die Zusammenfassung zeigt, wie welche Aufgaben von der Anwend
     
     \item Benachrichtigung über den Vorgang wie Kopieren, Erstellen und Löschen einer Datei\\
      Dateien ohne Schlagworte werden durch periodische Benachrichtigungen dem entsprechenden Anwender als E-Mail gesendet. 
-     Mit minimalen Anpassungen können auch Hinweise zum Kopieren oder Erstellen erfolgen.
-     Auch in der Weboberfläche, sofern der Anwender auch Dateibesitzer ist, sind diese Dateien sichtbar, wie auf dem Ausschnitt der Startseite Abbildung \ref{fig:app-ohnetags} gezeigt.
+     Mit minimalen Anpassungen können dadurch Hinweise zum Kopieren oder Erstellen erfolgen.
+     Auch in der Weboberfläche, sofern der Anwender Dateibesitzer ist, sind diese Dateien sichtbar, wie auf dem Ausschnitt der Startseite Abbildung \ref{fig:app-ohnetags} gezeigt.
      
      \begin{figure}[htbp] 
          \centering
@@ -710,7 +710,7 @@ Ein Rückblick auf die Zusammenfassung zeigt, wie welche Aufgaben von der Anwend
     \item Verlinken der \acrshort{dms}\\
     Durch eine ,,bridge'' ist es den Anwendungen möglich, Informationen untereinander auszutauschen. 
     \item Erkennung doppelter Dateien\\
-    Hier ist keine explizite Anzeige erstellt, doppelte Dateien können hier über einen ,,Workaround'' gefunden werden, indem die Prüfsumme in der Suchmaske eingegeben wird. Diese Prüfsumme ist für jeden Dateiinhalt eindeutig, sollte die Datei doppelt existieren, wird das Ergebnis der Suche alle Dateien auflisten. Wie Abbildung \ref{fig:app-dups} zeigt, ist hier die Datei ,,provider-1.0-SNAPSHOT.jar'' auch in einem Unterordner ,,lib'' vorhanden. Die Prüfsumme wird dabei durch ein ,,\%'' abgekürzt.
+    Hier ist keine explizite Anzeige erstellt, doppelte Dateien können hier über einen ,,Workaround'' gefunden werden, indem die Prüfsumme in der Suchmaske eingegeben wird. Diese Prüfsumme ist für jeden Dateiinhalt eindeutig, sollte die Datei doppelt existieren, wird das Ergebnis der Suche alle Dateien auflisten. Wie Abbildung \ref{fig:app-dups} zeigt, ist hier die Datei ,,provider-1.0-SNAPSHOT.jar'' in einem Unterordner ,,lib'' vorhanden. Die Prüfsumme wird dabei durch ein ,,\%'' abgekürzt.
     
     \begin{figure}[htbp] 
         \centering
@@ -778,7 +778,7 @@ Teile der Anwendung werden von bestimmten Peers bereitgestellt und ergänzen sic
 
 
 In Anlehnung an die ersten \acrshort{p2p}-Netzwerke wie z. B. Napster stellt das ,,master''-Projekt den Kern des Netzwerkes \cite{mahlmann2007peer}.
-Dabei kann eine komplexe System-Konfiguration wie in Abbildung \ref{fig:app-outline} aussehen. Es ist natürlich auch möglich alle ,,Peers'' auf einem Computer oder in virtuellen Maschinen zu installieren.
+Dabei kann eine komplexe System-Konfiguration wie in Abbildung \ref{fig:app-outline} aussehen. Es ist natürlich möglich alle ,,Peers'' auf einem Computer oder in virtuellen Maschinen zu installieren.
 
 \begin{figure}[htbp] 
     \centering
@@ -794,7 +794,7 @@ Hier existieren, neben den diversen Servern, zwei Clients. Die Clients können �
 In der zentralen Datenbank werden die Dateiinformationen gespeichert, um Verschlagwortung und weitere Attribute zu unterstützen.
 Ersichtlich ist, dass Lastverteilung durch Erzeugen weiterer Peers einfach zu realisieren ist. 
 
-Datensicherung kann prinzipiell durch eine ,,bridge'' erfolgen. Diese ersetzt aber nicht die Möglichkeit einer im Cluster betriebenen Datenbank und ist damit auch nicht vergleichbar. Ein Umstellen der Datenbank erfordert lediglich kleine  Anpassungen  in der Konfiguration  der Anwendung ,,database'', um die gewünschten Verbindungsparameter bereitzustellen.
+Datensicherung kann prinzipiell durch eine ,,bridge'' erfolgen. Diese ersetzt aber nicht die Möglichkeit einer im Cluster betriebenen Datenbank und ist damit nicht vergleichbar. Ein Umstellen der Datenbank erfordert lediglich kleine  Anpassungen  in der Konfiguration  der Anwendung ,,database'', um die gewünschten Verbindungsparameter bereitzustellen.
 
 
 \section{Die Projekte}
@@ -803,7 +803,7 @@ Die Abhängigkeiten der Projekte untereinander ist nicht durch ein  ,,multi modu
 
 Die Kommunikationsschicht wird durch das ,,client'' Projekt bereitgestellt.
 Die resultierende Bibliothek muss zum Erstellen weiterer Projekte in das lokale Repository installiert werden.
-Da der ,,master'' von der ,,database'' und dem ,,www'' Projekt im eingebetteten Modus abhängig ist, sollten diese wie auch der ,,client'' zuerst gebaut werden.
+Da der ,,master'',im eingebetteten Modus, zudem von der ,,database'' und dem ,,www'' Projekt abhängig ist, sollten diese zuerst gebaut werden.
 Da die Installation der anderen Projekte nicht falsch ist, genügt das Ausführen von ,,mvn clean install'' in den entsprechenden Projekten zur Erzeugung.
 
 Nachfolgend wird auf die einzelnen Komponenten eingegangen sowie Funktionen und Konfigurationen beschreiben.
@@ -812,7 +812,7 @@ Nachfolgend wird auf die einzelnen Komponenten eingegangen sowie Funktionen und 
 \subsection{Bridge-Projekt}
 Mit dem ,,bridge'' Projekt wird die Idee der Erweiterung des Netzwerkes verfolgt. Wie in Abbildung \ref{fig:app-outline} sichtbar, verbindet dieses Projekt zwei autonome Systeme und ermöglicht einen Informationsfluss über die Systemgrenzen hinweg. Ein vorteilhafter Nebeneffekt ist das Synchronisieren der Datenbank im laufenden Betrieb. Da mehrfache Antworten auf eine Frage kommen können, müssen die Peers mit Duplikaten und leichten Variationen in den Antworten umgehen können.
 
-In komplexen Netzwerkkonfigurationen kann ein Peer auch mehreren Netzwerken angehören.
+In komplexen Netzwerkkonfigurationen kann ein Peer mehreren Netzwerken angehören.
 Dabei werden die Daten in beide Richtungen der ,,bridge'' gesendet. Diese Dopplungen können durch einen \acrfull{ttl} Wert nicht verhindert werden. Dieser vermeidet lediglich ,,round trips'' innerhalb des Routing.
 
 Die Konfiguration ist einfach gehalten, sie erwartet die ,,master'' IP bzw. \acrfull{fqdn} Adressen sowie ein gemeinsames Geheimnis, um am entsprechendem Netzwerk teilzunehmen.
@@ -840,7 +840,7 @@ Der ,,provider'' stellt Dateiinformationen und Dateien zur Verfügung. Er reagie
 Die Kommunikation ist vorrangig vom ,,provider'' nur in Richtung ,,master''. 
 Wünsche, welche die Kommunikation unter den Peers beinhalteten, ergaben im Zuge der Entwicklung, dass die Prozessverwaltung in Java ähnliche Probleme wie die Dateiüberwachung aufweist. Diese Wünsche beinhalteten die Befehlsausführung mit externen Programmen aus der Weboberfläche. Viele wünschenswerte Informationen fehlen jedoch in den APIs und konnten dadurch weder am Prozess noch in der Weboberfläche abgebildet werden. Prozesse und deren ID oder OWNER herauszufinden können in Java nur plattformspezifisch realisiert werden und beschränken das Feedback von einem Prozess. Ein überwachen, bei lang andauernden Hintergrundaufgaben, wird in der Anwendung daher nicht möglich. Es ist auch hier nötig, eine Fassade über das von Java bereitgestellte Prozessverwaltungssystem zu entwickeln.
 
-Die ,,externen'' Befehle ermöglichen es auch API interne Aufrufe wie ,,publish'' dem Anwender freizugeben.
+Die ,,externen'' Befehle ermöglichen zudem API interne Aufrufe wie ,,publish'' dem Anwender freizugeben.
 Deren Argumente sind in der Anwendung fest vorgegeben. 
 
 \bigskip
@@ -860,7 +860,7 @@ In der Konfigurationsdatei ,,provider.properties'' können Befehle einfach angem
 
  
 
-In der Konfigurationsdatei finden sich auch weitere optionale Parameter. Neben den Standardparametern wie \acrshort{fqdn} bzw. IP sind auch folgende Werte erlaubt:\\
+In der Konfigurationsdatei finden sich weitere optionale Parameter. Neben den Standardparametern wie \acrshort{fqdn} bzw. IP sind folgende Werte erlaubt:\\
 
 \begin{itemize}
     \item Zeit in Millisekunden, die vom Watchservice gewartet werden, bevor ein Event stattfindet. Hier wird der Wert auf eine Sekunde gesetzt.\\ \verb|de.bluepair.watchservice.polling=1000|
@@ -922,14 +922,14 @@ Eine Fassade  über dem ,,WatchService'' sieht daher mehr als die in  ,,Standard
 Dadurch wird das Verwenden der Überwachung flexibler und das Unterdrücken anhand der Regeln, von einigen Events, wird durch ,,addSuppressed'' und ,,getSuppressed'' mit Exception-Behandlung vergleichbar, wodurch bei Bedarf mehr Details zum Event abgefragt werden können.
 
 %% --ralf?
-Die Fassade kann der Problematik, den Änderungsprozesses zu erkennen, nicht zuverlässig entgegen kommen und liefert die Informationen daher auch nicht mit. Das Auslesen von Betriebssystemprozessen ist nicht trivial lösbar. Dieses Problem tritt innerhalb der Anwendung zweimal auf.
+Die Fassade kann der Problematik, den Änderungsprozesses zu erkennen, nicht zuverlässig entgegen kommen und liefert die Informationen daher nicht mit. Das Auslesen von Betriebssystemprozessen ist nicht trivial lösbar. Dieses Problem tritt innerhalb der Anwendung zweimal auf.
 
 Anders als der ,,WatchService'' gibt die Fassade den absoluten Pfad weiter, da sich damit einfacher arbeiten lässt als mit einer relativen Angabe zu einem zum Triggerzeitpunkt unbekannten Ordner.
 
 Auch das Arbeiten mit erweiterten Attributen konnte so vereinfacht werden.
 Durch ein entsprechendes Event werden alle nötigen Operationen, um Attribute lesen oder schreiben zu können, bereits vom Event bereitgestellt. Das Arbeiten mit diesem Event entspricht daher einer Fusion verschiedener einfachen Java-API wie ,,WatchEvent'', ,,Path'', ,,Files'' und ,,File''.
 
-Es ergeben sich auch Nachteile bei der Verwendung  der Fassade. Events sind nicht mehr in Echtzeit übertragbar, da eine Verzögerung vor der Weitergabe entsteht. Dies steht aber mit den hier genannten Daten in keinem Konflikt. Durch das Veralten der Events ist ein Weiterarbeiten nicht mehr nötig oder möglich. Beispielsweise ist ein Kopiervorgang mit anschließendem direkten Löschen ein möglicher Kandidat für Fehler, sowie das Weitergeben eines MODIFY-Event bei dem keine Datei mehr zugrunde liegt.
+Es ergeben sich Nachteile bei der Verwendung  der Fassade. Events sind nicht mehr in Echtzeit übertragbar, da eine Verzögerung vor der Weitergabe entsteht. Dies steht aber mit den hier genannten Daten in keinem Konflikt. Durch das Veralten der Events ist ein Weiterarbeiten nicht mehr nötig oder möglich. Beispielsweise ist ein Kopiervorgang mit anschließendem direkten Löschen ein möglicher Kandidat für Fehler, sowie das Weitergeben eines MODIFY-Event bei dem keine Datei mehr zugrunde liegt.
 Um der Problematik entgegenzuwirken, wird vor der Weitergabe der Events geprüft, ob diese zum Prüfungszeitpunkt mit keinen anderen in Konflikt stehen.
 
 \bigskip
@@ -942,53 +942,54 @@ Dabei treten speziell die Konflikte auf:
     wegen Transitivität (CREATE -> MODIFY -> DELETE) verhält sich dieser Fall wie oben beschrieben.
 \end{itemize}
 
-Da es sich bei der Verwendung um einen Dienst zum Berechnen von Prüfsummen handelt, muss nicht zwangsweise sichergestellt werden, dass jede Änderung berücksichtigt wird und daher Änderungskonflikte durch ersetzendes Kopieren von Dateien nicht betrachtet werden.
+Die Verwendung der Fassade, zum Berechnen von Prüfsummen, muss nicht sicherstellen, dass jede Änderung berücksichtigt wird.
+Änderungskonflikte durch ersetzendes Kopieren von Dateien werden daher nicht gesondert betrachtet.
 
-Die Fassade selbst realisiert ein Beobachter-Muster, um ihre Dienste nach außen hin anzubieten \cite{gamma2011entwurfsmuster}.
+Die Fassade selbst realisiert ein Beobachter-Muster, um ihre Dienste anzubieten \cite{gamma2011entwurfsmuster}.
 Als Kommunikationsextra ist es möglich, der Fassade Events zu injizieren. So muss nicht zwangsweise eine Änderung auf dem Dateisystem stattfinden.
 
 Diese Möglichkeit wird mit einem UPDATE Event realisiert.
-Dabei steht dieses in Konflikt mit allen anderen Events. Es soll lediglich sicherstellen, dass auf jeden Fall mindestens ein Event im nächsten Ausgabetakt stattfindet.
+Dabei steht dieses in Konflikt mit allen anderen Events und soll sicherstellen, dass in jedem Fall mindestens ein Event im nächsten Ausgabetakt stattfindet.
 
 Um Extra-Informationen an ein Event anzuhängen, wurden Events, wie bei den meisten Controls von JavaFX, mit den Methoden ,,getUserData'' und ,,setUserData'' erweitert. Dadurch lassen sich beliebige Objekte durch die Anwendung transportieren. 
 
 
 
 \subsubsection{Java Mail}
-Die Java Mail API wurde verwendet, um einen schnelleren Zugriff auf E-Mails zu bekommen. Dabei wurde die API so implementiert, dass diese mit den Funktionen aus Java 8 verwendet werden kann.
+Die Java Mail API wurde verwendet, um einen schnelleren Zugriff auf E-Mails zu erhalten. Dabei wurde die API so implementiert, dass diese mit den Funktionen aus Java 8 verwendet werden kann.
 
 Eingehende E-Mails sind in dieser API nicht mehr vom Mail-Server getrennt und können direkt Antworten generieren und versenden. Das vermeidet unnötig viele Referenzen auf Objekte und erlaubt bei Verwendung ein einfacheres Arbeiten.
 
-Die API muss, für die meisten Server, im Internet seit April 2014 Verschlüsselung verwenden \cite{sslmail}. Daher sind für die API weitere Konfigurationsparameter erforderlich.
+Die API muss im Internet seit April 2014 eine Verschlüsselung verwenden um mit den gängigen anderen Mail-Servern zu kommunizieren \cite{sslmail}. Daher sind für die API weitere Konfigurationsparameter erforderlich.
 \label{javamailc}
 \begin{itemize}
     \item Zu den Standardparametern gehören die Verbindungsparameter zum Server.\\
     \verb|de.bluepair.mail.port=SMTP_PORT|\\
     \verb|de.bluepair.mail.host=IP_OR_FQDN|\\
-    \verb|de.bluepair.mail.user=USER|\\ \verb|de.bluepair.mail.password=USER_PASSWORD| - das Passwort ist leider in Klartext anzugeben und wird für IMAP und SMTP verwendet. \\
+    \verb|de.bluepair.mail.user=USER|\\ \verb|de.bluepair.mail.password=USER_PASSWORD| - das Passwort ist in Klartext anzugeben und wird für IMAP und SMTP verwendet. \\
     \verb|de.bluepair.mail.address=USER@FQDN| - die Sender-Adresse unter der E-Mails versendet werden. 
     \item Aus der Java Mail API können beliebige Parameter  durch Verwendung eines PREFIX \verb|de.bluepair.| aufgenommen werden.
     \verb|de.bluepair.mail.smtp.ssl.trust=*| und\\
-    \verb|de.bluepair.mail.imap.ssl.trust=*| werden Standardmäßig gesetzt.
+    \verb|de.bluepair.mail.imap.ssl.trust=*| werden standardmäßig gesetzt.
     
 \end{itemize}
 
-Wegen der verwendeten Testumgebung und der oben genannten Problematik, dass eine Verschlüsselung zwingend nötig ist, wurden die \verb|ssl.trust| Parameter Standardmäßig auf \verb|*| gesetzt. Dies hebelt einige Schutzfunktionen von Zertifikaten aus, es ist ratsam sich passende Parameter zu überlegen. Gegebenenfalls muss eine ,,socketFactory'' selbst erstellt werden. 
+Wegen der verwendeten Testumgebung und der oben genannten Problematik, dass eine Verschlüsselung zwingend notwendig ist, sind die \verb|ssl.trust| Parameter standardmäßig auf ,,*'' gesetzt. Dies umgeht einige Schutzfunktionen der zertifikatbasierten Kommunikation, es ist ratsam diese Parameter an die Einsatzumgebung anzupassen und gegebenenfalls eine ,,socketFactory'' zu implementieren. 
 
 \subsection{Database-Projekt}
+Das Projekt stellt die Kernfunktionalität für die Suchen und dem versenden von Benachrichtigungen bereit.
+Das betrifft bei der Speicherung der zusätzlichen Dateiinformationen eine entsprechende Verwaltung der Daten in einer SQL-Datenbank.
+Die Anwendung kann dabei mit eingebetteten Datenbanken oder extern wie z. B. {MySQL} oder {PostgreSQL} betrieben werden.
+Wegen der Nutzung von \acrshort{jpa} sind innerhalb der Anwendung keine Anpassung nötig, da SQL-Anfragen entsprechend dem Treiber der Datenbank erzeugt werden.
+Die Abbildung der Tabellen auf Java-Objekte ist überschaubar und verfolgte einen ,,Code-First'' Ansatz (vgl. \cite{wincodefirst}). 
 
-Der Kern für Suchen und Benachrichtigungen wird von dem ,,database'' Projekt bereitgestellt.
-Das betrifft auch die Verwaltung der zusätzlichen Informationen einer Datei, die in einer SQL-Datenbank gespeichert werden. 
-Die Anwendung kann mit eingebetteten Datenbanken oder extern wie z. B. {MySQL} oder {PostgreSQL} betrieben werden.
-Durch \acrshort{jpa} ist innerhalb der Anwendung keine Anpassung nötig, da dieses SQL-Anfragen entsprechend dem Treiber der Datenbank erzeugt.
+Durch den Anwendungsserver ist eine Konfiguration wegen der Zentralisierung sehr einfach gehalten. Durch einen \acrfull{acc} wäre das Realisieren eines Peer möglich, jedoch sind diese für den verwendeten Anwendungsserver zu Fehlerhaft. Die Problematik, dass im eingebetteten Modus nicht alle Konfigurationen zu Verfügung gestellt werden, erschwert das Verwenden des \acrshort{acc} und dadurch bietet dieser keinen Mehrwert in der Funktionalität für die Anwendung.
 
-Durch den Anwendungsserver ist eine Konfiguration wegen der Zentralisierung sehr einfach gehalten, da hier alle benötigten Angaben zentral für alle auf ihm laufenden Anwendungen getätigt werden können. Es lassen sich diese Optionen auch durch einen \acrfull{acc} in einem Peer nutzen, jedoch ist die Bibliotheksauswahl durch Konflikte in Versionen schwerlich zu beheben. Zudem existiert die Problematik, dass im eingebetteten Modus nicht alle Konfigurationen zu Verfügung gestellt werden, so dass \acrshort{acc} keinen Mehrwert für die Anwendung bietet, da die Funktionen bereits auf Serverseite nicht zu Verfügung gestellt wurden.
-
-Bei der Auswahl einer Datenbank muss lediglich darauf geachtet werden, dass diese auch unter Java lauffähig ist. 
+Bei der Auswahl einer Datenbank muss lediglich darauf geachtet werden, dass dessen Treiber JDBC unterstützen. 
 Die Verwendung von \acrshort{jpa} ist zwar langsamer als das Schreiben von entsprechenden SQL-Anweisungen, der Vorteil liegt aber in der konsequenten Vermeidung von SQL-Injektion und direkten Nutzen von Objekten.
 
 
-Alle Nachrichten, die am ,,master'' eingehen, werden von diesem an die Datenbank weitergeleitet und verarbeitet. Dadurch kann neben der reinen Speicherung auch eine Statistik erhoben werden. Das Benachrichtigungssystem, welches in diesem Peer realisiert wurde, versendet Erinnerungen anhand des Datenbestandes und versucht mit diesen den Anwender zu ermuntern, den Datenbestand zu verbessern.
+Alle Nachrichten, die am ,,master'' eingehen, werden von diesem an die Datenbank weitergeleitet und verarbeitet. Dadurch kann neben der reinen Speicherung eine Statistik erhoben werden. Das Benachrichtigungssystem, welches in diesem Peer realisiert ist, versendet Erinnerungen anhand des Datenbestandes und versucht mit diesen den Anwender zu ermuntern, den Datenbestand zu verbessern.
 Die dazu erzeugte E-Mail wird jedem registrierten Anwender durch die hinterlegte E-Mail-Adresse gesendet.
 
 Das System beachtet dabei, ob überhaupt ein Anwender E-Mails empfangen will durch die Option \verb|email.push=true|, und versucht dabei die Adresse aus dem Login oder entsprechender Option \verb|email=MAIL@FQDN| zu erkennen.
@@ -1002,7 +1003,7 @@ Um die Häufigkeit der Benachrichtigungen zu steuern, kann in der Konfiguration 
     \verb|de.bluepair.mail.imap.polling=1000|
     \item Das Erinnern via E-Mail kann unabhängig von der Verarbeitung festgelegt werden. Die hier erteilten 10 Sekunden sind nicht in der Produktion zu empfehlen, da dadurch gerade zur Einführungsphase eine erhebliche Menge an E-Mails versendet werden könnte.\\
     \verb|de.bluepair.mail.reminder=10000|
-    \item Bei der Erzeugung von E-Mails wird ein Link für die Weboberfläche erzeugt. Um auch den richtigen Link zu erzeugen, wird der Port benötigt. Keine Angabe lässt den Port 8080 vermuten. Ein anderer wird durch \\
+    \item Bei der Erzeugung von E-Mails wird ein Link für die Weboberfläche erzeugt. Um den richtigen Link zu erzeugen, wird der Port benötigt. Keine Angabe lässt den Port 8080 vermuten. Ein anderer wird durch \\
     \verb|de.bluepair.www.port=7070| angegeben. Als Host wird der Eintrag \\
     \verb|de.bluepair.www.host=FQDN| verwendet und bei keiner Angabe \\
      \verb|de.bluepair.jms.host=FQDN| der ,,master'' angenommen.
@@ -1016,9 +1017,9 @@ Dieser Peer nutzt zur Verarbeitung anders als alle bisherigen Peers eine Bibliot
 Das Verarbeiten von den eingehenden Nachrichten läuft dabei mehrstufig ab und nutzt ein Layer Architekturmuster \cite{buschmann1998pattern}.
 
 Neue Dateien werden vor dem Speichern in die Datenbank auf ähnliche, bereits vorhandene Einträge untersucht.
-Aktuell hilft dabei die Prüfsumme, so dass Tags, die von Anwendern vergeben wurden, auch direkt für neue Dateien gelten. Das vermeidet auch Erinnerungen für Duplikate und Sicherungen bestimmter Dateien zu versenden.
+Aktuell hilft dabei die Prüfsumme, so dass Tags, die von Anwendern vergeben wurden, direkt für neue Dateien gelten. Das vermeidet unnötige Erinnerungen für Dateiduplikate  zu versenden.
 
-Handelt es sich um Datei fremde Nachrichten, wie Anfragen vom ,,www''-Peer, stellt die Anwendung eine einfache Benutzerverwaltung, die neben der üblichen Funktionen auch einem oder mehreren Anwendern Dateien zuordnen kann.
+Handelt es sich um Datei fremde Nachrichten, wie Anfragen vom ,,www''-Peer, stellt die Anwendung eine einfache Benutzerverwaltung, die neben der üblichen Funktionen  einem oder mehreren Anwendern Dateien zuordnen kann.
 
 Die verwendete eingebettete Datenbank erzeugt sich komplett selbst, die Konfigurationen dieser können jedoch nicht ohne Änderungen am Code gemacht werden. Das Abstellen und Einrichten neuer Verbindungsparameter zu anderen Datenbanken erfordert daher grundlegende Programmiererfahrungen mit der \acrshort{jpa}.
 
@@ -1035,8 +1036,8 @@ Dazu darf der E-Mail-Inhalt nicht gelöscht werden, wichtig ist hier die Prüfsu
 
 \subsection{Master-Projekt}
 
-Der ,,master''-Peer stellt als eingebettete Version die größte  Funktionalität. Zu dieser gehört auch das Vermitteln der Nachrichten, um den Peers die Kommunikation zu ermöglichen. Wenn es darum geht, Dateien auszutauschen, finden sich einige Ansätze auch im FTP-Protokoll wieder \cite{rfc959}. 
-Dazu zählen das Vermitteln der Ports, wie sie bei FTP in einer Server-zu-Server Kommunikation durch den Menschen (oder Script) erledigt werden.
+Der ,,master''-Peer stellt als eingebettete Version die größte  Funktionalität. Zu diesen zählt das Vermitteln von Nachrichten, um den Peers die Kommunikation zu ermöglichen. Beim Dateiaustausch der Peers übernimmt der Vermittler eine Zentrale Rolle und vermittelt die Ports und Adressen zwischen den Teilnehmern (vgl. FTP-Protokoll \cite{rfc959}).
+
 
 Auch ein primitives \acrshort{stun} ist implementiert, um IP und Port eines Peers zu erkennen. Jedoch beschäftigt sich diese Arbeit nicht mit der Problematik des ,,Hole Punching'' und geht davon aus, dass Firewalls zwischen den Peers die Kommunikation erlauben.
 
@@ -1061,13 +1062,17 @@ Im eingebetteten Modus werden alle nötigen Dienste gestartet. Dabei wird sich a
     \begin{quote}
         deploy www.war www /
     \end{quote}
-     abgesetzt.
+     abgesetzt. Dies kann durch die Angabe von ,,false'' im Parameter\\
+     \verb|de.bluepair.www = true| verhindert werden.\\ Einen anderen Dateinamen kann man durch \\
+     \verb|de.bluepair.www.file = www.war| festlegen. Dabei wird vom Ausführungsort anfangend nach dieser Dateiangabe gesucht.
      
+     \item Die Integration des ,,datenbank''-Peer in den ,,master'' und dessen automatisches Starten kann hier ähnlich abgestellt werden. Der Parameter lautet hierfür\\
+     \verb|de.bluepair.database = true|
      
      
      \item Die interne einfache \acrshort{stun}-Implementierung kann als Dienst durch \\
-     \verb|ipecho.port=8888| auf einem beliebigen anderen Port verschoben werden. Andere angaben als der Standardport, müssen auch in den Clients angepasst werden.
-     
+     \verb|ipecho.port=8888| auf einem beliebigen anderen Port verschoben werden. Andere angaben als der Standardport, müssen in den Clients angepasst werden.
+      
      
     
 \end{itemize}
@@ -1075,16 +1080,16 @@ Im eingebetteten Modus werden alle nötigen Dienste gestartet. Dabei wird sich a
 
 Es gibt noch einige kleinere Befehle für die Shell, was das Debuggen vereinfachen kann. Dazu gehören ,,property KEY VALUE'', um eine neue Umgebungsvariable ,,KEY'' auf den Wert ,,VALUE'' zu setzen, und ,,send ...'', welches eine mit Leerzeichen getrennte Wortliste annimmt, um Nachrichten in das \acrshort{p2p}-Netzwerk zu senden. Der ..print'' Befehl lässt die Nachrichten auf der Konsole ausgeben.
 
-Um wichtige Kommunikation wie das Vernetzen der ,,master'' und das Speichern getrennt zu halten, wurden weitere Kanäle  für die ,,bridge'' und ,,database'' eingeführt. Diese sind auch als eine ,,publish-subscrib'' Architektur entworfen. Der Unterschied zum bestehenden Kommunikationskanal ist das Entfallen der Prüfung des gemeinsamen Geheimnisses.
+Um wichtige Kommunikation wie das Vernetzen der ,,master'' und das Speichern getrennt zu halten, wurden weitere Kanäle  für die ,,bridge'' und ,,database'' eingeführt. Diese sind als eine ,,publish-subscrib'' Architektur entworfen. Der Unterschied zum bestehenden Kommunikationskanal ist das Entfallen der Prüfung des gemeinsamen Geheimnisses.
 
 
 
 \subsection{Weboberfläche}
 In dem Unterprojekt ,,www'' wird die Interaktion mit dem Anwender durch eine in HTML erzeugte Oberfläche realisiert.
-Das Suchen erfolgt in der \acrshort{p2p}-Netzwerkdatenbank der speichernden Peers, welche auch Konfigurationen und eine primitive Benutzerverwaltung bereitstellen.
+Das Suchen erfolgt in der \acrshort{p2p}-Netzwerkdatenbank der speichernden Peers, welche zudem Konfigurationen und eine primitive Benutzerverwaltung bereitstellen.
 Ein angemeldeter Anwender erhält mehr Möglichkeiten für die Interaktion mit den einzelnen Peers. Dazu zählen beispielsweise das Filtern von Dateien durch externe Prozesse, das Eintragen und Editieren von Tags und das Konfigurieren von den Pfaden zu Netzlaufwerken auf der eigenen Festplatte über ,,reguläre Ausdrücke''.
 
-Da die Konfiguration nicht durch eine Properties-Datei realisiert werden kann, müssen die Einstellungen am Anwendungsserver erledigt werden. Für den eingebetteten Modus reicht die Konfigurationsdatei des ,,master''. Beim externen Betreiben ist es nötig, die wichtigsten \acrshort{jms}-Parameter durch Umgebungsvariablen zu definieren. Das kann global im System oder -- je nach Anwendungsserver -- auch für die Anwendung separat gemacht werden.
+Da die Konfiguration nicht durch eine Properties-Datei realisiert werden kann, müssen die Einstellungen am Anwendungsserver erledigt werden. Für den eingebetteten Modus reicht die Konfigurationsdatei des ,,master''. Beim externen Betreiben ist es nötig, die wichtigsten \acrshort{jms}-Parameter durch Umgebungsvariablen zu definieren. Das kann global im System oder -- je nach Anwendungsserver -- für die Anwendung separat gemacht werden.
 
 Auf die Möglichkeiten eines Anwender zur Interaktion wird nachfolgend eingegangen.
 Dabei wird sich an den oben genannten Szenarien gehalten. Diese waren:
@@ -1124,7 +1129,7 @@ Dateispeicherungen und das Editieren von Formularen sollte daher zügig erledigt
 
 Es wird kein ,,Faces Flow'' verwendet. Bei Session-Inaktivität wird der auftretende Fehler durch eine konfigurierte Umleitung abgefangen. Ist das Nutzerverhalten evaluiert und fest, ist eine Verwendung der ,,Faces Flow'' API sinnvoller.
 
-Die Abbildung  \ref{fig:www-start} zeigt zudem oben rechts die ,,Hilfe'' an. Auf diese wird auch innerhalb der Anwendung öfter verwiesen. Hier stehen Beispiele und Erklärungen wie Abbildung \ref{fig:www-help} zeigt. 
+Die Abbildung  \ref{fig:www-start} zeigt zudem oben rechts die ,,Hilfe'' an. Auf diese wird innerhalb der Anwendung öfter verwiesen. Hier stehen Beispiele und Erklärungen wie Abbildung \ref{fig:www-help} zeigt. 
 %% ab hier gehts weiter!!
 Da erst nach dem Einloggen alle Funktionen nutzbar sind, sollte der Anwender oben rechts (vgl. Abbildung \ref{fig:www-start}) seinen Benutzernamen und ein Passwort eintragen.
 Für den ersten Login werden Administrator-Rechte vergeben. Alle weiteren neuen Anwender bekommen anschließend nur durch diesen Administrator weitere Rechte. Sollte ein Anwender sich das erste Mal am System anmelden, wird automatisch ein Konto angelegt. Sollte das Konto existieren, werden die Identifikationsdaten überprüft und der Anwender bei Erfolg eingeloggt.
@@ -1178,7 +1183,7 @@ Werden Dateipfade und Attribute gleichzeitig gesucht, wie in Abbildung \ref{fig:
 
  
 \subsubsection{Zugriff auf den Datenbestand}
-In diesem Szenario wird gezeigt, wie die Anwendung dem Anwender hilft, auf die im Netzwerk abgelegten Daten zuzugreifen. Wegen der Limitierungen durch den Webbrowser, bedingt durch Sicherheit und nutzbare Funktionen, findet keine Übertragung der Daten statt und auch die direkte Integration ist nur durch Umwege möglich.
+In diesem Szenario wird gezeigt, wie die Anwendung dem Anwender hilft, auf die im Netzwerk abgelegten Daten zuzugreifen. Wegen der Limitierungen durch den Webbrowser, bedingt durch Sicherheit und nutzbare Funktionen, findet keine Übertragung der Daten statt und eine direkte Integration in den Desktop ist nur durch Umwege möglich.
 Dennoch erfolgt der Zugriff auf die Daten für den Anwender  durch einen vom Betriebssystem bereitgestellten Dateimanager. 
 Dazu erkennt die Anwendung anhand des ,,User-Agent'' das Betriebssystem des Anwenders und generiert für dieses ein passendes Script. Dies setzt voraus, dass der Anwender die Netzwerklaufwerke bereits konfiguriert haben.
 
@@ -1190,11 +1195,11 @@ Die Bilder entstanden anhand der Konfiguration wie in der Abschlussbetrachtung d
 Da hier der Dienst SSH verwendet wurde und das Tool ,,sshfs'' entfällt die Angabe eines Server, dies wird beim Verbinden und starten des Tools angegeben.
 
 
-Für Windows kann eine Datei wie ,,C:\textbackslash{}data\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' auch auf verschiedene Weise freigegeben sein (für Linux vgl. Abbildung \ref{fig:www-orig}).
+Für Windows kann eine Datei wie ,,C:\textbackslash{}data\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' auf verschiedene Weise freigegeben sein (für Linux vgl. Abbildung \ref{fig:www-orig}).
 Die meist nicht zutreffende, einfachste Variante für die Anwendung ist das Freigeben der kompletten Festplatte ,,C:\textbackslash{}'' mit anschließendem Einstellen als Netzwerklaufwerk unter ,,C:\textbackslash{}''.
 
 
-Es kann auch nur der Unterordner ,,C:\textbackslash{}data\textbackslash{}wichtig'' als Netzwerklaufwerk ,,wichtig'' freigegeben sein. Dann muss vom Administrator der absolute Pfad durch Verwendung von der Konfiguration ,,config.wichtigedaten.subpath=C:\textbackslash{}data\textbackslash{}wichtig'' angepasst werden (für Linux vgl. Abbildung \ref{fig:www-subpath} und das daraus resultierende Ergebnis in Abbildung \ref{fig:www-subpath_0}). Da die Erreichbarkeit so nicht gewährleistet ist, muss ein weiterer Eintrag erfolgen, um den Netzwerkpfad zum ,,provider'' anzugeben. Dies erfolgt durch ,,config.wichtigedaten.baseurl=\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig'' (für Linux mit lokalem ,,mount'' vgl. Abbildung  \ref{fig:www-subpath2}). Das resultierende Ergebnis des Pfades ,,C:\textbackslash{}data\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' ist durch die zwei Konfigurationseinträge  ,,\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' (für Linux vgl. Abbildung \ref{fig:www-erg}). Da ein Anwender abweichende Eintrag der Freigabe erzeugen kann, unter Windows durch ,,net use'' oder Linux mit ,,mount'', z. B. ,,X:\textbackslash{}'' oder unter Linux ,,/other\_mount'' (vgl. Abbildung \ref{fig:www-erg2})  damit mehr Programme mit den Daten arbeiten können, muss dieser in seinen ,,Einstellungen'' die Konfiguration ,,config.wichtigedaten.replacefrom=\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}server1\textbackslash{}\textbackslash{}wichtig'' und ,,config.wichtigedaten.replacewith=X:\textbackslash{}\textbackslash{}'' einstellen  (für Linux vgl. Abbildung \ref{fig:www-subpath3} ). Dabei ist zu beachten, dass ,,reguläre Ausdrücke'' Sonderzeichen interpretieren, was zu einer Verdopplung der ,,backslash'' führt. Mehr Informationen können der Java API entnommen werden  \cite{javaregex}.
+Es kann beispielsweise nur der Unterordner ,,C:\textbackslash{}data\textbackslash{}wichtig'' als Netzwerklaufwerk ,,wichtig'' freigegeben sein. Dann muss vom Administrator der absolute Pfad durch Verwendung von der Konfiguration ,,config.wichtigedaten.subpath=C:\textbackslash{}data\textbackslash{}wichtig'' angepasst werden (für Linux vgl. Abbildung \ref{fig:www-subpath} und das daraus resultierende Ergebnis in Abbildung \ref{fig:www-subpath_0}). Da die Erreichbarkeit so nicht gewährleistet ist, muss ein weiterer Eintrag erfolgen, um den Netzwerkpfad zum ,,provider'' anzugeben. Dies erfolgt durch ,,config.wichtigedaten.baseurl=\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig'' (für Linux mit lokalem ,,mount'' vgl. Abbildung  \ref{fig:www-subpath2}). Das resultierende Ergebnis des Pfades ,,C:\textbackslash{}data\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' ist durch die zwei Konfigurationseinträge  ,,\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' (für Linux vgl. Abbildung \ref{fig:www-erg}). Da ein Anwender abweichende Eintrag der Freigabe erzeugen kann, unter Windows durch ,,net use'' oder Linux mit ,,mount'', z. B. ,,X:\textbackslash{}'' oder unter Linux ,,/other\_mount'' (vgl. Abbildung \ref{fig:www-erg2})  damit mehr Programme mit den Daten arbeiten können, muss dieser in seinen ,,Einstellungen'' die Konfiguration ,,config.wichtigedaten.replacefrom=\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}server1\textbackslash{}\textbackslash{}wichtig'' und ,,config.wichtigedaten.replacewith=X:\textbackslash{}\textbackslash{}'' einstellen  (für Linux vgl. Abbildung \ref{fig:www-subpath3} ). Dabei ist zu beachten, dass ,,reguläre Ausdrücke'' Sonderzeichen interpretieren, was zu einer Verdopplung der ,,backslash'' führt. Mehr Informationen können der Java API entnommen werden  \cite{javaregex}.
 
 \begin{figure}[htbp] 
     \centering
@@ -1247,13 +1252,13 @@ Es kann auch nur der Unterordner ,,C:\textbackslash{}data\textbackslash{}wichtig
 
 
 
-Da bei den meisten Netzwerken durch den Administrator die Laufwerke festgelegt werden, sollte der durch ihn vorgegebene Standardpfad unter ,,config.{PROVIDER}.baseurl'' für die meisten Anwender ausreichen. Wie der Eintrag dabei aussieht, ist dem Administrator überlassen und könnte auch ,,ftp://SERVER\_FQDN/wichtig'' lauten.
+Da bei den meisten Netzwerken durch den Administrator die Laufwerke festgelegt werden, sollte der durch ihn vorgegebene Standardpfad unter ,,config.{PROVIDER}.baseurl'' für die meisten Anwender ausreichen. Wie der Eintrag dabei aussieht, ist dem Administrator überlassen und könnte genauso ,,ftp://SERVER\_FQDN/wichtig'' lauten.
 % das gleiche angeben wie OBEN
 Die Abbildungen \ref{fig:www-subpath} und \ref{fig:www-subpath2} zeigen die Konfiguration für Linux mit ,,sshfs'' und das daraus resultierende Ergebnis in Abbildung \ref{fig:www-erg}.
 
-Das direkte Arbeiten auf einer Datei bleibt weiterhin dem Betriebssystem überlassen. Die Anwendung hilft durch die generierten Scripte nur beim Navigieren zu den Dateien. Durch einfaches Klicken auf ,,open - dir'' öffnet sich der Dateibrowser auch an entsprechender Stelle. Es bleibt jedoch die Problematik offen, eine Datei vorab zu wählen. Sind die Dateisammlungen groß, muss der Anwender im Fenster dennoch nach dem richtigen Dateinamen suchen. Geht es lediglich um ein ,,Öffnen'' der Datei mit einer Standardanwendung, sollten ein ,,open - file'' ausreichen und das generierte Script öffnet die Datei mit der hinterlegten Anwendung.
+Das direkte Arbeiten auf einer Datei bleibt weiterhin dem Betriebssystem überlassen. Die Anwendung hilft durch die generierten Scripte nur beim Navigieren zu den Dateien. Durch einfaches Klicken auf ,,open - dir'' öffnet sich der Dateibrowser an entsprechender Stelle. Es bleibt jedoch die Problematik offen, eine Datei vorab zu wählen. Sind die Dateisammlungen groß, muss der Anwender im Fenster dennoch nach dem richtigen Dateinamen suchen. Geht es lediglich um ein ,,Öffnen'' der Datei mit einer Standardanwendung, sollten ein ,,open - file'' ausreichen und das generierte Script öffnet die Datei mit der hinterlegten Anwendung.
 %% ralf?
-Weiterführende Integration sowie ein Vermeiden von Scripten, die der Anwender auch erst ausführen muss, was nach einmaliger Einstellung weniger störend ist, erfordert ein Addon im Browser oder aber eine Anwendung auf dem Endgerät. Es ist in HTML nicht möglich, bestimmte Standardanwendungen in der Weboberfläche zu verwenden. Dies wäre gerade für eine Dateiverwaltung hilfreich.
+Weiterführende Integration in den Desktop und ein Vermeiden von Scripten, die erst vom Anwender ausführt werden müssen, erfordert ein Addon im Browser oder eine separate Anwendung auf dem Endgerät. Es ist in HTML nicht möglich, bestimmte Standardanwendungen in der Weboberfläche zu verwenden. Dies wäre gerade für eine Dateiverwaltung hilfreich.
 
  
 \subsubsection{Synchronisation der Daten}
@@ -1323,9 +1328,10 @@ Ein Zugriff auf die Weboberfläche liefert jedoch nicht das gewünschte Ergebnis
 Bei der Anwendung sind einige Funktionen wie die Integration in den Desktop nur über Umwege realisierbar gewesen.
 ,,Einen Schraubendreher nutzen um einen Nagel zu versenken'' wie es nicht treffender sein könnte \cite{cederholm2009web}. Die Integration lässt sich jedoch nicht anders realisieren. Deswegen ist festzuhalten, dass eine solche Anwendung nicht ohne Addons im Webbrowser vernünftig umsetzbar ist. Da jedoch zu viele verschiedene Webbrowser existieren, ist die Realisierung durch eine separate Client-Anwendung sinnvoller.
 
-In dem erzeugten \acrshort{p2p}-Netzwerk wird davon ausgegangen, dass sich die Peers untereinander vertrauen und sich alle Peers regelkonform verhalten, da bei der Kommunikation, auch wenn mit mehrfachen Antworten gerechnet werden muss, sonst falsche Informationen den Fragen zugeordnet werden.
+In dem erzeugten \acrshort{p2p}-Netzwerk wird davon ausgegangen, dass sich die Peers untereinander vertrauen und sich alle Peers regelkonform verhalten.
+Die Kommunikation wird sonst wegen mehrfachen Antworten zu komplex und ordnet im Fehlerfall Informationen falsch zu.
 
-Da in den meisten Dateisystemen Sonderzeichen als Dateinamen verboten sind, wurde hier nicht beachtet, dass ein Script als Dateinamen Kodiert auf einem Client ausgeführt werden könnte \cite{winforbit}. Sollten Dateien einen Namen wie \verb|<script>alert('bad javascript')</script>| existieren, dann könnte an einigen Stellen im Code von ,,www'' dieses auch im Webbrowser ausgeführt werden. Da diese Fälle nur künstlich erzeugt werden können, blieb dieses Problem unbeachtet.
+Da in den meisten Dateisystemen Sonderzeichen als Dateinamen verboten sind, wurde hier nicht beachtet, dass ein Script als Dateinamen Kodiert auf einem Client ausgeführt werden könnte \cite{winforbit}. Sollten Dateien einen Namen wie \verb|<script>alert('bad javascript')</script>| existieren, dann könnte an einigen Stellen im Code von ,,www'' dieses im Webbrowser ausgeführt werden. Da diese Fälle nur künstlich erzeugt werden können, blieb dieses Problem unbeachtet.
 
 Auch das Herausfinden der Existenz einer Datei ist auf einem Peer nicht effizient gelöst worden.
 Es wird für jede Datei im Betriebssystem nachgefragt. Dafür wird von der Festplatte gelesen.
@@ -1355,7 +1361,7 @@ Einschränkungen des eingebetteten Modus sind zudem mangelnde Unterstützung von
 Hier scheint das Problem in der verwendeten Version des Anwendungsserver zu sein. Im eingebetteten Modus werden von diesem nicht alle API geladen und anders konfiguriert als in der typischen Installation. Kurz vor Ende der Arbeit wurde jedoch ein Update angekündigt, es bleibt dem Anwender überlassen, das Update zu nutzen.
 
 
-Windows als ,,provider'' hat durch installierte Firewall und Virenscanner im Test gezeigt, dass Fehler nicht angezeigt werden. Die Software war nicht ohne administratives Handeln in der Lage, einen Port zur Kommunikation zu öffnen. Ob dies durch eigenes Einstellen oder das Standardverhalten ist, wurde nicht weiter überprüft. Der Kommunikationsport muss neben dem festlegen in der Konfigurationsdatei auch auf dem Betriebssystem und ggf. im Virenscanner entsprechend eingestellt werden. Das bekannte Benachrichtigungsfenster scheint hier nicht mehr zu existieren. Die zweite Firewall mit  \acrshort{nat} ist hier noch nicht aktiv und muss danach auch noch überwunden werden. Unauffälliger ist dabei noch die höhere CPU-Last, da Windows viel zu viele Events liefert bei der Dateiüberwachung, welche erst durch den selbst geschriebenen Service reduziert werden.
+Windows als ,,provider'' hat durch installierte Firewall und Virenscanner im Test gezeigt, dass Fehler nicht angezeigt werden. Die Software war nicht ohne administratives Handeln in der Lage, einen Port zur Kommunikation zu öffnen. Ob dies durch eigenes Einstellen oder das Standardverhalten ist, wurde nicht weiter überprüft. Der Kommunikationsport muss neben dem festlegen in der Konfigurationsdatei auf dem Betriebssystem und ggf. im Virenscanner entsprechend eingestellt werden. Das bekannte Benachrichtigungsfenster scheint hier nicht mehr zu existieren. Die zweite Firewall, meist mit  \acrshort{nat}, muss dann anschließend immer noch überwunden werden. Unauffälliger ist dabei noch die höhere CPU-Last, da Windows viel zu viele Events liefert bei der Dateiüberwachung, welche erst durch den selbst geschriebenen Service reduziert werden.
 
 Beim Erstellen der Weboberfläche ist in heutigen Anwendungen ,,ajax'' in Verwendung. Jedoch ist bei Verwendung von Formularen ein Fehler in JSF, welcher durch ein angepasstes Javascript erst behoben wurde. 
 
@@ -1388,7 +1394,7 @@ Zum Reflektieren der Anforderungen werden diese der aktuellen Realisierung gegen
 	Diese Aufgabe muss durch den Anwender über eine entsprechende Oberfläche gemacht werden. Die Zuordnung als Dateibesitzer kann in den Einstellungen -- wie in Abbildung \ref{fig:app-cfg-datei} zu sehen ist -- gemacht werden. Nötige Informationen  stammen vom ,,provider'' und ausgewählte Daten werden in den ,,database''-Peers gespeichert.
 	
 	\item Auslesen der Informationen einer Datei unter Beachtung des Dateisystems \\
-	Durch das Java NIO werden das Auslesen und auch die Überwachung der Änderungen im Dateisystem bereitgestellt.
+	Durch das Java NIO werden das Auslesen und die Überwachung der Änderungen im Dateisystem bereitgestellt.
     Eine Implementierung ist im ,,provider'' realisiert.
 
     \item Anzeigenanpassung und individuelle Unterstützung je nach verwendeter Plattform \\
@@ -1397,8 +1403,8 @@ Zum Reflektieren der Anforderungen werden diese der aktuellen Realisierung gegen
    Diese wird nicht direkt ersichtlich  vom System unterstützt. Eine Freigabe und Übertragung ist durch den ,,publish'' Befehl möglich, jedoch kann durch Firewalls die Kommunikation nicht garantiert werden.  
 	\item Benachrichtigung über den Vorgang einer Datei\\
 	Das System versendet eine E-Mail an den hinterlegten Besitzer der Datei. Sollte keine E-Mail-Adresse bekannt sein, entfällt diese Funktion. Diese Funktion ist in der ,,database'' implementiert.
-	\item Persistente Speicherung auch der Attribute, die nicht vom Dateisystem unterstützt werden\\
-	Es wird eine Datenbank verwendet, um Attribute systemübergreifend zu speichern.
+	\item Persistente plattformübergreifende Speicherung von Dateiattributen\\
+	Es wird eine Datenbank verwendet, um Attribute plattformunabhängig zu speichern.
     Die einzigen, welche in den ,,erweiterten Attributen'' gespeichert werden, sind die Prüfsumme und deren Erzeugungsdatum. Um konkurrierende Zugriffe zu vermeiden wird ein drittes als Sperre verwendet. Der Grund für die begrenzte Speicherung liegt in der noch immer, gerade unter Linux, schlechten Systemunterstützung.
 
     Im Dateisystem kann je nach Plattform nachgesehen werden, ob zu einer Datei die Prüfsummen berechnet wurden:

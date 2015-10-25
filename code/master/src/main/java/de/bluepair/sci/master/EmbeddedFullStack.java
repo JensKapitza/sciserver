@@ -279,7 +279,7 @@ public class EmbeddedFullStack {
         // call DatabaseMain
 
 
-        if (System.getProperty("de.bluepair.databse", "false").equals("true")) {
+        if (System.getProperty("de.bluepair.database", "false").equals("true")) {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
