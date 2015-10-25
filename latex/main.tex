@@ -140,8 +140,8 @@ Eine Abschlussarbeit im Studiengang \studiengang{}, vorgelegt der Abteilung Info
 \section*{Zusammenfassung}
 
 
-Zeitgemäße Datenspeicherung erfordert auch ein einfaches und effizientes Suchen über die gespeicherten Daten. Da Weboberflächen immer beliebter werden, gerade durch die mobilen Endgeräte, wird im Rahmen dieser Masterarbeit ein Such- und Benachrichtigungssystem entwickelt. Die Anwendung verwendet dabei einen \acrfull{p2p} Ansatz und versucht möglichst viele externe Dienste wiederzuverwenden. Wegen der enormen Dateigröße ist ein direktes Arbeiten und Analysieren der Dateien nicht sofort möglich. Berechnungen wie die Prüfsumme nehmen viel Zeit in Anspruch, und sollen möglichst daher zwischengespeichert werden, um im Fall eines Datenabgleiches nicht ständig neu zu berechnen.\\[2cm]
-{\bf Schlüsselbegriffe:} Java, Maven, \acrfull{p2p}, Napster, Nachrichten basierte Kommunikation, Watchservice, Dateibenachrichtigungen, Bigdata, erweiterte Attribute, Tagging, Verschlagwortung, Suchen und Filtern, 
+Zeitgemäße Datenspeicherung erfordert ein einfaches und effizientes Suchen über die gespeicherten Daten. Da Weboberflächen immer beliebter werden, gerade durch die mobilen Endgeräte, wird im Rahmen dieser Masterarbeit ein Such- und Benachrichtigungssystem entwickelt. Die Anwendung verwendet dabei einen \acrfull{p2p} Ansatz und versucht möglichst viele externe Dienste wiederzuverwenden. Wegen der enormen Dateigröße ist ein direktes Arbeiten und Analysieren der Dateien nicht sofort möglich. Berechnungen wie die Prüfsumme nehmen viel Zeit in Anspruch, und sollen zwischengespeichert werden, um den Datenabgleich schneller zu ermöglichen.\\[2cm]
+{\bf Schlüsselbegriffe:} Java, Maven, \acrfull{p2p}, Napster, Nachrichten basierte Kommunikation, Watchservice, Dateibenachrichtigungen, Bigdata, erweiterte Attribute, Tagging, Verschlagwortung, Suchen und Filtern
 \vspace*{\fill}
 \cleardoublepage
 
@@ -194,11 +194,11 @@ Günter und Heidi Kapitza
 \label{chap:einleitung}
 \chapmd{Facebookseite der MythBusters (26.09.2013)}{,,Remember kids, the only difference between screwing around and science is writing it down.''}
 
-Zeitgemäße Datenspeicherung erfordert auch ein einfaches und effizientes Suchen über die gespeicherten Daten. Da Weboberflächen immer beliebter werden, gerade durch die mobilen Endgeräte, wird im Rahmen dieser Masterarbeit ein Such- und Benachrichtigungssystem entwickelt. Ziel soll es sein, einen Datenbestand zur effizienten Suche einfach aufzubereiten und Änderungen an den bestehenden Daten oder neu erstellten Dokumenten zu überwachen.
+Zeitgemäße Datenspeicherung erfordert ein einfaches und effizientes Suchen über die gespeicherten Daten. Da Weboberflächen, gerade durch die mobilen Endgeräte immer beliebter sind, wird im Rahmen dieser Masterarbeit ein Such- und Benachrichtigungssystem entwickelt, welches eine Weboberfläche als Frontend nutzt. Ziel ist es, einen Datenbestand zur effizienten Suche aufzubereiten und Änderungen an neuen und bestehenden Daten zu überwachen.
 
-Informationen über die Dateien werden in einer separaten Datenbank gespeichert und mit Hilfe eines Menschen ergänzt. Ergänzungen können dabei Schlagworte oder Schlüssel-Wert-Paare sein. Über die gewonnenen Informationen werden Suchanfragen formuliert und die Ergebnisse dem Benutzer zur Weiterverarbeitung angezeigt. Auf der Anzeige sind Operationen wie Vorfilterung durch separate Prozesse oder weiteren Ergänzungen möglich.
+Informationen über die Dateien werden in einer separaten Datenbank gespeichert und durch Verschlagwortung von Anwendern ergänzt. Ergänzungen sind dabei neben Schlagwörtern auch Schlüssel-Wert-Paare. Über die gewonnenen Informationen werden Suchanfragen formuliert und die Ergebnisse dem Benutzer zur Weiterverarbeitung angezeigt. Auf der Anzeige sind Operationen wie Vorfilterung durch separate Prozesse oder weiteren Ergänzungen möglich.
 
-Bei den Benachrichtigungen handelt es sich um E-Mails mit Informationen über Dateien, die registrierten Benutzern gesendet werden. Das System erlaubt E-Mail-Antworten zur betroffenen Datei und kann so bereits erste ergänzende Informationen zur Datei aufnehmen.
+Bei den Benachrichtigungen handelt es sich um E-Mails mit Dateiinformationen, die registrierten Benutzern gesendet werden. Das System erlaubt E-Mail-Antworten zur betroffenen Datei und kann so bereits erste ergänzende Informationen aufnehmen.
 
 
 \section{Beschreibung des Problems}
@@ -211,36 +211,35 @@ In this thesis a platform independent web-based solution is to be developed to e
 \end{quote}
 
 
-Der Auszug der \href{http://hpc.uni-due.de/theses.html}{Lehrstuhlwebseite} vom 20.04.2015 um 12:00 Uhr beschäftigt sich mit dem Problem der Verwaltung wissenschaftlicher, unstrukturierter Daten. Dabei wird die Idee skizziert, eine webbasierte Plattform für die Suche und den Zugriff auf Datenspeicher zu erstellen. Informationen einer Datei sollen dabei von dem  \acrfull{dms} verwaltet werden. Das \acrshort{dms} bereitet die gewonnenen Informationen auf und ermöglicht eine einfache Suche.
+Der Auszug der \href{http://hpc.uni-due.de/theses.html}{Lehrstuhlwebseite} vom 20.04.2015 um 12:00 Uhr beschäftigt sich mit dem Problem der Verwaltung wissenschaftlicher, unstrukturierter Daten. Dabei wird die Idee skizziert, eine webbasierte Plattform für die Suche und den Zugriff auf Datenspeicher zu erstellen. Informationen einer Datei sollen dabei von dem  \acrfull{dms} verwaltet werden.
 
 \section{Ziel der Arbeit}
-Im Rahmen der Arbeit wird ein  \acrfull{p2p}  basiertes \acrshort{dms} entwickelt. Durch den \acrshort{p2p}-Gedanken wird nicht nur eine horizontale Skalierung ermöglicht, sondern auch das Anbinden weiterer Dienste. Mailserver oder Datenspeicher (\acrfull{nfs}, \acrfull{cifs}, \ldots) werden in dem System durch passende Proxy dargestellt. Die Stellvertreter dieser Dienste bilden eine einheitliche Kommunikationsebene \cite{coulouris2002verteilte} und erlauben das Fokussieren auf die Kernfunktion. Eine webbasierte Anwendung stellt dem Anwender die Suchoberfläche bereit und ermöglicht ihm dadurch das Interagieren.
+Im Rahmen der Arbeit wird ein  \acrfull{p2p}  basiertes \acrshort{dms} entwickelt. Durch den \acrshort{p2p}-Gedanken wird nicht nur eine horizontale Skalierung ermöglicht, sondern das Anbinden weiterer Dienste. Mailserver oder Datenspeicher (\acrfull{nfs}, \acrfull{cifs}, \ldots) werden in dem System durch passende Proxy dargestellt. Die Stellvertreter dieser Dienste bilden eine einheitliche Kommunikationsebene \cite{coulouris2002verteilte} und erlauben das Fokussieren auf die Kernfunktion. Über eine Weboberfläche kann der Anwender mit den Dateiinformationen arbeiten und Suchen oder Befehle an andere Peers absetzen.
 
-Wird die Anwendung in die definierten Kategorien eingeordnet, so folgt diese dem Ansatz einer Vermittler basierten Lösung \cite{backx2002comparison}. Das Problem des Bootstrapping wird hier mit Hilfe des Vermittlers gelöst (vgl. { Napster} \cite{mahlmann2007peer}) \cite{4144906}. Bei diesem Ansatz ist der Vermittler jedoch ein ,,single point of failure'', der dem \acrshort{p2p}-Gedanken widerspricht. 
+Wird die Anwendung in die definierten Kategorien eingeordnet, so folgt diese dem Ansatz einer Vermittler basierten Lösung \cite{backx2002comparison}. Das Problem des Bootstrapping wird hier mit Hilfe eines Vermittlers gelöst (vgl. { Napster} \cite{mahlmann2007peer}) \cite{4144906}. Bei diesem Ansatz wird der Vermittler jedoch zu einem ,,single point of failure'', was dem \acrshort{p2p}-Gedanken widerspricht. 
 
-Der Vermittler sammelt alle Informationen, wie Pfade oder Zeitstempel, zu den einzelnen Dateien ein und speichert diese durch geeignete Peers ab. Die speichernden Peers stellen Suchmöglichkeiten über bestimmte Informationen zur Verfügung und senden das Ergebnis durch den Vermittler zurück.
-Suchanfrage-Ergebnisse werden durch die Interaktion mit dem Anwender verbessert, die mit weiteren Eingaben die Abfragemöglichkeiten erweitern.
-Beispielsweise wird beim ,,sozial tagging'' mit Schlagwörtern eine Struktur erzeugt \cite{gaiser2008good}.
-Der verfolgte Ansatz speichert die Dateien nicht beim Vermittler, sondern lässt sich die fertigen Analysen durch geeignete Peers übermitteln.
+Der Vermittler sammelt alle Informationen, wie Pfade oder Zeitstempel, zu den einzelnen Dateien und speichert diese durch geeignete Peers ab. Die speichernden Peers stellen Suchmöglichkeiten über bestimmte Informationen zur Verfügung und senden das Ergebnis über den Vermittler zurück.
+Suchanfrage-Ergebnisse werden durch die Interaktion mit dem Anwender verbessert, die durch weiteren Informationseingaben die Abfragemöglichkeiten erweitern.
+Beispielsweise kann mit ,,sozial tagging'' eine Struktur erzeugt werden \cite{gaiser2008good}. Diese lässt sich einfacher durchsuchen. Der verfolgte Ansatz speichert die Dateien nicht zentral, sondern verarbeitet nur die fertigen Analysen im \acrshort{p2p}-Netzwerk.
 
-Neben dem Bereitstellen der Such-Weboberfläche ist die Dateisynchronisation durch den Vermittler koordiniert und erinnert an Funktionen wie Server zu Server Kommunikation in FTP \cite{rfc959}.
+Neben dem Bereitstellen der Such-Weboberfläche ist die Dateisynchronisation durch den Vermittler koordiniert und erinnert an Funktionen wie Server-zu-Server Kommunikation in FTP \cite{rfc959}.
 
-Durch eine Brücke ist es möglich, einen ,,super-peer'' zu erstellen \cite{yang2003designing}. Der Vermittler interagiert in einem Netzwert von Vermittlern und kann Informationen bereitstellen oder auch empfangen.
+Einen ,,super-peer'' kann dabei durch weiterleiten der Nachrichten erstellt werden \cite{yang2003designing}. Dabei reicht es ein Netzwerk von Vermittlern zu erstellen.
 
 \section{Themenabgrenzung / Restriktion}
-Im Rahmen der Arbeit bleibt der Aspekt der Relevanzbeurteilung unberücksichtigt. Es handelt sich bei den Suchergebnissen um nicht gewichtete Mengen. Nach Aufgabenstellung wird auch die Informationsextraktion mit Tools wie \href{http://tika.apache.org/}{Apache Tika} oder  \href{http://pdfbox.apache.org/}{Apache PDFBox} nicht weiter verfolgt, da die unstrukturierten Daten entsprechend der Aufgabenstellung nicht durch {Magic-Numbers bzw. MIME-Types} zu erkennen sein sollen. 
+Im Rahmen der Arbeit bleibt der Aspekt der Relevanzbeurteilung unberücksichtigt. Dies führt bei den Suchergebnissen zu ungewichteten Mengen. Nach Aufgabenstellung wird die Informationsextraktion mit Tools wie \href{http://tika.apache.org/}{Apache Tika} oder  \href{http://pdfbox.apache.org/}{Apache PDFBox} nicht weiter verfolgt. Da  entsprechend der Aufgabenstellung die unstrukturierten Daten nicht durch {Magic-Numbers bzw. MIME-Types} erkennbar sind.
 
 
 \section{Analyse des IST-Zustandes}\label{sec:ist}
 
 Entsprechend der Aufgabenstellung müssen mindestens drei Szenarien aus Anwendersicht unterstützt werden:
 \begin{itemize}
-	\item Das Suchen nach Dateien über einen Datenbestand.
-	\item Das Zugreifen auf die Daten.
-	\item Das Synchronisieren der Daten, welches als Kombination der beiden zuvor genannten aufgefasst werden kann.
+	\item Die Dateisuche.
+    \item Der Dateizugriff.
+    \item Die Dateisynchronisation, welches als Kombination von Dateisuche und Dateizugriff aufgefasst werden kann.
 \end{itemize}
 
-Bevor auf die einzelnen Szenarien im Detail eingegangen wird, wird zunächst durch die Abbildung \ref{fig:ist-struktur} schematisch die aktuelle Systemarchitektur verdeutlicht. Zwei Universitäten kommunizieren über einen Server (Cloud Dienst, \ldots). Dadurch ist es Lehrstühlen möglich, Daten untereinander auszutauschen. Dieser Austausch erfordert aber das Nutzen anderer Dienste oder ist nur auf kleine Daten beschränkt. Um effizienter Daten auszutauschen und nicht mehrere Stunden auf den Transfer zu warten, muss das Suchen über nicht vorhandene Daten ermöglicht werden.
+Die für die einzelnen Szenarien verwendete Systemarchitektur ist in Abbildung \ref{fig:ist-struktur} gezeigt. Zwei Universitäten (Uni A\textbackslash{}B) kommunizieren über einen Server (Cloud Dienst, \ldots). Dadurch ist es Lehrstühlen möglich, Daten untereinander auszutauschen. Dieser Austausch erfordert i. d. R. das Nutzen externer Dienste. Um den Datenaustausch effizienter zu gestalten, muss das Suchen über nicht vorhandene Daten ermöglicht werden. Da Dateitransfers mehrere Stunden andauern können.
 
 \begin{figure}[htbp] 
     \centering
@@ -249,19 +248,17 @@ Bevor auf die einzelnen Szenarien im Detail eingegangen wird, wird zunächst dur
     \label{fig:ist-struktur}
 \end{figure}    
 
-Das Problem  lässt sich von einer ,,Uni'' auf einen Lehrstuhl reduzieren, wie  die Abbildung \ref{fig:ist-struktur2} schematisch aufzeigt.
-Auf den als ,,Server'' gekennzeichneten Objekten laufen diverse Dienste (Datenspeicherung, E-Mail).
-
-Schaut man sich in der Abbildung einen Arbeitsbereich an, so findet man in diesem auch Endgeräte, die über unterschiedliche Protokolle (HTTP, SMTP, IMAP, \ldots) mit den Server kommunizieren.
+Das Problem der ,,Uni'' lässt sich auf einen Lehrstuhl reduzieren, wie  die Abbildung \ref{fig:ist-struktur2} schematisch aufzeigt.
+Auf den als ,,Server'' gekennzeichneten Objekten werden diverse Dienste wie Datenspeicherung oder E-Mail ausgeführt. Ein Arbeitsbereich enthält Endgeräte, die über unterschiedliche Protokolle (HTTP, SMTP, IMAP, \ldots) mit den Server kommunizieren.
 
 \begin{figure}[htbp] 
 	\centering
-	\includegraphics[width=0.8\textwidth]{Masterarbeit_Bilder/Lehrstuhl_Datentausch_intern.png}
+	\includegraphics{Masterarbeit_Bilder/Lehrstuhl_Datentausch_intern.png}
 	\caption{Schematischer Aufbau eines Lehrstuhls}
 	\label{fig:ist-struktur2}
 \end{figure}  
 
- Ein Server wie in Abbildung \ref{fig:ist-server} stellt Dienste zur Verfügung und unterscheidet sich von einem Endgerät wie in Abbildung \ref{fig:ist-endgeraet} lediglich durch die Dienste bzw. Programme, die auf dem Gerät laufen. Ein Server aus traditioneller Sicht ist ein gegen den Ausfall besser abgesicherter Computer. Aus heutiger Sicht lassen sich bezüglich der Leistung für die meisten Anwendungen kaum Unterschiede feststellen.
+ Ein Server wie in Abbildung \ref{fig:ist-server} stellt Dienste zur Verfügung und unterscheidet sich von einem Endgerät wie in Abbildung \ref{fig:ist-endgeraet} lediglich durch die Dienste bzw. Programme, die auf dem Gerät ausgeführt werden. Die traditionelle Sicht, ein gegen den Ausfall besser abgesicherter Computer, wird immer seltener verwendet und ist im Rahmen der Arbeit nicht gefordert.
  
 \begin{figure}[htbp] 
 	\centering 
@@ -294,13 +291,11 @@ Netzwerk (TCP /IP) \\ \hline
 
 Zu den bekanntesten Betriebssystemen gehören Linux (Fedora, Debian, \ldots), Windows oder Mac OS. Zur Vereinfachung beziehen sich die Begriffe  \acrshort{nfs}, Web-Browser, Dateisystem und Dateimanager auf die jeweiligen vom Betriebssystem als Standard genutzten Anwendungen.
 
-Für die nachfolgenden Szenarien wird die Konfiguration wie in Abbildung \ref{fig:ist-struktur2} vorausgesetzt, bei der auf einem von Anwendern bedienten Endgerät ein Netzwerklaufwerk oder eine Festplatte verbunden ist. Es gibt einen oder mehrere Anwender, deren Prozesse vom Server oder Betriebssystem des Endgerät koordiniert werden müssen. Anwendern ist neben einem Benutzernamen auch eine E-Mail-Adresse zugeordnet, unter denen diese erreichbar sind.
-
-Server können zwar als Endgerät agieren, sprechen jedoch meist mehr Protokolle, um untereinander Informationen auszutauschen. Da die Server meist durch einen Administrator fest definierten Abläufen folgen, wird im weiteren Verlauf nicht mehr auf diese eingegangen.
+Für die nachfolgenden Szenarien wird eine Konfiguration wie in Abbildung \ref{fig:ist-struktur2} vorausgesetzt, bei der auf einem von Anwendern bedienten Endgerät ein Netzwerklaufwerk oder eine Festplatte verbunden ist. Neben einem Benutzernamen muss den Anwendern eine E-Mail-Adresse zugeordnet sein. Diese Voraussetzung kann schon beim Anlegen durch den Anwender selbst oder durch einen Administrator nachträglich erfüllt werden.
 
 
 \subsection*{Suche über den Datenbestand}
-Es wird im entsprechenden Suchfeld des Dateimanagers nach einem Dateinamen oder bekannten Schlagwort gesucht. Anschließend wird die Ergebnisliste ausgewertet.
+Durch Eingabe von Schlagworten oder teilen des Dateinamen kann in entsprechenden Suchfeldern der Datenbestand durchsucht werden. Anschließend wird die Ergebnisliste ausgewertet.
 
 \bigskip
 Folgende Probleme können anhand des Szenarios festgehalten werden:
@@ -312,36 +307,35 @@ Folgende Probleme können anhand des Szenarios festgehalten werden:
 \end{itemize}
 
 \subsection*{Zugriff auf den Datenbestand}
-Mit bekanntem Dateinamen kann auf das entsprechende Laufwerk und anschließend auf die gewünschte Datei zugegriffen werden.
+Mit bekannten Dateinamen wird auf das entsprechende Netzwerklaufwerk zugegriffen, um anschließend mit der gewünschten Datei zu arbeiten.
 
 \bigskip
 Folgende Probleme können anhand des Szenarios festgehalten werden:
 \begin{itemize}
-	\item Die meisten Unterstützungen, wie direktes Arbeiten auf einer Datei, sind Plattform abhängig.
-	\item Bei langen Pfaden wird das Navigieren komplexer.
+	\item Die meisten Funktionen, wie direktes Arbeiten auf einer Datei, sind Plattform abhängig. Daher unterscheidet sich die Arbeitsgeschwindigkeit von Anwendungen erheblich zwischen den Plattformen.
+	\item Bei langen Dateipfaden ist das Navigieren komplexer und zeitaufwändig.
 \end{itemize}
 
 
 \subsection*{Synchronisation der Daten}
-Mindestens zwei Server, die ihren Datenbestand abgleichen wollen, suchen untereinander nach nicht vorhandenen Dateien und übertragen diese gegenseitig.
+Soll der Datenbestand von mindestens zwei Servern abgleichen werden, suchen diese untereinander nach nicht vorhandenen Dateien und übertragen diese gegenseitig.
 
 \bigskip
 Folgende Probleme können anhand des Szenarios festgehalten werden:
 \begin{itemize}
-	\item Sind die Datenspeicher unterschiedlich groß, können Datenbestände auf einem Server von unterschiedlichen Servern stammen.
-	\item Sind die Datenspeicher unterschiedlich groß, müssen Datenbestände eines Server ggf. auf mehrere aufgeteilt werden.
+	\item Bei unterschiedlich großen Datenspeicher,\\
+    - können Datenbestände auf einem Server von unterschiedlichen Servern stammen.\\
+    - müssen Datenbestände eines Server ggf. auf mehrere aufgeteilt werden.
 	\item Durch unterschiedliche Protokollabläufe in einem heterogenen Netzwerk ist die optimale Geschwindigkeit selten gewährleistet.
 \end{itemize}
  
 \subsection*{Zusammenfassung}
-Die Arbeitsumgebung umfasst als Datenspeicher neben RAID-Systemen auf Servern auch Technologien  wie USB,  \acrshort{cifs} oder \acrshort{nfs}.
-Auf den Computern liegen verschiedene Dateisysteme und Betriebssysteme mit starken Abweichungen in ihrer Funktionalität vor.
+Die Arbeitsumgebung umfasst als Datenspeicher neben RAID-Systemen auf Servern Technologien  wie USB,  \acrshort{cifs} oder \acrshort{nfs}. Wegen der geforderten Plattform Unabhängigkeit, den verschiedenen Dateisystemen, folgen starke Abweichungen in Funktionalität und Unterstützung von Dateisuche und Dateizugriff.
 
-Einzige Annahme für die Arbeit ist, dass auf den Endgeräten ein Webbrowser und  E-Mail-Client (mindestens eine Webschnittstelle) bereitgestellt sind.
-Die Server können im Gegensatz zu vielen Endgeräten meist einfacher mit weiteren Programmen bestückt werden.
+Als einzige Annahme für die Arbeit ist, dass auf den Endgeräten ein Webbrowser und  E-Mail-Client (mindestens eine Webschnittstelle) bereitgestellt wird.
 
-Die Anwender rufen ihre Daten durch die entsprechenden Netzwerklaufwerke ab.
-Ein Übertragen der Daten ist wegen der Größe aus Zeitgründen nach Vorgabe nicht akzeptabel. Dem Anwender ist mindestens ein Benutzerkonto mit E-Mail-Adresse zugewiesen.
+Die Anwender nutzen weiterhin entsprechenden Netzwerklaufwerke, um mit den Dateien zu arbeiten.
+Ein Übertragen dieser ist wegen der Größe aus Zeitgründen nicht akzeptabel. Dem Anwender ist mindestens ein Benutzerkonto mit E-Mail-Adresse zugewiesen, um auf den entsprechenden Servern seine Daten abzulegen. 
 
 \bigskip
 Es ergeben sich Anforderungen für die Realisierung wie:
@@ -351,8 +345,8 @@ Es ergeben sich Anforderungen für die Realisierung wie:
 \item Zuordnung einer Datei zur entsprechenden Person als Verantwortlicher
 \item Anzeigenanpassung und individuelle Unterstützung je nach verwendeter Plattform
 \item Übertragung der Dateien zwischen teilnehmenden Computern
-\item Benachrichtigung über den Vorgang wie beim Kopieren, Erstellen und Löschen einer Datei
-\item Persistente Speicherung aller Informationen zu einer Datei über die vom Dateisystem unterstützten Funktionen hinaus
+\item Benachrichtigung über Vorgänge wie Kopieren, Erstellen und Löschen einer Datei
+\item Persistente plattformunabhängige Speicherung aller Dateiinformationen 
 \item Verlinken der \acrshort{dms}
 \item Erkennung doppelter Dateien
 \end{itemize}
@@ -362,66 +356,66 @@ Es ergeben sich Anforderungen für die Realisierung wie:
 \chapter{Grundlagen und verwandte Ansätze}
 \chapmd{Albert Einstein (1879--1955)}{,,So einfach wie möglich. Aber nicht einfacher!''}
 
-In der Einleitung wurden Anforderungen, Annahmen und Umfeld der Anwendung skizziert.
-Um das WIE zu klären, wird in diesem Kapitel ein Überblick über diverse Dateisysteme gegeben, Möglichkeiten der Kommunikations-Realisierung gezeigt und bestehende kommerzielle Lösungen einander gegenübergestellt.
+In der Einleitung werden Anforderungen, Annahmen und Umfeld der Anwendung skizziert.
+Um das ,,wie'' zu klären, wird in diesem Kapitel ein Überblick über diverse Dateisysteme gegeben, Möglichkeiten der Kommunikations-Realisierung gezeigt und bestehende kommerzielle Lösungen einander gegenübergestellt.
 
 \section{Betriebssystem abhängige Verschlagwortung}
-In der Einleitung wurde bereits darauf hingewiesen, dass es auf allen Plattformen eine grundlegende Unterstützung für die Verschlagwortung von Dateien gibt. Die Realisierung erfolgt meist durch Verwendung von erweiterten Attributen, die ursprünglich zur Verwaltung der Benutzerrechte verwendet wurden. 
+In der Einleitung wird bereits darauf verwiesen, dass auf allen Plattformen eine grundlegende Unterstützung für die Verschlagwortung von Dateien existiert. Die Realisierung erfolgt meist durch Verwendung erweiterter Attribute, die ursprünglich zur Verwaltung der Benutzerrechte verwendet wurden. 
 
-Seit ,,Windows Server 2008'' findet dies auch in einem Domain-Controller statt, zur Abbildung der Rechte in heterogenen Netzen \cite{windowsserver2008}.
+Seit ,,Windows Server 2008'' erfolgt dies zudem zur Abbildung der Rechte in heterogenen Netzen im Domain-Controller  \cite{windowsserver2008}.
 
-Linux kennt erweiterte Attribute, auch um ,,Dateien leichter zu finden'' seit dem Jahr 2004 mit Kernelversion 2.6 \cite{von2006100}. Beschränkungen in der Verwendung sind unter Linux am stärksten, so ist beispielsweise bei Dateisystemen auf Ext2 Basis vor allem die Größe der Schlüssel-Wert-Paare entscheidend. Im Fehlerfall kann eine Meldung wie
+Seit dem Jahr 2004 mit Kernelversion 2.6 nutzt Linux erweiterte Attribute. Diese werden zwar eingesetzt, um ,,Dateien leichter zu finden''  \cite{von2006100}. Beschränkungen in der Verwendung sind unter Linux jedoch am stärksten, so ist beispielsweise bei Dateisystemen auf Ext2 Basis vor allem die Größe der Schlüssel-Wert-Paare entscheidend. Im Fehlerfall kann eine Meldung wie
 
 \begin{quote}
 attr\_set: Auf dem Gerät ist kein Speicherplatz mehr verfügbar
 \end{quote}
 
-auftreten. Die Möglichkeiten der Speicherung innerhalb einer INODE der Datei ist in Linux daher begrenzt \cite{kernelwiki}.
+auftreten. Da die Möglichkeiten der Speicherung innerhalb einer INODE der Datei in Linux begrenzt ist \cite{kernelwiki}.
 
-Durch eine geeignete Abstraktion ist mit Einschränkungen dennoch eine Betriebssystem übergreifende Lösung realisierbar. So zeigt das Samba-Team mit ihrer Implementierung des Windows Netzwerk Dienstes unter Linux. Die Entwickler weisen jedoch auch auf die Limitierungen in den Dateisystemen auf POSIX Systemen hin  \cite{smb}.
+Durch eine geeignete Abstraktion ist mit Einschränkungen dennoch eine Betriebssystem übergreifende Lösung realisierbar. Wie es das Entwickler-Team rund um Samba mit ihrer Implementierung des Windows Netzwerk Dienstes unter Linux beweist. Die Entwickler weisen jedoch auf die Limitierungen in den Dateisystemen auf POSIX Systemen hin  \cite{smb}.
 
-Windows und OS X besitzen eine bessere Unterstützung der ,,erweiterten Attribute''. Die Technologien dahinter heißen \acrfull{ads} bzw.  \acrfull{rf},  um Anhänge zu einer Datei zu speichern \cite{surendorf2010mac}.
+Windows und OS X unterstützen ,,erweiterten Attribute'' durch Technologien wie ,,\acrfull{ads}'' bzw.  ,,\acrfull{rf}'' besser und haben daher weniger Beschränkungen als Linux \cite{surendorf2010mac}.
+Was bei OS X zudem durch das Dateisystem HFS+ begründet ist \cite{macdsa}.
 
-OS X besitzt zudem mit HFS+ ein Dateisystem, welches erweiterte Attribute von Dateien scheinbar ohne Limitierung unterstützt \cite{macdsa}.
+Jedes der zuvor genannten Betriebssysteme verwendet eigene Systemtools zur Verwaltung der erweiterten Attribute sowie den darauf aufbauenden Diensten, wie z. B. dem Berechtigungssystem. Die Umsetzung einer einheitlichen Suche wird dadurch erschwert, dass der Funktionsumfang in der Verwaltung von Attributen erheblich von Betriebssystem zu Betriebssystem abweicht.
 
-Jede der zuvor genannten Betriebssysteme verwendet eigene Systemtools zur Verwaltung der erweiterten Attribute sowie den darauf aufbauenden Diensten, wie z. B. dem Berechtigungssystem. Die Umsetzung einer einheitlichen Suche wird dadurch erschwert, dass der Funktionsumfang in der Verwaltung von Attributen erheblich von Betriebssystem zu Betriebssystem abweicht.
+Die Programmiersprache Java hat erst mit Version 7 auf den gestiegenen Bedarf reagiert und versucht Attribute einheitlich abzubilden. So wird je nach Plattform und Dateisystem ein passendes ,,AttributeView'' gewählt, um Funktionalitäten optimal zu nutzen \cite{javanio}.
 
-Die Programmiersprache Java hat erst mit Version 7 auf den Bedarf reagiert und seitdem versucht, Attribute einheitlich abzubilden. So wird je nach Plattform und Dateisystem ein passendes ,,AttributeView'' gewählt, um Funktionalitäten optimal zu nutzen \cite{javanio}.
-
-Problemen der Kodierung kann durch Verwendung von UTF-8 entgegengewirkt werden.
-Einschränkungen bleiben bei der Speicherung dennoch: Da zum Erstellungszeitpunkt keine geeignete Implementierung unter Linux existiert, die vergleichbar mächtig  wie \acrshort{ads} und \acrshort{rf} wäre, muss auf möglichst wenig Speicherung innerhalb der Datei geachtet werden, um Plattformübergreifend mit gleicher Funktion zu arbeiten.
+Bei Problemen der Kodierung kann durch Verwendung von UTF-8 entgegengewirkt werden.
+Einschränkungen bleiben bei der Speicherung dennoch: Da zum Erstellungszeitpunkt keine geeignete Implementierung unter Linux existiert, die vergleichbar mächtig  wie \acrshort{ads} und \acrshort{rf} ist, muss auf möglichst wenig Speicherung innerhalb der Datei geachtet werden, um Plattformübergreifend mit gleicher Funktion zu arbeiten.
 
   
 
 \section{Speicherung sehr großer Daten}
-Das Dateisystem unter OS X ist vorzugsweise {HFS+}, weitere Dateisysteme wie {FAT}, { NTFS} (Windows), {ZFS} (Solaris/BSD), {Ext4} (Linux) können durch entsprechende Treiber bei Bedarf nachinstalliert werden \cite{winext}, \cite{macntfs}. Das ist auch für Windows zutreffend, jedoch gibt es kaum wirklich brauchbare Implementierungen.
+
+Das Dateisystem unter OS X ist vorzugsweise {HFS+}, weitere Dateisysteme wie {FAT}, { NTFS} (Windows), {ZFS} (Solaris/BSD), {Ext4} (Linux) können durch entsprechende Treiber bei Bedarf nachinstalliert werden \cite{winext}, \cite{macntfs}. Das ist auch für Windows zutreffend, jedoch gibt es keine produktive Implementierungen anderer Dateisysteme für diese Plattform.
 Nachfolgend wird von den jeweiligen bevorzugten Dateisystemen auf den Plattformen ausgegangen.
 
 Ab Mac OS X v10.5.3 unterstützt  {HFS+} bis zu 8 Exabytes \cite{maclimit}. In direktem Vergleich mit Linux Ext4, welches maximal im Petabyte Bereich Daten speichern kann, ist HFS+ zukunftssicherer entworfen \cite{kernelwiki}.
 
-Die meisten Distributionen von Linux unterstützen maximal ein Exabyte je Datei. Das soll sich erst ändern, wenn das als Linux Dateisystem angepriesene {Btrfs}, welches bis zu 16 Exabyte verwalten kann, veröffentlicht wird \cite{btrfs}. Es ist jedoch auch möglich, ZFS in Linux verwenden. Dieses Dateisystem  wird bevorzugt in Solaris und FreeBSD eingesetzt \cite{zfslinux}.
+Die meisten Distributionen von Linux unterstützen maximal ein Exabyte je Datei. Das soll sich erst ändern, wenn das als Linux Dateisystem angepriesene {Btrfs}, welches bis zu 16 Exabyte verwalten kann, veröffentlicht wird \cite{btrfs}. Es ist jedoch auch möglich, ZFS in Linux verwenden, welches bevorzugt in Solaris und FreeBSD eingesetzt wird \cite{zfslinux}.
 
 NTFS bietet als das Windows-Dateisystem nur theoretische 16 Exabyte, die Implementierung soll lediglich 16 Terabyte unterstützen \cite{ntfslimit}. Ältere Dateisysteme wie {FAT} enden bereits mit knapp 4 Gigabyte je Datei und fallen damit vollständig aus dem Kontext der Arbeit \cite{fatlimit}.
  
-Die aktuellen Dateisysteme bieten alle Voraussetzungen, um wissenschaftlichen Daten entsprechend der Aufgabenstellung im Terabyte-Bereich zu verwalten. Da aktuelle Festplatten bei ca. 4 Terabyte enden, ist es mit einem \acrfull{lvm} möglich, sich den theoretischen Grenzen der Dateisysteme anzunähern. Dieser Manager stellt verschiedene RAID-Level bereit und ist teilweise direkt in die Hardware implementiert. Bei Softwareimplementierungen ist diese Fähigkeit unter {ZFS} oder {Btrfs} sogar schon auf Dateisystemebene vorhanden und muss nicht mehr durch entsprechende Dienste im System bereitgestellt werden \cite{zfsraid}.
-Die Beschränkung von 4 Terabyte bei den Festplatten kann dadurch gelöst werden.
+Die aktuellen Dateisysteme bieten alle Voraussetzungen, um wissenschaftlichen Daten entsprechend der Aufgabenstellung im Terabyte-Bereich zu verwalten. Da aktuelle Festplatten bei ca. 10 Terabyte enden, ist es nur mit einem \acrfull{lvm} möglich, sich den theoretischen Grenzen der Dateisysteme anzunähern. Dieser Manager stellt verschiedene RAID-Level bereit und ist teilweise direkt in die Hardware implementiert. Bei Softwareimplementierungen ist diese Fähigkeit unter {ZFS} oder {Btrfs} sogar schon auf Dateisystemebene vorhanden und muss nicht mehr durch entsprechende Dienste im System bereitgestellt werden \cite{zfsraid}.
+Die Beschränkung von den Festplatten kann dadurch umgangen werden.
 Zu beachten ist allerdings, dass die Ausfallwahrscheinlichkeit erheblich steigt, je mehr Festplatten verwendet werden.
 
 Zusammenfassend kann festgehalten werden, dass für die Dateispeicherung {ZFS} und {HFS+} im Jahr 2015 die besten funktionalen Voraussetzungen bietet, die für einen stabilen Betrieb notwendig sind. Da es keine Patentlösung für ein passendes RAID-Level gibt, muss je nach System und Anwendung ein Konsens zwischen Sicherheit, Speicherkapazität und Geschwindigkeit gefunden werden.
 
 
 \section{Kommunikation in verteilten Anwendungen}\label{sec:comm}
-Bei der Kommunikation und  dem Datenaustausch in verteilten Anwendungen können verschiedene Ansätze verfolgt werden. Eine auf Nachricht basierte Kommunikation ist wegen der großen Zeitfenster infolge der Dateigröße nur bedingt sinnvoll.
+Bei der Kommunikation und  dem Datenaustausch in verteilten Anwendungen können verschiedene Ansätze verfolgt werden. Eine auf Nachricht basierte Kommunikation ist wegen der großen Zeitfenster infolge der Dateigröße das Sinnvollste.
 
 Zur Realisierung eines \acrfull{rpc} bieten Protokolle wie \href{http://xmpp.org/}{XMPP}  oder IRC einen ersten Ansatz.
 
-Das Bootstrapping Problem fasst Probleme zusammen, um den Einstieg in das P2P-Netzwerk zu finden. Bei IPv4 verstärkt eine mit \acrfull{nat} versehene Firewall die Problematik und ist für reine \acrshort{p2p}-Netzwerke die größte Hürde.
+Das Bootstrapping Problem fasst Probleme zusammen, um den Einstieg in das P2P-Netzwerk zu finden. Bei IPv4 verstärkt eine mit \acrfull{nat} versehene Firewall die Problematik und ist für reine \acrshort{p2p}-Netzwerke kaum überwindbar.
 
 Mit IRC-Bootstrapping hat sich die Universität Duisburg-Essen beschäftigt und löst die Beschränkung im Chatnamen durch eine Zufallszahl \cite{5159226},\cite{RFC2812}. Diese Problematik wird auch in einem aktuelleren Protokoll wie \href{http://xmpp.org/extensions/xep-0045.html\#enter-conflict}{,,XMPP XEP 45''} aufgezeigt und ist durch ,,resources'' gelöst worden.
 
-XMPP sieht auch eine \acrshort{p2p}-Übertragung vor, die mit ,,XEP-0066: Out of Band Data''  beschrieben ist. Die Unterstützung von Bibliotheken und Programmen ist jedoch nicht vollständig, daher ist eine Implementierung in einem kurzen Zeitraum nicht möglich.
+XMPP sieht auch eine \acrshort{p2p}-Übertragung vor, die mit ,,XEP-0066: Out of Band Data''  beschrieben ist. Die Unterstützung von Bibliotheken und Programmen ist jedoch nicht vollständig, daher wurde von einer Implementierung abgesehen.
 
-Problematisch bleibt bei XMPP und IRC, dass diese Protokolle für menschliche Interaktion gedacht sind und Administratoren Bots den Serverzugang blockieren. Das Betreiben eigener Chatserver wäre jedoch aufwändig für eine Lösungsrealisierung, da es die Infrastruktur unnötig verkompliziert.
+Problematisch bleibt bei XMPP und IRC, dass diese Protokolle für menschliche Interaktion gedacht sind und Administratoren Bots den Serverzugang blockieren. Das Betreiben eigener Chatserver ist jedoch aufwändig und nicht praktikabel.
 
  
 \subsection{Java JXTA}
@@ -432,20 +426,20 @@ Es ist billiger 10 Server zu finanzieren, um die Client-Server Anwendung laufen 
 \end{quote}
 %% hier ruckelt es noch !!!
 beschreibt die Komplexität, welche mit einer geeigneten Bibliothek zu minimieren versucht wird.
-Es fehlt der zeitliche Hinweis zu den veralteten IPv4 Netzwerken, dem eigentlichen Grund für die Problematik.
+Die Problematik des veralteten IPv4 Netzwerkes ist hier versteckt und der eigentliche Grund, warum \acrshort{p2p}-Lösung selten Verwendung finden.
 
 Durch neuere Protokolle wie IPv6 sollen die größten Probleme wie \acrshort{nat} gelöst werden.
-Jedoch ist IPv6 noch nicht überall vorhanden, so dass es sich lohnt, einen solchen Ansatz zu verfolgen.
+Jedoch ist IPv6 noch nicht überall vorhanden, dass es sich lohnt, einen solchen Ansatz zu verfolgen.
 Sobald in Deutschland durchgängig IPv6 vollzogen würde, bedarf dieser Einschätzung einer erneuten Betrachtung. Nach der Google Statistik läuft diese Umstellung jedoch nur langsam und erfordert bei vielem noch einiges an Aktualisierungen \cite{gstat}. 
 
 
 \subsection{SOAP, REST oder WebRTC}
-Im Bereich der Webanwendungen existieren als weit verbreitete Standards Nachrichtenaustauschprotokolle, wie z. B. {SOAP} und {REST}.
+Im Bereich der Webanwendungen existieren als Standardnachrichtenaustauschprotokolle {SOAP} und {REST}.
 Die meist auf {XML} basierenden Protokolle werden in Webservices verwendet, um verteilten Anwendungen die Kommunikation zu ermöglichen.
 Vorteilhaft ist dabei der Umstand, dass infolge der starken Verbreitung von {HTTP} durch Webserver Verbindungen kaum durch Firewalls blockiert werden. 
-Bei {WebRTC}, welches mit {HTML5} eingeführt wurde, ist die P2P-Lösung greifbar nah. Der Standard, ist jedoch nicht bei allen gängigen Systemen angekommen und in den meisten Browsern nicht implementiert \cite{cani}.
+Bei {WebRTC}, welches mit {HTML5} eingeführt wurde, ist die P2P-Lösung greifbar nah. Dieser Standard, ist jedoch nicht bei allen gängigen Systemen implementiert \cite{cani}.
 
-In diesem Zusammenhang ebenfalls betrachtenswert wird {JSON} als eine Alternative zu {XML} gehandelt. Da es sich hierbei lediglich um die Datenpräsentation handelt, wird hier nicht weiter darauf eingegangen. Das Format wird vorzugsweise bei verteilten JavaScript Anwendungen eingesetzt und ist im Vergleich zu {XML} schlanker. In vielen Programmiersprachen ist es -- durch Bibliotheken -- meist trivial, die Datenpräsentation entsprechend zu wechseln.
+In diesem Zusammenhang ebenfalls betrachtenswert wird {JSON} als eine Alternative zu {XML} gehandelt. Da es sich hierbei lediglich um die Datenpräsentation handelt, wird nicht weiter darauf eingegangen. Das Format wird vorzugsweise bei verteilten JavaScript Anwendungen eingesetzt und ist im Vergleich zu {XML} einfacher und kürzer. In vielen Programmiersprachen ist es -- durch Bibliotheken -- meist trivial, die Datenpräsentation entsprechend zu wechseln.
 
 
 \subsection{Java Message Service (JMS)}
@@ -458,47 +452,48 @@ Durch ein Beobachter-Muster  wird ein Chatroom abgebildet, welcher durch Topic i
 Wie in den meisten Mehrbenutzerchats existiert auch hier keine Historie, so dass neue Teilnehmer nur Nachrichten erhalten, wenn diese angemeldet sind.
 Anderes Verhalten weist eine Queue im \acrshort{jms} auf: Gespeicherte Nachrichten können auch später noch ausgelesen werden.
 
-Das durch einen separaten Dienst bereitgestellte System fungiert als Vermittler zwischen Anwendungen und nutzt Javas interne Serialisierung, welche hohe Flexibilität ermöglicht und sich um die korrekte Darstellung der Inhalte in einer Nachricht kümmert.
+Das durch einen separaten Dienst bereitgestellte System fungiert als Vermittler zwischen Anwendungen und nutzt Javas interne Serialisierung zur korrekten Darstellung der Nachrichteninhalte.
  
 
 
 \section{Kommerzielle/andere Lösungen}
-Diese Arbeit versucht in ein bestehendes Netzwerk eine \acrshort{p2p}-Lösung zu etablieren, um ein Suchen von Dateien besser zu unterstützen. Einem Vergleich mit marktführenden Produkten wie  \href{http://www.alfresco.com/}{{Alfresco One}}, \href{https://www.powerfolder.com/de/powerfolder-erhalt-qualitatssiegel-it-security-made-in-germany/}{{PowerFolder}} oder \href{https://www.dropbox.com/de/}{{Dropbox}} kann diese Anwendung noch nicht standhalten. Es folgen einige Aspekte, durch die sich diese Arbeit von den genannten Produkten unterscheidet.
+Diese Arbeit versucht in ein bestehendes Netzwerk eine \acrshort{p2p}-Lösung zu etablieren, um ein Suchen von Dateien besser zu unterstützen. Einem Vergleich mit marktführenden Produkten wie  \href{http://www.alfresco.com/}{{Alfresco One}}, \href{https://www.powerfolder.com/de/powerfolder-erhalt-qualitatssiegel-it-security-made-in-germany/}{{PowerFolder}} oder \href{https://www.dropbox.com/de/}{{Dropbox}} kann diese Anwendung noch nicht standhalten.
+Jedoch unterscheidet sich diese Software in einigen Aspekten von den genannten Produkten.
 
 \subsection{Cloud Storage}
 Im Bereich der Dateiverwaltung hört man schnell von Diensten wie \href{https://www.dropbox.com/de/}{{Dropbox}}, \href{http://www.openkm.com/en/}{{OpenKM}},
 \href{https://onedrive.live.com/}{{Windows OneDrive}} oder  \href{https://www.google.com/intl/de_de/drive/}{{Google Drive}}.
-Alle Dienste haben gemein, dass sie von sehr großen Unternehmen bereitgestellt werden und fast unendlich viel Speicherplatz anbieten. 
+Alle Dienste haben gemein, dass sie von sehr großen Unternehmen bereitgestellt werden und nahezu unendlich viel Speicherplatz anbieten. 
 
 In der Unterstützung unterscheiden sich die Dienste teils gravierend voneinander. {Dropbox} bietet von den Cloud Storage Diensten dabei die beste plattformübergreifende Unterstützung.
 
-Bei vielen Diensten wird die Plattform Linux kaum unterstützt. Hierbei handelt es sich häufig um nicht offizielle Anwendungen, die nur wenige Funktionen anbieten. \href{https://one.ubuntu.com/}{Ubuntu One} stellt für die Wenigsten eine echte Alternative dar, da der Dienst keine Verbreitung besitzt. Bei {Google Drive} ist der Hinweis zu finden, dass die Linux-Unterstützung noch in Arbeit ist \cite{googledrive}.
+Bei vielen Diensten wird die Plattform Linux kaum unterstützt. Hierbei handelt es sich häufig um nicht offizielle Anwendungen, die nur wenige Funktionen anbieten. \href{https://one.ubuntu.com/}{Ubuntu One} stellt für die Wenigsten eine echte Alternative dar, da der Dienst keine Verbreitung besitzt und kaum Integration in anderen Produkten besitzt. Bei {Google Drive} ist der Hinweis zu finden, dass die Linux-Unterstützung noch in Arbeit ist \cite{googledrive}.
 
 {Dropbox} bietet auf den meisten Plattformen alle Funktionen gleichermaßen an, jedoch hat auch dieser Dienst Nachteile.
-Bei dem Client lässt sich nicht einstellen, mehrere Ordner zu verwalten. Dadurch werden gewisse Datenstrukturen erzwungen, was nicht immer erwünscht ist und zu Problemen führen kann, wenn Anwendungen bestimmte Pfade benötigen.
+Bei dem Client lassen sich nicht mehrere verschiedene Ordner verwalten. Dadurch werden gewisse Datenstrukturen erzwungen, was nicht immer erwünscht ist und zu Problemen führen kann, wenn Anwendungen bestimmte Pfade benötigen.
 
-Alle genannten Dienste gemeinsam haben bei näherer Betrachtung für das Arbeiten mit wissenschaftlichen Daten den Nachteil, dass die Clients Dateien lokal synchronisieren. Da Verbindungen ins Internet immer noch langsam sind und da die nötigen Kapazitäten enorme Kosten verursachen, ist dieser Ansatz nicht praktikabel \cite{telekomlahr}. Der Vorteil einer Cloud basierten Lösung, dem einfacheren Teilen der Daten, wiegt diese Nachteile nicht auf.
+Alle genannten Dienste haben für das Arbeiten mit wissenschaftlichen Daten den Nachteil, dass die Clients Dateien lokal synchronisieren. Da Verbindungen ins Internet immer noch langsam sind und da die nötigen Transfer-Kapazitäten enorme Kosten verursachen, ist dieser Ansatz nicht praktikabel \cite{telekomlahr}. Der Vorteil einer Cloud basierten Lösung, dem einfacheren Teilen der Daten, wiegt diese Nachteile nicht auf.
 
 Ein weiter wichtiger Aspekt ist die rechtliche Lage. Gerade im wissenschaftlichen Bereich gibt es viele Daten, die dem Lehrstuhl exklusiv oder durch eine bestimmte Rahmenbedingung bzw. Lizenz zu Verfügung gestellt werden. 
 Daher ist es für viele Daten nicht möglich Cloud-Dienste wie Dropbox oder Google Drive zu verwenden. 
-Das erstellte System lässt die Daten dort liegen wo diese erstellt wurden. Ein Synchronisieren erfolgt nur dann, wenn es gewünscht ist, durch die Anpassung der Konfiguration.
+Das erstellte System lässt die Daten dort liegen, wo diese erstellt werden. Ein Synchronisieren erfolgt nur auf Wunsch durch die Anpassung der Konfiguration.
 
 \subsection{Lokales Netzwerk}
-Auch im lokalen Netzwerk sind die Cloud basierten Ansätze zu finden. Lösungsansätze wie ein FTP-Server sind von ihren Funktionen her gerade beim Dateiaustausch nicht mehr zeitgemäß. Auch ist das Protokoll nicht dazu geeignet, konkurrierende Zugriffe zu verwalten.
+Auch im lokalen Netzwerk sind die Cloud basierten Ansätze zu finden. Lösungsansätze mit einem FTP-Server sind von ihren Funktionen her beim Dateiaustausch nicht mehr zeitgemäß. Auch das Protokoll ist nicht dazu geeignet, konkurrierende Zugriffe auf Dateien zu verwalten.
 
 Datentransfer im lokalen Netzwerk wird daher durch Technologien wie \acrshort{nfs} geregelt.
 Diese Dienste lassen sich jedoch meist wegen ihrer Protokollbeschränkungen im Internet nicht nutzen.
 
-Meist darauf aufbauend haben speziell im Bereich Verschlagwortung und kooperatives verteiltes Arbeiten, Groupware Lösungen wie \href{https://owncloud.org/}{{ownCloud}} oder \href{http://www.horde.org/apps/groupware}{{Horde}} den Begriff der privaten Cloud geprägt. Als Dateibrowser eignen sich die Oberflächen jedoch nicht. Auch die geforderten Funktionen wie die Prüfsummenberechnung zur Erkennung von Duplikate und Veränderungen ist in diesen nicht vorhanden.
+Meist darauf aufbauend haben speziell im Bereich Verschlagwortung und kooperatives verteiltes Arbeiten, Groupware Lösungen wie \href{https://owncloud.org/}{{ownCloud}} oder \href{http://www.horde.org/apps/groupware}{{Horde}} den Begriff der privaten Cloud geprägt. Als Dateibrowser eignen sich diese Oberflächen jedoch nicht. Auch die geforderten Funktionen wie die Prüfsummenberechnung zur Erkennung von Duplikate und Veränderungen ist in diesen nicht vorhanden.
 
 Ein verteilter Ansatz lässt sich genauso wie die neuen Funktionen integrieren. Da die Anwendungen jedoch gängige Open-Source-Lösungen sind, benötigt die vorherige Einarbeitung in die Anwendung zu viel Zeit. 
 
-Die meisten Anwendungen im Open-Source Bereich haben nur eine mangelnde Unterstützung der 64 Bit Architektur. Für PHP auf Windows heißt es auf der Webseite, dass ,,large file support'' noch immer nicht vernünftig funktioniert und 64 Bit nicht stabil läuft \cite{phpw}. Diese Limitierung gilt auch für Horde und ownCloud, welche in PHP programmiert sind. Eine Implementierung der nötigen Funktionen kann wegen den Anforderungen nur schwerlich auf 32 Bit erfolgen. Inwieweit Konzepte wie \acrfull{pae} berücksichtigt werden können, müsste erst noch evaluiert werden. Die 32 Bit Unterstützung ist aber nicht Gegenstand dieser Arbeit.
+Die meisten Anwendungen im Open-Source Bereich haben nur eine mangelnde Unterstützung der 64 Bit Architektur. Für PHP auf Windows heißt es auf der Webseite, dass ,,large file support'' noch immer nicht vernünftig funktioniert und 64 Bit nicht stabil läuft \cite{phpw}. Diese Limitierung gilt auch für Horde und ownCloud, welche in PHP programmiert sind. Eine Implementierung der nötigen Funktionen kann wegen den Anforderungen nur schwerlich auf 32 Bit erfolgen. Inwieweit Konzepte wie \acrfull{pae} berücksichtigt werden können, muss noch evaluiert werden. Die 32 Bit Unterstützung ist aber nicht Gegenstand dieser Arbeit.
 Da Java 64 Bit unterstützt, wird hier bei Verwendung sehr großer Dateien auf diese Technologie zurückgegriffen.
 
-{OpenKM}, wie Abbildung \ref{openkm:home} zeigt, ist einer Lösung, des in der Einleitung beschriebenen Problems, nah, jedoch sind hier immer noch nicht die genannten Funktionen wie die Berechnung der Prüfsumme ersichtlich. Diese sind wie auch bei  {Alfresco One} gegen passende Bezahlung integrierbar, da beide Systeme auch kommerziell vertrieben werden.
+{OpenKM}, wie Abbildung \ref{openkm:home} zeigt, ist einer Lösung des in der Einleitung beschriebenen Problems nah, jedoch sind hier immer noch nicht die genannten Funktionen wie die Berechnung der Prüfsumme ersichtlich. Diese sind wie auch bei  {Alfresco One} gegen passende Bezahlung integrierbar, da beide Systeme auch kommerziell vertrieben werden.
 
-Ein weiterer Nachteil, Dateien werden geladen, statt durch entsprechende Links im System geöffnet. Ein Terabyte Download wird hier über HTTP sehr lange dauern. 
+Ein weiterer Nachteil ergibt sich aus dem Laden der Dateien, statt diese durch entsprechende Links im System zu öffnen. Ein Terabyte Download über HTTP dauern lange und wird auf einigen Plattformen wegen ihrer Limitierungen scheitern. 
 
 \begin{figure}[htbp] 
     \centering
@@ -508,7 +503,7 @@ Ein weiterer Nachteil, Dateien werden geladen, statt durch entsprechende Links i
 \end{figure}  
 
 
-Das hier erstellte System nutzt einen anderen Ansatz zur Datenbeschaffung und Datensuche. Diese Suche beschränkt sich im Rahmen dieser Arbeit auf einfache Mustervergleiche und erlaubt das Suchen von Dateien über mehrere Peers hinweg anhand ihrer gesammelten Meta-Informationen. 
+Das hier erstellte System nutzt einen anderen Ansatz zur Datenbeschaffung und Datensuche. Diese Suche beschränkt sich im Rahmen dieser Arbeit auf einfache Mustervergleiche und erlaubt das Suchen von Dateien über mehrere Peers hinweg anhand gesammelter Meta-Informationen. 
 
 
 
@@ -517,9 +512,9 @@ Das hier erstellte System nutzt einen anderen Ansatz zur Datenbeschaffung und Da
 \label{chap:techAnal}
 \chapmd{ Eine Weisheit der Dakota-Indianer}{,,Wenn Du entdeckst, dass Du ein totes Pferd reitest, steig ab.''}
  
-Auffällig ist, dass die meisten Systeme in Java programmiert sind, wenn es um große Dateien geht, die auch noch plattformübergreifend angeboten werden. Die Schwächen des HTTP kommen gerade bei großen Dateien zutage und die dadurch aufkommenden Probleme bleiben ungelöst. Das zeigt sich in der Nutzung von WebDAV sowie bei Downloads \cite{davlimit}, \cite{httplimit}.
+Auffällig ist, dass die meisten plattformübergreifend \acrshort{dms}-Systeme mit ,,großen'' Dateien in Java programmiert sind. Das Nutzen von HTTP zeigt jedoch schnell Schwächen bei großen Dateien, während dadurch aufkommenden Probleme ungelöst bleiben. Das zeigt sich in der Nutzung von WebDAV sowie bei Downloads \cite{davlimit}, \cite{httplimit}.
 
-Es muss das richtige Protokoll für den jeweiligen Anwendungszweck verwendet werden.
+Es muss das richtige Protokoll für den jeweiligen Anwendungszweck verwendet werden, was jedoch nicht immer durch die verwendete Architektur umsetzbar ist. 
 
 \section{Warum Java}
 Die plattformunabhängigen Anwendungen nutzen naheliegenderweise Java als Programmiersprache. Auch Scriptsprachen verwenden neben passendem Interpreter, meist in C/C++, die Java Plattform. Bekannteste Vertreter sind Python und Ruby.
@@ -532,54 +527,56 @@ Die riesige Entwicklergemeinde hat auch viele Bibliotheken hervorgebracht, deren
 
 
 %% stolpern hier ....
-Was Windows dieses Jahr mit {.NET} startete, hat Java lange zuvor durchgeführt. Durch die gemeinsame Open-Source Basis und der Möglichkeit die Virtuelle-Maschine legal mit in sein Programm zu integrieren erlaubt eine sehr einfache Anwendungsbereitstellung und Erstellung eingebetteter Anwendungen. Nachfolgend bezieht sich die technische Analyse auf die Realisierbarkeit in einer Java Anwendung.
+Was Windows dieses Jahr mit {.NET} startete, hat Java lange zuvor durchgeführt. Durch die gemeinsame Open-Source Basis und der Möglichkeit, die Virtuelle-Maschine legal mit in sein Programm zu integrieren, erlaubt eine sehr einfache Anwendungsbereitstellung und Erstellung eingebetteter Anwendungen. Nachfolgend bezieht sich die technische Analyse auf die Realisierbarkeit in einer Java Anwendung.
 
 
 \subsection{Arbeiten mit Dateien}
 Bei der Realisierung gibt es trotz plattformunabhängiger API Schwierigkeiten. Ursachen sind Verhaltensunterschiede im Betriebssystem.
-Es gibt allerdings einige grundlegende Informationen, wie dem Dateinamen, Dateipfad, Größe oder letzte Änderung, die sich mit leichten Abweichungen auf allen Plattformen finden lassen.
+Es gibt allerdings grundlegende Informationen, wie dem Dateinamen, Dateipfad, Größe oder letzte Änderung, die sich auf allen Plattformen finden lassen.
 
 Bei der Verschlagwortung handelt es sich um ein Anhängen von Informationen. Diese Informationen sind bei der Speicherung nicht nur plattformabhängig, sondern unterscheiden sich bereits erheblich innerhalb des verwendeten Dateisystems einer Plattform.
-Die meisten Betriebssysteme nutzen dabei erweiterte Attribute. Inwieweit bei Mac OS und Windows \acrshort{ads} oder \acrshort{rf} Verwendung findet, wurde nicht geprüft.  
+Die meisten Betriebssysteme nutzen dabei ,,erweiterte Attribute''. Inwieweit auf Mac OS \acrshort{rf} und auf Windows \acrshort{ads} Verwendung findet, wurde nicht geprüft.  
  
-Die einfach klingende Idee, Rechenzeit zu sparen, indem man Informationen voranalysiert und an die Datei anhängt, kann jedoch schnell durch einen Anwender oder ,,falsch'' funktionierendes Programm zunichte gemacht werden. Am Beispiel von Prüfsummen zeigen sich die Probleme bereits lokal auf dem Computer. Dazu berechnet ein Programm zu einer gegebenen Datei eine Prüfsumme und hängt das Ergebnis der Berechnung an die Datei an. Hier muss davon ausgegangen werden, dass das Dateisystem ebenso wie das Betriebssystem alle nötigen Funktionen bietet.
+Die einfach klingende Idee, Rechenzeit zu sparen, indem Informationen voranalysiert und an die Datei anhängt werden, kann jedoch schnell durch einen Anwender oder ,,falsch'' funktionierendes Programm zu Fehlern führen. Am Beispiel von Prüfsummen zeigen sich die Probleme bereits lokal auf dem Computer. Dazu berechnet ein Programm zu einer gegebenen Datei eine Prüfsumme und hängt das Ergebnis der Berechnung an die Datei an. Hier muss davon ausgegangen werden, dass das Dateisystem ebenso wie das Betriebssystem alle nötigen Funktionen bietet.
 
 \bigskip
-Dann können folgende Ereignisse eintreten:
+Folgende Ergebnisse können eintreten:
 \begin{itemize}
 	\item Änderungen an der Datei sorgen für eine nicht mehr gültige Prüfsumme in den Attributen.\\
-    Lösung: Zeitstempel der Prüfsumme mit anhängen und neu berechnen bei Abweichungen des Prüfungszeitpunktes zum Modifikationsdatum.
+    Lösung:Durch Nutzung von Zeitstempel, der Prüfsummen, kann bei Abweichungen des Prüfsummen-Zeitpunktes zum Modifikationsdatum die Prüfsumme neu berechnet werden.
     
-	\item Update verpasst. \\
+	\item Verpassen von Modifikationen an Dateien.\\
      Lösung: Sollte der Verdacht existieren, dass sich die Datei geändert hat und dies, ohne Änderung im Änderungsdatum, sollte eine neue Berechnung erzwingbar sein.
-     Auslöser könnten Programme sein, die neben dem Inhalt der Datei auch deren Meta-Informationen verändern. Wie mit diesem Problem umgegangen werden sollte, wird, da nach Aufgabenstellung eine Berücksichtigung solcher Programme nicht erfolgen sollte, nicht weiter beachtet.
+     Auslöser könnten Programme sein, die neben dem Inhalt der Datei auch deren Meta-Informationen verändern. Wie mit diesem Problem umgegangen werden sollte, ist der Aufgabenstellung nicht zu entnehmen. 
+     Durch eine Aktualisierung z. B. mit \verb|touch FILE| unter Linux wird das Modifikationsdatum erneuert.
+     
 \end{itemize}
 
-Geht man davon aus, dass die verwendeten Programme Dateien nur mit ,,echten'' Änderungen neu schreiben oder erweitern, so ist es naheliegend, einen zweiten Prozess zu entwickeln, der die berechneten Informationen verarbeitet.
+Wird davon ausgegangen, dass die verwendeten Programme Dateien nur mit ,,echten'' Änderungen neu schreiben oder erweitern, so ist es naheliegend, einen zweiten Prozess zu entwickeln, der die berechneten Informationen verarbeitet.
 
 Es gibt zwei mögliche Ansätze zur Realisierung: {Polling} oder {Interrupt}. Nachteile beim Polling sind unregelmäßiges Reagieren auf Änderungen und Erzeugung von zu viel CPU Last. Ein weiterer Nachteil ist, dass zu schnell hintereinander erfolgte Änderungen übersehen werden können.
 
-Für das Nutzen von {Interrupts} muss das Betriebssystem passende Schnittstellen bereitstellen. Ein {Interrupt} wird anschließend für ein bestimmtes Ereignis, wie Erstellen oder Ändern einer Datei, angemeldet und vom Betriebssystem sowie von der passenden Hardware verwaltet. Im Fall der Dateiüberwachung wird von den meisten Betriebssystemen eine Ordnerüberwachung angeboten, die sich zum gewünschten Vorhaben, beispielsweise durch Filterung, anpassen lässt. Dieser Ansatz übersieht keine Änderungen und stellt auch keine unnötigen Nachfragen. Das Programm benötigt dadurch kaum CPU-Rechenzeit.
+Für das Nutzen von {Interrupts} muss das Betriebssystem passende Schnittstellen bereitstellen. Ein {Interrupt} wird anschließend für ein bestimmtes Ereignis, wie Erstellen oder Ändern einer Datei, angemeldet und vom Betriebssystem sowie von der passenden Hardware verwaltet. Im Fall der Dateiüberwachung wird von den meisten Betriebssystemen eine Ordnerüberwachung angeboten, die sich dem gewünschten Vorhaben, beispielsweise durch Filterung, anpassen lässt. Dieser Ansatz verpasst keine Änderungen und benötigt kaum CPU-Rechenzeit.
 
 
 \section{Kommunikation}
-Mit Java stehen eine Menge Bibliotheken zur Auswahl. Im Abschnitt (\ref{sec:comm}) wurden zwei der größten Vertreter zur Kommunikation genannt. Realisiert wurde die Anwendung unter \acrshort{jms}, anders als  \href{http://xmpp.org/extensions/xep-0060.html}{,,XMPP (draft) XEP60''} stellt dieses eine etablierte Kommunikationsschnittstelle bereit, in der eine nachrichtenbasierte verteilte Anwendung programmierbar ist.
+Im Abschnitt (\ref{sec:comm}) wurden zwei der größten Vertreter zur Kommunikation genannt. Realisiert ist die Anwendung unter \acrshort{jms}, anders als  \href{http://xmpp.org/extensions/xep-0060.html}{,,XMPP (draft) XEP60''} stellt dieses eine etablierte Kommunikationsschnittstelle bereit, in der eine nachrichtenbasierte verteilte Anwendung programmierbar ist.
 
-Zwischen Anwendungsserver und Client wird HTTP verwendet, um HTML Dokumente auszuliefern. Die Implementierung erfolgt auf HTTP 1.1 Grundlage. Kommende Versionen wie Java 9 nutzen bereits das von Google vorangetriebene HTTP 2 \cite{httpx1}, \cite{httpx2}.
+Zwischen Anwendungsserver und Client wird HTTP verwendet, um HTML Dokumente auszuliefern. Die Implementierung erfolgt auf Grundlage von HTTP 1.1. Kommende Versionen wie Java 9 nutzen bereits das von Google vorangetriebene HTTP 2 \cite{httpx1}, \cite{httpx2}. Es ist jedoch nicht vor Mai 2016 mit einer verwendbaren Veröffentlichung zu rechnen.
 
-Die Clients selbst sprechen -- wie in  Abbildung \ref{fig:ist-struktur2} ausgeführt -- zwischen den jeweiligen Servern bereits ein geeignetes Protokoll für den Datentransfer. Daher ergibt sich in der Kommunikation eine heterogene Landschaft, die die Vorgabe erfüllt, skalierbar zu sein. Man geht davon aus, dass der Dateitransfer zwischen Server und Client durch das passende vom Betriebssystem empfohlene Protokoll skalierbar ist. Eine Skalierbarkeit des Anwendungsserver  steht außer Frage. Es wird auf weiterführende Literatur verwiesen, um den hier verwendeten Anwendungsserver beispielsweise im Cluster zu betreiben \cite{glassfishcluster}.
-Die hier erstellte eingebettete Version unterstützt allerdings einen Cluster Betrieb nicht und erfordert für eine Lastverteilung mehr Konfiguration auf den einzelnen Peers. Nachteilig ist zudem die dadurch entstehende höhere CPU und RAM Last.
+Die Clients selbst sprechen  (Abbildung \ref{fig:ist-struktur2}) zwischen den jeweiligen Servern bereits ein geeignetes Protokoll für den Datentransfer. Daher ergibt sich in der Kommunikation eine heterogene Landschaft, die die Vorgabe erfüllt, skalierbar zu sein. Man geht davon aus, dass der Dateitransfer zwischen Server und Client durch das passende vom Betriebssystem empfohlene Protokoll skalierbar ist. Es wird auf weiterführende Literatur verwiesen, um den hier verwendeten Anwendungsserver zu skalieren und beispielsweise im Cluster zu betreiben \cite{glassfishcluster}.
+Die hier erstellte eingebettete Version unterstützt allerdings keinen Cluster Betrieb und erfordert für eine Lastverteilung mehr Konfigurationsaufwand auf den einzelnen Peers. Nachteilig ist zudem die dadurch entstehende höhere CPU und RAM Last.
  
 \section{Sicherheit}
-Die Anwendung verwendet keine Verschlüsselung im eingebetteten Modus. Üblicherweise muss dazu ein ,,selbst signiertes Zertifikat'' erzeugt werden, welches i. d. R. nicht in Webbrowsern vertrauenswürdig ist und ein direktes Arbeiten mit der Anwendung verhindert. Ein vorheriges Verteilen des Zertifikates und dessen Installation sind notwendig für einen reibungslosen Betrieb. Die nötige Arbeit entsprechender Realisierung wurde in andere Aufgabenbereiche verlagert. Die grundlegenden Algorithmen werden bereits durch die Bibliothek der ,,Legion of the Bouncy Castle'' bereitgestellt \cite{javabc}.
+Die Anwendung verwendet keine Verschlüsselung im eingebetteten Modus. Üblicherweise muss dazu ein ,,selbst signiertes Zertifikat'' erzeugt werden, welches i. d. R. von Webbrowsern als nicht vertrauenswürdig angezeigt wird. Dies macht ein vorheriges Verteilen des Zertifikates und dessen Installation notwendig für einen reibungslosen Betrieb. Die nötige Arbeit entsprechender Realisierung wurde in andere Aufgabenbereiche verlagert. Die grundlegenden Algorithmen werden bereits durch die Bibliothek der ,,Legion of the Bouncy Castle'' bereitgestellt \cite{javabc}.
 
-Ein Ausführen der Webanwendung über einen Proxy mit \acrfull{tls}, Verschlüsselung ist jedoch einfach, daher ist es ratsam, diesen Dienst zu verwenden, um eine Verschlüsselung für die Anwendung zu nutzen.
+Ein Ausführen der Webanwendung über einen Proxy mit \acrfull{tls}, Verschlüsselung ist jedoch einfach, daher ist es ratsam, diesen Dienst zu verwenden, um eine Verschlüsselung zu nutzen.
 
-Ebenso kann eine Nachricht, vom \acrshort{jms}, durch beispielsweise SSH Port-Weiterleitungen durch einen verschlüsselten Tunnel versendet werden. Diese Dienste sind weitgehend transparent über der Anwendung nutzbar.
-Die Kommunikation mit einem E-Mail-Server erfolgt über Javas interne \acrshort{tls}  da hier ein ,,vollständiger'' Client implementiert ist. Die Anwendung akzeptiert hier alle Zertifikate und umgeht dadurch die Schutzmechanismen, da auf den Testsystemen keine ,,echten'' Zertifikate vorliegen.
-Diese Prüfung kann mit entsprechender Konfiguration geändert werden, so dass nur noch konfigurierte Zertifikate erlaubt sind. Dazu muss das Java-Tool keytool verwendet werden, um dem Java System entsprechende Zertifikate mitzuteilen.
+Ebenso kann eine Nachricht vom \acrshort{jms} durch Nutzung von beispielsweise SSH-Port-Weiterleitungen versendet werden. Diese Dienste sind weitgehend transparent für die Anwendung nutzbar.
+Die Kommunikation mit einem E-Mail-Server erfolgt über Javas interne \acrshort{tls},  da hier ein ,,vollständiger'' Client implementiert ist. Die Anwendung akzeptiert Standardmäßig alle Zertifikate und umgeht dadurch die Schutzmechanismen, da auf den Testsystemen keine ,,echten'' sondern nur selbst Signierte Zertifikate vorliegen.
+Diese Prüfung kann mit entsprechender Konfiguration geändert werden, so dass nur noch konfigurierte Zertifikate und ,,Hosts'' erlaubt sind. Dazu muss das Java-Tool ,,keytool'' verwendet werden, um dem Java System entsprechende Zertifikate mitzuteilen.
 
-Sicherheitstechnisch zu bedenken bleibt es, dass ein Peer, welcher sich zu einem Server verbindet, diesem vollständig vertraut.
+Sicherheitstechnisch bedenklich ist, dass ein Peer, welcher sich zu einem Server verbindet, diesem vollständig vertraut.
 Selbst wenn die Kommunikation zwischen den Peers sicher gestaltet ist, kann die Anwendung durch Konfigurationsschwächen und Anforderungen wie der Befehlsausführung, der Vorfilterung von Daten durch externe Prozesse, über die  Weboberfläche erhebliche Sicherheitslöcher in die bestehende Netzwerklandschaft reißen.
 
 Der abhörsichere Transport und die Sicherheit in der Kommunikation unter den Peers geht dabei weit über die eigentliche Aufgabe hinaus und muss getrennt betrachtet werden. Um sich für eine geeignete Sicherheit entscheiden zu können, muss das System jedoch erst getestet werden. Ein ,,public/private key'' Verfahren könnte dabei genauso wie das Erzeugen einer zentralen Zertifizierungsstelle in das erstellte System etabliert werden.
@@ -594,23 +591,23 @@ Bis zu einer entsprechenden Entscheidung sollte das System bei Bedarf durch TLS 
 
 \section{Anwendungsserver}
 \label{chap:appserv}
-Die Anwendung baut auf einigen etablierten Bibliotheken im Java Umfeld auf. Als Server im eingebetteten Modus wird ,,Glassfish'' verwendet.
-Lösungen mit Tomcat oder Jetty konnten wegen der JSF-API nicht verwendet werden, da viele genutzte Funktionen nicht vorhanden sind und es mehr Aufwand bedeutet, diese zu integrieren. Es gibt neben der gängigen Literatur im Internet auch Bücher, die das Einrichten und die ersten Schritte beschreiben wie \cite{glassfishee7}. Da sich aber für das Einbetten in die Anwendung beim ,,master'' entschieden wurde, werden nötige Konfigurationen vom Programm selbst erledigt.
-Die Entscheidung für einen eingebetteten Anwendungsserver ist darin begründet, dass die Administration möglichst einfach gehalten werden sollte.
-Tests zwischen Linux und Windows benötigten einen großen Konfigurationsaufwand und sind für normale Anwender ohne Vorwissen und Grundlagen nicht möglich den Server zu konfigurieren.
+Die Anwendung baut auf etablierten Bibliotheken im Java Umfeld auf. Als Server im eingebetteten Modus wird ,,Glassfish'' verwendet.
+Lösungen mit Tomcat oder Jetty konnten wegen der JSF-API nicht verwendet werden, da viele genutzte Funktionen nicht vorhanden sind und es mehr Aufwand bedeutet, diese zu integrieren. Neben der gängigen Internet-Literatur gibt es auch Bücher, die das Einrichten und die ersten Schritte beschreiben wie \cite{glassfishee7}. Da sich aber für das Einbetten in die Anwendung beim ,,master'' entschieden wurde, werden nötige Konfigurationen vom Programm selbst erledigt.
+Die Entscheidung für einen eingebetteten Anwendungsserver ist darin begründet, dass die Administration möglichst einfach gehalten werden soll.
+Die Installation eines Anwendungsserver benötigt einen großen Konfigurationsaufwand und ist für normale Anwender ohne Vorwissen und Grundlagen nicht möglich.
 
 
 \subsection{Webanwendungen}
 Heutige moderne webbasierte Anwendungen im Java Umfeld werden mittels {JSF} erstellt. So kann sich ein Java-Entwickler auf Java fokussieren und muss sich nicht hauptsächlich mit den Anforderungen von HTML und Javascript auseinandersetzen, da viele notwendige Scripte und Elemente automatisch erzeugt werden. HTML5 stellt nicht alle Eingabeelemente wie vom Desktop bekannt bereit. Meist werden diese durch Implementierungen wie \href{http://primefaces.org/}{{primefaces}} ergänzt. Diese nutzen meist gängige {CSS} und {JavaScript} Bibliotheken wie \href{http://getbootstrap.com/}{Bootstrap} und \href{https://jquery.com/}{jQuery} für erweiterte Eingabeelemente und visuelle Effekte.
 
-Mit JSF  werden vorzugsweise HTML-Seiten generiert und durch das { binding} Konzept wird das Entwickeln in Java vereinfacht.
-Mit { bindings} lassen sich Objekteigenschaften an HTML-Elemente koppeln, so dass das Zurückspeichern der über HTTP übertragenen Daten nahezu automatisch erfolgt.
+Mit JSF  werden vorzugsweise HTML-Seiten generiert und durch das binding Konzept wird das Entwickeln in Java vereinfacht.
+Mit bindings lassen sich Objekteigenschaften an HTML-Elemente koppeln, so dass das Zurückspeichern der über HTTP übertragenen Daten nahezu automatisch erfolgt.
 
 \subsection{Contexts and Dependency Injection}
 %%--monstersatz
-Bei \acrfull{cdi} werden Objekte verwaltet und dadurch die Möglichkeit geschaffen, Abhängigkeiten, die zur Laufzeit entstehen, im Betrieb einzufügen und erst anschließend die entsprechende Methode aufzurufen. Dadurch lassen sich viele Entwurfsmuster wie z. B. das Interceptor-Muster einfacher implementieren und es müssen nur die entsprechenden Notationen an die Methoden geschrieben werden \cite{schmidt2002pattern}, \cite{gamma2011entwurfsmuster}, \cite{bien2003j2ee}. Das Muster lässt sich für das Einbauen von transparenten Transaktionen oder Log-Meldungen verwenden. Nachteile sind die schwere Nachvollziehbarkeit der Programmabläufe, da nicht wirklich klar ist, was an einer bestimmten Stelle injiziert wird.
+Bei \acrfull{cdi} werden Objekte verwaltet und dadurch die Möglichkeit geschaffen, Abhängigkeiten, die zur Laufzeit entstehen, im Betrieb einzufügen und erst anschließend die entsprechende Methode aufzurufen. Dadurch lassen sich viele Entwurfsmuster wie z. B. das Interceptor-Muster einfacher implementieren. Dafür müssen nur die entsprechenden Notationen an die Methoden geschrieben werden \cite{schmidt2002pattern}, \cite{gamma2011entwurfsmuster}, \cite{bien2003j2ee}. Das Muster lässt sich für das Einbauen von transparenten Transaktionen oder Log-Meldungen verwenden. Nachteile sind die schwere Nachvollziehbarkeit der Programmabläufe, da nicht wirklich klar ist, was an einer bestimmten Stelle injiziert wird.
 
-Es ist darauf zu achten, dass alle Objekte im sogenannten {CDI-Kontext}, vom CDI-Container, meist innerhalb des Anwendungsserver, verwaltet werden. Werden neue Objekte benötigt, muss mit entsprechenden Notationen dem Container dies mitgeteilt werden.
+Es ist darauf zu achten, dass alle Objekte im sogenannten {CDI-Kontext}, vom CDI-Container, meist innerhalb des Anwendungsserver, verwaltet werden. Neue Objekte, muss durch entsprechenden Notationen vom Container angefragt werden und werden nicht wie üblich durch ,,new'' erzeugt.
 
 \bigskip
 Die wichtigsten Muster sind:
@@ -623,11 +620,11 @@ Die wichtigsten Muster sind:
     \item Data Access Object (DAO) Muster, \cite{bien2003j2ee}
 \end{itemize}
 
-Wird {CDI}, {JSF}, {JPA} in einer Anwendung verwendet, ergeben sich Synergien. So können Konfigurationen von Datenbanken lose gekoppelt werden und deren Transaktionen bei Bedarf durch einen Interceptor gestartet werden. Programme die, {CDI} und {JPA} einsetzen, verwenden meistens das ,,Data Access Object''-Muster, welches notwendige Funktionen zum Datenspeicher nochmals vor der speichernden Anwendung kapselt. Es wirkt dadurch als Fassade vor der Datenbank und stellt sicher, dass nicht jedes Objekt eine eigene Suche implementiert und damit doppelten Code erzeugt.
+Werden {CDI}, {JSF}, {JPA} in einer Anwendung verwendet, ergeben sich Synergien. So können Konfigurationen von Datenbanken lose gekoppelt werden und deren Transaktionen bei Bedarf durch einen Interceptor gestartet werden. Programme die {CDI} und {JPA} einsetzen, verwenden meistens das ,,Data Access Object''-Muster, welches notwendige Funktionen zum Datenspeicher nochmals vor der speichernden Anwendung kapselt. Es wirkt dadurch als Fassade vor der Datenbank und stellt sicher, dass nicht jedes Objekt eine eigene Suche implementiert und damit doppelten Code erzeugt.
 
-Die Kombination von {CDI} und {JSF} vereinfacht die Verwendung von ,,Java Beans'', indem in andere Objekte Eigenschaften injiziert werden können. Diese Flexibilität ist bei Webanwendungen und dessen Formulare sehr wünschenswert, da einerseits Browser-Weichen so indirekt durch Muster wie  ,,Chain-of-Responsibility'' dem richtigen HTML-Generator übergeben werden können und andererseits durch das ,,lifecycle management'' auch Session und Request Kontexte einfach verwendbar werden. 
+Die Kombination von {CDI} und {JSF} vereinfacht die Verwendung von ,,Java Beans'', indem in andere Objekte Eigenschaften injiziert werden können. Diese Flexibilität ist bei Webanwendungen und deren Formularen sehr wünschenswert, da einerseits Browser-Weichen so indirekt durch Muster wie  ,,Chain-of-Responsibility'' dem richtigen HTML-Generator übergeben werden können und andererseits durch das ,,lifecycle management'' auch Session und Request Kontexte einfach verwendbar werden. 
 
-Durch die Aktualität von Java 8 gibt es noch viele Probleme im Zusammenspiel mit nicht aktualisierten Bibliotheken. Es werden mit den neuen Streams beim Evaluieren falsche Referenzen verwendet, welche zu einer ,,Nullpointer Exception'' führen. Kontexte mit Javas ,,lambda'' Funktionen, sofern diese etwas komplexer sind, führen zu falschem Verhalten in der Anwendung.
+Durch die Aktualität von Java 8 treten Probleme im Zusammenspiel mit nicht aktualisierten Bibliotheken auf. Es werden wegen den neuen Streams Konzepten von Java 8 beim Evaluieren falsche Referenzen verwendet, was zu einer ,,Nullpointer Exception'' führt. Kontexte mit Javas ,,lambda'' Funktionen, sofern diese etwas komplexer sind, führen zu falschem Verhalten in der Anwendung.
 An dieser Stelle muss von der Verwendung von Java 8 Konzepten teilweise abgesehen werden, bis die Implementierungen des Containers die neuen Sprachelemente vernünftig unterstützen.
 
 
@@ -636,19 +633,19 @@ An dieser Stelle muss von der Verwendung von Java 8 Konzepten teilweise abgesehe
 \subsection{Java Persistence API}
 \label{chap:jpa}
 
-Das \acrfull{jpa} kann alternativ zu {JDBC} eingesetzt werden und dient in Java Anwendungen der Datenbankkommunikation. Das darin integrierte \acrfull{orm} erledigt die mühsame Arbeit, Tabelleninhalte in Objekte zu überführen. Durch Notationen an den Java-Klassen wird die XML basierte Konfiguration auf ein Minimum beschränkt und die ,,persistence.xml'' enthält teilweise nur noch die Verbindungsdaten zur Datenbank.
+Das \acrfull{jpa} kann alternativ zu {JDBC} eingesetzt werden und dient in Java Anwendungen der Datenbankkommunikation. Das darin integrierte \acrfull{orm} ermöglicht Tabelleninhalte in Objekte zu überführen. Durch Notationen an den Java-Klassen wird die XML basierte Konfiguration auf ein Minimum beschränkt und die ,,persistence.xml'' enthält teilweise nur die Verbindungsdaten zur Datenbank.
 
 Vorteile der Notationen im Code gegenüber der alten {XML} basierten Konfiguration ist die Möglichkeit der Prüfung durch den Compiler. Javas integrierte Zyklenerkennung wird beim \acrshort{orm} verwendet, um bei komplexeren Datenstrukturen redundante Speicherung zu vermeiden \cite{inden2012weg}.
 
 
 %% -- ralf?
-Dabei gibt es verschiedene Ansätze, der effizienteste ist das Erweitern einer Klasse für direktes Arbeiten auf der Datenbank. Das wird durch die Bibliothek während des Compilierens oder zur Laufzeit erledigt. Vergleichbare  Lösungsansätze müssen sich der Reflection-API behelfen und Verfahren wie die Zyklenerkennung selbst entwerfen.
-Optimierungspotential gibt es zudem durch angepasste SQL-Ausdrücke und der Nutzung von Datenbank spezifischer Funktionen genügend.
+Dabei gibt es verschiedene Ansätze. Der effizienteste ist das Erweitern einer Klasse für direktes Arbeiten auf der Datenbank. Das wird durch die Bibliothek während des Compilierens oder zur Laufzeit erledigt. Vergleichbare  Lösungsansätze müssen sich der Reflection-API behelfen und Verfahren wie die Zyklenerkennung selbst entwerfen.
+Optimierungspotential gibt es zudem durch angepasste SQL-Ausdrücke und der Nutzung von Datenbank spezifischen Funktionen.
 
-Die Problematik, dass in jedem Objekt die Datenbankinformationen ständig mit gespeichert werden, wird mittels {,,detach''} Operation vermieden. Leider verzichtet man dadurch auf die Objektverwaltung und Funktionen wie dem {lazy loading}, welche Daten erst bei Bedarf von der Datenbank liest, was in Anwendungen die große Datenmengen verarbeiten viel RAM spart und die Anwendung beschleunigt.
+Die Problematik, dass in jedem Objekt die Datenbankinformationen ständig mit gespeichert werden, wird mittels {,,detach''} Operation vermieden. Dadurch wird auf die Objektverwaltung und Funktionen wie dem {lazy loading}, welche Daten erst bei Bedarf von der Datenbank liest, verzichtet, was in Anwendungen, die große Datenmengen verarbeiten, viel RAM spart und die Anwendung beschleunigt.
 
 Im  Zusammenhang mit Java 8 sind auch bei \acrshort{jpa} Probleme zu finden. Hier muss wiederum bedingt durch die Bibliothek gänzlich auf Java 8 verzichtet werden.
-Dies liegt an der internen Erweiterung von Java-Klassen. Mit \href{http://openjpa.apache.org/openjpa-2.4.x.html}{OpenJPA 2.4} wurde eine Java 8 Unterstützung implementiert. Leider ist der verwendete Anwendungsserver mit \href{http://www.eclipse.org/eclipselink/}{EclipseLink} ausgestattet und die neue Version erst am 30.9.2015 erschienen, so dass zum Planungszeitpunkt noch keine entsprechende Unterstützung existierte.
+Dies liegt an der internen Erweiterung von Java-Klassen. Mit \href{http://openjpa.apache.org/openjpa-2.4.x.html}{OpenJPA 2.4} wurde eine Java 8 Unterstützung implementiert. Der verwendete Anwendungsserver ist mit \href{http://www.eclipse.org/eclipselink/}{EclipseLink} ausgestattet und die neue Version mit Java 8 Unterstützung erst am 30.9.2015 erschienen, so dass zum Planungszeitpunkt keine entsprechende Unterstützung existierte.
 
 
 
@@ -657,7 +654,7 @@ Dies liegt an der internen Erweiterung von Java-Klassen. Mit \href{http://openjp
 \chapmd{ Johann Wolfgang von Goethe (Werk: Wilhelm Meisters Wanderjahre)}{,,Es ist nicht genug, zu wissen, man muss auch anwenden; es ist nicht genug, zu wollen, man muss auch tun.''}
 
 
-In diesem Kapitel wird die Anwendungsrealisierung beschrieben. Vorweg wurde sich bei der Realisierung auf die wichtigsten Funktionen konzentriert, so dass Sicherheitsaspekte nicht explizit beachtet wurden. Es werden Verschlüsselungsverfahren lediglich zur Authentifizierung verwendet. Die Anwendung wurde in mehrere Projekte strukturiert und durch das Build-Tool \href{https://maven.apache.org/}{{Maven}}  lässt sich das Projekt in allen gängigen \acrshort{ide} entwickeln. 
+In diesem Kapitel wird die Anwendungsrealisierung beschrieben. Sicherheitsaspekte und Verschlüsselung muss durch externe Anwendungen eingebunden werden. Die Nutzung von SSH ist ratsam. Interne verwendete Verschlüsselungsverfahren dienen lediglich zur Authentifizierung. Die Anwendung wurde in mehrere Projekte strukturiert und durch das Build-Tool \href{https://maven.apache.org/}{{Maven}} kann das Projekt in allen gängigen \acrshort{ide} entwickelt werden. 
 
 
 \bigskip
@@ -675,13 +672,13 @@ Ein Rückblick auf die Zusammenfassung zeigt, wie welche Aufgaben von der Anwend
     
     
     \item Auslesen der Informationen einer Datei unter Beachtung des Dateisystems.\\
-    Die Aufgabe wird durch die Java interne API erledigt, dabei wurde für die Attribute eine kleine Abstraktion erstellt, um diese in UTF-8 Kodierung zu schreiben bzw. lesen. 
+    Die Aufgabe wird durch die Java interne API erledigt, dabei wurde für die Attribute eine kleine Abstraktion erstellt, um diese in UTF-8 Kodierung zu schreiben bzw. zu lesen. 
     
        
     \item Anzeigenanpassung und individuelle Unterstützung je nach verwendeter Plattform.\\
     Es wird  der ,,User-Agent'' durch die Weboberfläche ausgelesen, um entsprechende Scripte für die verwendete Plattform zu liefern, wie in Abbildung \ref{fig:app-details} durch ,,open - dir'' oder ,,open - file'' ersichtlich ist.
-    Die Anwendung nutzt native Anwendungen wie den Dateimanager zur gewohnter Benutzerunterstützung. Leider lassen sich wegen der Weboberfläche und den dadurch existierenden Sicherheitsbeschränkungen nur schwerlich  Anwendungen erstellen, in denen der Anwendungsbruch kaum spürbar ist. Für eine bessere visuelle Oberfläche wird auf den Endgeräten eine native Anwendung benötigt und keine Weboberfläche. Die Aufgabenstellung sah dies nicht vor. In der Anwendung ist die Integration daher nur durch Script-Downloads möglich. 
-    Sollten die Informationen vom Client nicht richtig sein, wird dem Anwender eine Auswahl wie in Abbildung \ref{fig:app-details} gezeigt. Entsprechend der bekannten Plattformen wird ein Link generiert den der Anwender stattdessen verwenden kann.
+    Die Anwendung nutzt native Anwendungen wie den Dateimanager zur gewohnter Benutzerunterstützung. Wegen der Limitierungen einer Weboberfläche und den damit verbundenen Sicherheitsbeschränkungen ist die Realisierung von Anwendungen, in denen der Anwendungsbruch kaum spürbar ist, kaum möglich. Für eine bessere visuelle Oberfläche wird auf den Endgeräten eine native Anwendung benötigt und keine Weboberfläche. Die Aufgabenstellung sah dies nicht vor. In der Anwendung ist die Integration daher nur durch Script-Downloads möglich. 
+    Sollten die Informationen vom Client nicht richtig sein, wird dem Anwender eine Auswahl von Links, bekannter Plattformen, wie in Abbildung \ref{fig:app-details} gezeigt, aus denen dieser seine Plattform wählen kann.
     
         \begin{figure}[htbp] 
             \centering
@@ -693,12 +690,12 @@ Ein Rückblick auf die Zusammenfassung zeigt, wie welche Aufgaben von der Anwend
     
     %% ---ralf?
     \item Übertragung der Dateien zwischen teilnehmenden Computern\\
-    Diese Aufgabe konnte leider nicht vollständig erledigt werden, der Mediator vermittelt zwar zwischen den einzelnen Peers, diese stellen aber ihre Funktionalität nicht durch eine geeignete Benutzeroberfläche zur Verfügung.
+    Diese Aufgabe wird durch Verwendung der externen Befehle ermöglicht. Der Mediator vermittelt zwischen den einzelnen Peers die jeweiligen Verbindungsparameter und ermöglicht so einen Dateitransfer. Die Probleme des IPv4 mit \acrshort{nat} wurden nicht durch ,,Connection Reversal'' oder ähnliche Verfahren behoben. Es ist ein Einstellen der Firewall nötig.
     
-    \item Benachrichtigung über den Vorgang, wie Kopieren, Erstellen und Löschen einer Datei\\
-     Dateien ohne Schlagworte werden periodisch Benachrichtigungen dem entsprechenden Anwender gesendet. 
+    \item Benachrichtigung über den Vorgang wie Kopieren, Erstellen und Löschen einer Datei\\
+     Dateien ohne Schlagworte werden durch periodische Benachrichtigungen dem entsprechenden Anwender als E-Mail gesendet. 
      Mit minimalen Anpassungen können auch Hinweise zum Kopieren oder Erstellen erfolgen.
-     Auch in der Weboberfläche sind diese Dateien sichtbar, sowie auf der Startseite Abbildung \ref{fig:app-ohnetags}, sofern der Anwender auch Dateibesitzer ist.
+     Auch in der Weboberfläche, sofern der Anwender auch Dateibesitzer ist, sind diese Dateien sichtbar, wie auf dem Ausschnitt der Startseite Abbildung \ref{fig:app-ohnetags} gezeigt.
      
      \begin{figure}[htbp] 
          \centering
@@ -711,9 +708,9 @@ Ein Rückblick auf die Zusammenfassung zeigt, wie welche Aufgaben von der Anwend
       \item Persistente Speicherung aller Informationen zu einer Datei, über die vom Dateisystem unterstützten Funktionen hinaus\\
       Die Informationen werden in einer eingebetteten Datenbank durch einen Peer gespeichert.
     \item Verlinken der \acrshort{dms}\\
-    Durch eine ,,bridge'' ist es den Anwendungen möglich, Informationen unter einander auszutauschen. 
+    Durch eine ,,bridge'' ist es den Anwendungen möglich, Informationen untereinander auszutauschen. 
     \item Erkennung doppelter Dateien\\
-    Hier ist keine explizite Anzeige erstellt. Doppelte Dateien können hier über einen ,,Workaround'' gefunden werden, indem die Prüfsumme in der Suchmaske eingegeben wird. Diese ist für jede Datei eindeutig, sollte die Datei also doppelt existieren, wird das Ergebnis alle Dateien auflisten. Wie Abbildung \ref{fig:app-dups} zeigt, ist hier die Datei ,,provider-1.0-SNAPSHOT.jar'' auch in einem Unterordner ,,lib'' doppelt vorhanden. Die Prüfsumme wird dabei durch ein ,,\%'' abgekürzt. Auf die Eindeutigkeit ist dabei jedoch selbst zu achten. 
+    Hier ist keine explizite Anzeige erstellt, doppelte Dateien können hier über einen ,,Workaround'' gefunden werden, indem die Prüfsumme in der Suchmaske eingegeben wird. Diese Prüfsumme ist für jeden Dateiinhalt eindeutig, sollte die Datei doppelt existieren, wird das Ergebnis der Suche alle Dateien auflisten. Wie Abbildung \ref{fig:app-dups} zeigt, ist hier die Datei ,,provider-1.0-SNAPSHOT.jar'' auch in einem Unterordner ,,lib'' vorhanden. Die Prüfsumme wird dabei durch ein ,,\%'' abgekürzt.
     
     \begin{figure}[htbp] 
         \centering
@@ -730,22 +727,22 @@ Ein Rückblick auf die Zusammenfassung zeigt, wie welche Aufgaben von der Anwend
 
 \section{Dateiübertragung}
 Dateiverbindungen finden im \acrshort{p2p} direkt zwischen den Peers statt.
-Das kann bei IPv4 wegen \acrshort{nat} jedoch schnell zu Problemen führen. Der Fall, dass die Peers untereinander nicht die gleichen Protokolle sprechen, ist jedoch selten. Kritisch bleibt je nach Firewall-Typ ein Verbindungsaufbau. In der Abschlussbetrachtung wird auf einige Probleme der Datenübertragung noch einmal gesondert eingegangen, speziell welche Schwierigkeiten sich im Rahmen der Realisierung ergeben haben.
+Das kann bei IPv4 wegen \acrshort{nat} jedoch schnell zu Problemen führen, da Verbindungen zwischen den Clients je nach Firewall-Typ stark reguliert sind. Der Fall, dass die Peers untereinander nicht die gleichen Protokolle sprechen, ist jedoch selten. Kritisch bleibt je nach Firewall-Typ ein Verbindungsaufbau. In der Abschlussbetrachtung wird auf einige Probleme der Datenübertragung noch einmal gesondert eingegangen, speziell welche Schwierigkeiten sich im Rahmen der Realisierung ergeben haben.
 
-Das Protokoll sieht bereits entsprechende Befehle zum Datenaustausch vor. Diese werden jedoch nicht in der Weboberfläche einfach nutzbar angezeigt. Durch das Veröffentlichen einer Datei wird im System zwar deren Synchronisieren angestoßen, jedoch ist das Steuern der Empfängerpeers nicht möglich.
+Das Protokoll sieht bereits entsprechende Befehle zum Datenaustausch vor. Diese wird jedoch in der Weboberfläche nur durch die ,,externen'' Befehle nutzbar gemacht (siehe Abbildung \ref{fig:www-cmd-pub}). Durch das Veröffentlichen einer Datei wird im System zwar deren Synchronisieren gestartet, jedoch ist das Steuern der Empfängerpeers nicht möglich.
 
-Durch die Freigabe des Befehls an dem entsprechenden Peer wird dieser angewiesen seine Daten freizugeben. Ob und wann das Empfangen fertig ist, lässt sich im aktuellen Protokoll jedoch nicht verfolgen. 
+Durch die Freigabe des Befehls an dem entsprechenden Peer wird dieser angewiesen, seine Daten freizugeben. Ob und wann das Empfangen fertig ist, lässt sich im aktuellen Protokoll jedoch nicht verfolgen. 
 
 \bigskip
-Schematisch lässt sich der Ablauf wie folgt beschreiben:
+Schematisch lässt sich der Ablauf der Dateiübertragung wie folgt beschreiben:
 
 \begin{itemize}
-\item Peer A erhält den ,,publish''-Befehl für eine Datei von einem Anwender
+\item Peer A erhält den ,,publish''-Befehl für eine Datei von einem Anwender der Weboberfläche.
 \item Peer A sendet Meta-Informationen über die Datei zu allen verbundenen Peers.
-\item Jeder Peer prüft bei sich, ob er die Datei besitzt.
+\item Jeder Peer prüft selbst, ob er die Datei besitzt.
 \\ Wenn: \\
+-- Nein: Nachfrage beim anbietenden Peer erzeugen.\\
 -- Ja: Kopiert er diese zum angefragten Ziel, sollte diese dort nicht vorhanden sein.\\
--- Nein: Nachfrage beim anbietenden Peer erzeugen.
 \item Jeder nachfragende Peer öffnet einen Port und ermittelt seine externen Verbindungsparameter.
 \item Die Verbindungsparameter werden mit Dateiwunsch an alle verbundenen Peers gesendet.
 \item Die Peers, welche die Datei besitzen, senden die Informationen zum Nachfragenden.\\
@@ -776,12 +773,12 @@ Die Endgeräte sind von der Anwendung nicht betroffen. Diese arbeiten wie gewohn
     \end{figure}   
     
  
-Da es sich um eine \acrshort{p2p}-Lösung handelt, müssen nicht alle Dienste auf jedem Server laufen. 
+Da es sich um eine \acrshort{p2p}-Lösung handelt, müssen nicht alle Dienste auf jedem Server ausgeführt werden. 
 Teile der Anwendung werden von bestimmten Peers bereitgestellt und ergänzen sich zu einer Anwendung, die durch eine Weboberfläche bereitgestellt wird.
 
 
 In Anlehnung an die ersten \acrshort{p2p}-Netzwerke wie z. B. Napster stellt das ,,master''-Projekt den Kern des Netzwerkes \cite{mahlmann2007peer}.
-Dabei kann eine komplexe Konfiguration wie in Abbildung \ref{fig:app-outline} aussehen. Es ist natürlich auch möglich alle Peers auf einem Computer oder in virtuellen Maschinen zu installieren.
+Dabei kann eine komplexe System-Konfiguration wie in Abbildung \ref{fig:app-outline} aussehen. Es ist natürlich auch möglich alle ,,Peers'' auf einem Computer oder in virtuellen Maschinen zu installieren.
 
 \begin{figure}[htbp] 
     \centering
@@ -793,7 +790,7 @@ Dabei kann eine komplexe Konfiguration wie in Abbildung \ref{fig:app-outline} au
 
  
 
-Hier existieren, neben den diversen Server, zwei Clients. Die Clients können über die mit einem ,,provider'' versehenen Server Dateisuchanfragen an die ,,database'' stellen.
+Hier existieren, neben den diversen Servern, zwei Clients. Die Clients können über die mit einem ,,provider'' versehenen Server Dateisuchanfragen an die ,,database'' stellen.
 In der zentralen Datenbank werden die Dateiinformationen gespeichert, um Verschlagwortung und weitere Attribute zu unterstützen.
 Ersichtlich ist, dass Lastverteilung durch Erzeugen weiterer Peers einfach zu realisieren ist. 
 
@@ -801,29 +798,27 @@ Datensicherung kann prinzipiell durch eine ,,bridge'' erfolgen. Diese ersetzt ab
 
 
 \section{Die Projekte}
-
-%% ralf?
-Das Build-Tool \href{https://maven.apache.org/}{,,Maven''} verwaltet in den einzelnen Projekten auch deren Abhängigkeiten. Die Abhängigkeiten untereinander sind jedoch 
-in der verwendeten Konfiguration nicht konfiguriert. Dazu wurde ein kleines Script verwendet, da ein weiteres Verwalten eines ,,multi module project'' mehr Zeit bedarf als die Projekte in der richtigen Reihenfolge aufzurufen. 
+Zur Verwaltung der Projekte und deren Abhängigkeiten wird das Build-Tool \href{https://maven.apache.org/}{,,Maven''} eingesetzt.
+Die Abhängigkeiten der Projekte untereinander ist nicht durch ein  ,,multi module project'' realisiert. Die Verwendung eines  kleines Scriptes auf der Konsole sowie die \acrshort{ide}s lösen diese Problematik auf einfachere Weise. 
 
 Die Kommunikationsschicht wird durch das ,,client'' Projekt bereitgestellt.
 Die resultierende Bibliothek muss zum Erstellen weiterer Projekte in das lokale Repository installiert werden.
 Da der ,,master'' von der ,,database'' und dem ,,www'' Projekt im eingebetteten Modus abhängig ist, sollten diese wie auch der ,,client'' zuerst gebaut werden.
-Da die Installation der anderen Projekte nicht falsch ist, genügt ein Tippen von ,,mvn clean install'' in den entsprechenden Projekten, um entsprechende ausführbare Anwendungen zu erzeugen.
+Da die Installation der anderen Projekte nicht falsch ist, genügt das Ausführen von ,,mvn clean install'' in den entsprechenden Projekten zur Erzeugung.
 
-Nachfolgend wird nun auf die einzelnen Komponenten eingegangen und Funktionen sowie Konfigurationen beschreiben.
+Nachfolgend wird auf die einzelnen Komponenten eingegangen sowie Funktionen und Konfigurationen beschreiben.
 
 
 \subsection{Bridge-Projekt}
-Mit dem ,,bridge'' Projekt wird die Idee der Erweiterung des Netzwerkes verfolgt. Wie in Abbildung \ref{fig:app-outline} sichtbar, verbindet dieses Projekt zwei autonome Systeme und ermöglicht einen Informationsfluss über die Systemgrenzen hinweg. Ein schöner Nebeneffekt ist das Synchronisieren der Datenbank im laufenden Betrieb. Da aber auch mehrfache Antworten auf eine Frage kommen können, müssen die Peers mit Duplikaten und leichten Variationen in den Antworten umgehen können.
+Mit dem ,,bridge'' Projekt wird die Idee der Erweiterung des Netzwerkes verfolgt. Wie in Abbildung \ref{fig:app-outline} sichtbar, verbindet dieses Projekt zwei autonome Systeme und ermöglicht einen Informationsfluss über die Systemgrenzen hinweg. Ein vorteilhafter Nebeneffekt ist das Synchronisieren der Datenbank im laufenden Betrieb. Da mehrfache Antworten auf eine Frage kommen können, müssen die Peers mit Duplikaten und leichten Variationen in den Antworten umgehen können.
 
-Bei zu komplexer Konfiguration kann ein Peer auch mehreren Netzwerken angehören.
-Dabei werden die Daten in beide Richtungen der ,,bridge'' gesendet. Diese Dopplungen können durch einen \acrfull{ttl} Wert nicht verhindert werden. Was aber ein \acrshort{ttl} vermeidet sind ,,round trips'' innerhalb des Routing.
+In komplexen Netzwerkkonfigurationen kann ein Peer auch mehreren Netzwerken angehören.
+Dabei werden die Daten in beide Richtungen der ,,bridge'' gesendet. Diese Dopplungen können durch einen \acrfull{ttl} Wert nicht verhindert werden. Dieser vermeidet lediglich ,,round trips'' innerhalb des Routing.
 
 Die Konfiguration ist einfach gehalten, sie erwartet die ,,master'' IP bzw. \acrfull{fqdn} Adressen sowie ein gemeinsames Geheimnis, um am entsprechendem Netzwerk teilzunehmen.
 
 \bigskip
-Beispielsweise lässt sich mit den acht nachfolgenden Zeilen in der ,,bridge.properties'' eine Verbindung zwischen zwei Systemen herstellen.
+Beispielsweise lässt sich mit den folgenden Zeilen in der ,,bridge.properties'' eine Verbindung zwischen zwei Systemen herstellen.
 
 \begin{verbatim}
 # Eindeutige ID der Bridge in beiden Systemen
@@ -840,24 +835,23 @@ de.bluepair.jms.masterkey.1=key2
 
 
 \subsection{Provider-Projekt}
-Der ,,provider'' stellt Dateiinformationen und auch Dateien zur Verfügung. Er reagiert auf Anfragen des ,,master'', zu dem er eine Verbindung aufbaut hat, und ermöglicht einem Anwender des ,,www''-Peers eine konfigurierte Befehlsausführung. Sicherheitstechnische Aspekte müssen zu einem späteren Zeitpunkt geklärt werden. 
+Der ,,provider'' stellt Dateiinformationen und Dateien zur Verfügung. Er reagiert auf Anfragen des ,,master'', zu dem er eine Verbindung aufgebaut hat, und ermöglicht einem Anwender des ,,www''-Peers eine konfigurierte Befehlsausführung. Sicherheitstechnische Aspekte werden zu einem späteren Zeitpunkt geklärt. 
 
-Gedacht ist die Kommunikation in erster Linie nur vom ,,provider'' in Richtung ,,master''. 
-Wünsche, welche die Kommunikation unter den Peers beinhalteten, ergaben im Zuge der Entwicklung, dass die Prozessverwaltung in Java ähnliche Probleme wie die Dateiüberwachung aufweist. Diese Wünsche beinhalteten die Befehlsausführung mit externen Programmen aus der Weboberfläche. Viele wünschenswerte Informationen fehlen jedoch in den API und konnten dadurch weder am Prozess noch in der Weboberfläche abgebildet werden. Auf einfache Weise ist es in Java nicht möglich, Prozesse und deren ID oder OWNER herauszufinden.
-Auch das Feedback von einem Prozess ist schwerlich zu überwachen, bei lang andauernden Hintergrundaufgaben wird in der Anwendung daher der Status nicht übermittelt. Es wird wohl auch hier nötig sein, eine weitere Fassade über das von Java bereitgestellte Prozessverwaltungssystem zu entwickeln.
+Die Kommunikation ist vorrangig vom ,,provider'' nur in Richtung ,,master''. 
+Wünsche, welche die Kommunikation unter den Peers beinhalteten, ergaben im Zuge der Entwicklung, dass die Prozessverwaltung in Java ähnliche Probleme wie die Dateiüberwachung aufweist. Diese Wünsche beinhalteten die Befehlsausführung mit externen Programmen aus der Weboberfläche. Viele wünschenswerte Informationen fehlen jedoch in den APIs und konnten dadurch weder am Prozess noch in der Weboberfläche abgebildet werden. Prozesse und deren ID oder OWNER herauszufinden können in Java nur plattformspezifisch realisiert werden und beschränken das Feedback von einem Prozess. Ein überwachen, bei lang andauernden Hintergrundaufgaben, wird in der Anwendung daher nicht möglich. Es ist auch hier nötig, eine Fassade über das von Java bereitgestellte Prozessverwaltungssystem zu entwickeln.
 
-Es kann zwischen internen und externen Befehlen unterschieden werden.
-Interne Befehle wie ,,publish'' erlauben dem Anwender Dateien freizugeben, externe Befehle eigenen sich mehr für die Vorverarbeitung wie dem Extrahieren bestimmter Informationen.
+Die ,,externen'' Befehle ermöglichen es auch API interne Aufrufe wie ,,publish'' dem Anwender freizugeben.
+Deren Argumente sind in der Anwendung fest vorgegeben. 
 
 \bigskip
 In der Konfigurationsdatei ,,provider.properties'' können Befehle einfach angemeldet werden.
 
 \begin{itemize}
     \item Den internen Befehl ,,publish'' kann für die ,,www''-Anwendung freigegeben werden.
-    Andere werden derzeit nicht unterstützt.\\
+    Andere werden derzeit nicht unterstützt da sich diese nicht für Anwender eignen.\\
     \verb|publish.internal=true|
     
-    \item Der externe Systembefehl ,,cat'' unter Linux wird durch zwei Einträge freigegeben. Einmal muss der Befehl als solcher definiert werden während deren Argumente, die meist anderen Regeln folgen, in der ,,www''-Anwendung mit Platzhaltern vorbelegt werden. Hier ist der Platzhalter ,,\{\}'' konfiguriert. Da  diese Sonderzeichen in Java eine spezielle Bedeutung haben, müssen die Zeichen geeignet maskiert werden.
+    \item Der externe Systembefehl ,,cat'' unter Linux wird durch zwei Einträge freigegeben. Einmal muss der Befehl als solcher definiert werden während dessen Argumente, die meist anderen Regeln folgen, in der ,,www''-Anwendung mit Platzhaltern vorbelegt werden. Hier ist der Platzhalter ,,\{\}'' konfiguriert. Da  diese Sonderzeichen in Java eine spezielle Bedeutung haben, müssen die Zeichen geeignet maskiert werden.
     \\
     \verb|cat.path=/bin/cat|\\
     \verb|cat.replacewithpath=\\{\\}|
@@ -869,17 +863,16 @@ In der Konfigurationsdatei ,,provider.properties'' können Befehle einfach angem
 In der Konfigurationsdatei finden sich auch weitere optionale Parameter. Neben den Standardparametern wie \acrshort{fqdn} bzw. IP sind auch folgende Werte erlaubt:\\
 
 \begin{itemize}
-    \item Zeit in Millisekunden die vom Watchservice gewartet werden, bevor ein Event stattfindet. Hier wird der Wert auf ein Sekunde gesetzt.\\ \verb|de.bluepair.watchservice.polling=1000|
+    \item Zeit in Millisekunden, die vom Watchservice gewartet werden, bevor ein Event stattfindet. Hier wird der Wert auf eine Sekunde gesetzt.\\ \verb|de.bluepair.watchservice.polling=1000|
 
 \item In Linux können Duplikate in den Events durch Angeben von dem Wert ,,true'' verhindert werden. \\
 \verb|de.bluepair.watchservice.nodupes=false|
 
-\item Das Programm benötigt Schreibrechte auf den Dateien, auf denen es die  Prüfsumme berechnet. Mit ,,true'' wird ein ständiges Neuberechnen erzwungen, was nicht zu empfehlen ist.\\
+\item Das Programm benötigt Schreibrechte auf den Dateien, auf denen es die  Prüfsumme berechnet. Mit ,,true'' wird ein ständiges Neuberechnen erzwungen.\\
 \verb|de.bluepair.watchservice.readonly.force=false|
 
 \item Einige Befehle haben eine erzwingende Option.
-Mit ,,true'' kann diese Verhalten dauerhaft abgestellt werden.
-Damit kann ein Überschreiben von Dateien verhindert werden. Diese Angabe hat bei der Nutzung von externen Befehlen und Vorverarbeitungen  keinen Effekt.\\
+Mit ,,true'' kann dieses Verhalten vermieden werden, wodurch ein Überschreiben von Dateien verhindert wird. Diese Angabe hat bei der Nutzung von externen Befehlen und Vorverarbeitungen  keinen Effekt.\\
 \verb|de.bluepair.nodelete=true|
 
 \item Wird kein port für den Dateitransfer angegeben, wählt die Anwendung durch das Betriebssystem einen beliebigen freien Port. Das Konfigurieren einer Firewall ist ohne konkreten Port schwer. Für Windows ist empfohlen einen Port festzulegen.\\
@@ -890,7 +883,7 @@ Damit kann ein Überschreiben von Dateien verhindert werden. Diese Angabe hat be
 
 Das ,,client'' Projekt ist eine Bibliothek, die von Peers verwendet wird, um eine einheitliche Kommunikation zu gewährleisten. Es stellt eine API bereit, um einfach mit \acrshort{jms} zu agieren.
 
-Es stellt zudem die oben erwähnte Abstraktion des Watchservice zur Verfügung, auf dessen Realisierung hier eingegangen wird. Das erlaubt Peers ein gezielteres Arbeiten mit Dateievents.
+Zudem kommt die oben erwähnte Abstraktion des Watchservice, auf dessen Realisierung hier eingegangen wird. Das erlaubt Peers ein gezielteres Arbeiten mit Dateievents.
 
 Zu den in jeder ,,PROJEKT.properties'' anzutreffenden Konfigurationen gehören:
 
@@ -899,11 +892,11 @@ Zu den in jeder ,,PROJEKT.properties'' anzutreffenden Konfigurationen gehören:
     Diese Einstellung lässt im Fehlerfall des Peers einen erneuten Verbindungsaufbau stattfinden.\\
     \verb|de.bluepair.jms.autoconnect=true|
     
-    \item Die Kommunikation unter den Peers ist durch ein gemeinsames Geheimnis gesichert. Dieses wird i.d.R. vom ,,master'' festgelegt. Peers, die nur mit dem ,,master'' reden wollen, brauchen dieses in einfachsten Fällen nicht kennen. Das Geheimnis stellt bei einigen Befehlen sicher, dass hier keine unerwünschte Nachricht ausgeführt wird.\\  
+    \item Die Kommunikation unter den Peers wird durch ein gemeinsames Geheimnis gesichert. Dieses wird i. d. R. vom ,,master'' festgelegt. Das Geheimnis stellt bei  Vermittlung sicher, dass keine unerwünschte Nachricht weitergeleitet wird.\\  
     \verb|de.bluepair.jms.masterkey=sharedKey|
     
     \item Die Verbindung erfolgt über diesen Eintrag zu einem ,,master''-Peer.
-    Dieser Peer stellt \acrshort{jms} und \acrshort{stun} für evtl. weitere andere Direktverbindungen bereit. Es wird kein vollständiger \acrshort{stun}-Dienst abgebildet, lediglich die IP- und Port-Adresse zurückgeschrieben\\
+    Dieser Peer stellt \acrshort{jms} und \acrshort{stun} für evtl. weitere andere Direktverbindungen bereit. Es wird kein vollständiger \acrshort{stun}-Dienst abgebildet, lediglich die IP- und Port-Adresse zurückgeschrieben.\\
     \verb|de.bluepair.jms.host=IP_OR_FQDN|
     \item Jeder Client sollte im Netzwerk einen eindeutigen Namen haben. Es ist hier nicht notwendigerweise ein \acrshort{fqdn} nötig, jedoch bei großen Netzen zu empfehlen. Dieser Eintrag wird z. B. bei ,,www'' verwendet, um weitere Konfigurationen eines ,,provider'' einzustellen.\\
   \verb|de.bluepair.jms.client.id=UNIQUE_ID|
@@ -913,7 +906,7 @@ Zu den in jeder ,,PROJEKT.properties'' anzutreffenden Konfigurationen gehören:
 \subsubsection{Java NIO}
 Das Java ,,new/non-blocking Input Output'' API ermöglicht Java Anwendungen seit Version 7 einen ,,WatchService'' zu verwenden. Dieser Service kann zur Ordnerüberwachung eingesetzt werden. Dabei werden ,,polling'' und ,,interrupt'' Ansätze unterstützt.
 
-Leider wird von diesem Service bei einer Dateiänderung nur der Dateipfad zur Datei, nicht aber Auskunft über den Prozess, übertragen. Auch bei den Events mangelt es an fehlender Abstraktion. Nur mit CREATE, DELETE, MODIFY ist ein Arbeiten mit wissenschaftlichen Daten nicht sinnvoll. Ein ständiges Überprüfen, ob es sich um ein noch aktives Kopieren handelt, ist Ressourcen verschwendend. Eine neue Datei wird, wenn sie durch einer längeren Kopieraktion entsteht, mehrmals das Event MODIFY durchlaufen. Ein Event ONCOPY wäre für die Verarbeitung einer solchen Datei einfach zu verwenden und könnte durch ein FINISH als beendet markiert werden. So lassen sich ständige unnötige Neuberechnungen auf Dateiinhalte vermeiden.
+Leider wird von diesem Service bei einer Dateiänderung nur der Dateipfad zur Datei, nicht aber Auskunft über den Prozess, übertragen. Auch bei den Events mangelt es an fehlender Abstraktion. Die Ereignisse CREATE, DELETE, MODIFY reichen für das Arbeiten mit wissenschaftlichen Daten nicht aus. Ein ständiges Überprüfen, ob es sich um ein noch aktives Kopieren handelt, verschwendet Ressourcen. Eine neue Datei wird, wenn sie durch eine längere Kopieraktion entsteht, mehrmals das Event MODIFY durchlaufen. Wird dieses Event zum Anlass genommen für Berechnungen, würden diese häufig gestartet und abgebrochen werden.  Ein ONCOPY-Event wäre für die Verarbeitung einer solchen Datei einfacher zu verwenden und könnte durch ein FINISH-Event als beendet markiert werden. So lassen sich ständige unnötige Neuberechnungen auf Dateiinhalte vermeiden.
 
 Eine Fassade  über dem ,,WatchService'' sieht daher mehr als die in  ,,StandardWatchEventKinds'' bestehenden Events vor \cite{gamma2011entwurfsmuster}. So werden Events von der Fassade aggregiert und nur etwa alle 5 Sekunden weitergegeben. Eine abweichende Zeit lässt sich beispielsweise im ,,provider'' einstellen. Dabei werden bei Events auf dem gleichen Dateipfad folgende Regeln beachtet.
 
@@ -926,18 +919,18 @@ Eine Fassade  über dem ,,WatchService'' sieht daher mehr als die in  ,,Standard
     löst ein FINISH Event im nächsten Zyklus aus.
 \end{itemize}
 
-Dadurch wird das Verwenden flexibler und das Unterdrücken von einigen Events wird vergleichbar wie beim Arbeiten mit Exception durch ,,addSuppressed'' und ,,getSuppressed'' noch nachvollziehbar gestaltet. Bei Bedarf kann so eine genauere Aussage zum Event gemacht werden.
+Dadurch wird das Verwenden der Überwachung flexibler und das Unterdrücken anhand der Regeln, von einigen Events, wird durch ,,addSuppressed'' und ,,getSuppressed'' mit Exception-Behandlung vergleichbar, wodurch bei Bedarf mehr Details zum Event abgefragt werden können.
 
 %% --ralf?
-Die Fassade kann der Problematik, den Änderungsprozesses zu erkennen, nicht zuverlässig entgegen kommen und liefert die Informationen daher auch nicht mit. Das Auslesen von Betriebssystemprozessen ist leider nicht trivial lösbar. Dieses Problem betrifft die Anwendung gleich zwei Mal.
+Die Fassade kann der Problematik, den Änderungsprozesses zu erkennen, nicht zuverlässig entgegen kommen und liefert die Informationen daher auch nicht mit. Das Auslesen von Betriebssystemprozessen ist nicht trivial lösbar. Dieses Problem tritt innerhalb der Anwendung zweimal auf.
 
 Anders als der ,,WatchService'' gibt die Fassade den absoluten Pfad weiter, da sich damit einfacher arbeiten lässt als mit einer relativen Angabe zu einem zum Triggerzeitpunkt unbekannten Ordner.
 
-Auch das Arbeiten mit erweiterte Attributen konnte so vereinfacht werden.
+Auch das Arbeiten mit erweiterten Attributen konnte so vereinfacht werden.
 Durch ein entsprechendes Event werden alle nötigen Operationen, um Attribute lesen oder schreiben zu können, bereits vom Event bereitgestellt. Das Arbeiten mit diesem Event entspricht daher einer Fusion verschiedener einfachen Java-API wie ,,WatchEvent'', ,,Path'', ,,Files'' und ,,File''.
 
-Es ergeben sich auch Nachteile bei der Verwendung  der Fassade. Events sind nicht mehr in Echtzeit übertragbar, da eine Verzögerung vor der Weitergabe entsteht. Dies steht aber mit den hier genannten Daten in keinem Konflikt. Es könnte jedoch passieren, dass Events veralten und ein Weiterarbeiten nicht mehr nötig oder möglich ist. Beispielsweise ist ein Kopiervorgang mit anschließendem direktem Löschen ein möglicher Kandidat für Fehler und muss bei Verwendung beachtet werden. Dabei könnte es passieren, dass ein MODIFY Event weitergegeben wird, welches keiner Datei mehr zugrunde liegt.
-Um der Problematik ein wenig entgegenzuwirken, werden Events vor der Weitergabe geprüft, ob diese zum Prüfungszeitpunkt mit keinen bekannten Events in Konflikt stehen.
+Es ergeben sich auch Nachteile bei der Verwendung  der Fassade. Events sind nicht mehr in Echtzeit übertragbar, da eine Verzögerung vor der Weitergabe entsteht. Dies steht aber mit den hier genannten Daten in keinem Konflikt. Durch das Veralten der Events ist ein Weiterarbeiten nicht mehr nötig oder möglich. Beispielsweise ist ein Kopiervorgang mit anschließendem direkten Löschen ein möglicher Kandidat für Fehler, sowie das Weitergeben eines MODIFY-Event bei dem keine Datei mehr zugrunde liegt.
+Um der Problematik entgegenzuwirken, wird vor der Weitergabe der Events geprüft, ob diese zum Prüfungszeitpunkt mit keinen anderen in Konflikt stehen.
 
 \bigskip
 Dabei treten speziell die Konflikte auf:
@@ -1201,10 +1194,7 @@ Für Windows kann eine Datei wie ,,C:\textbackslash{}data\textbackslash{}wichtig
 Die meist nicht zutreffende, einfachste Variante für die Anwendung ist das Freigeben der kompletten Festplatte ,,C:\textbackslash{}'' mit anschließendem Einstellen als Netzwerklaufwerk unter ,,C:\textbackslash{}''.
 
 
-Es kann auch nur der Unterordner ,,C:\textbackslash{}data\textbackslash{}wichtig'' als Netzwerklaufwerk ,,wichtig'' freigegeben sein. Dann muss vom Administrator der absolute Pfad durch Verwendung von der Konfiguration ,,config.wichtigedaten.subpath=C:\textbackslash{}data\textbackslash{}wichtig'' angepasst werden (für Linux vgl. Abbildung \ref{fig:www-subpath} und das daraus resultierende Ergebnis in Abbildung \ref{fig:www-subpath_0}). Da die Erreichbarkeit so nicht gewährleistet ist, muss ein weiterer Eintrag erfolgen, um den Netzwerkpfad zum ,,provider'' anzugeben. Dies erfolgt durch ,,config.wichtigedaten.baseurl=\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig'' (für Linux mit lokalem ,,mount'' vgl. Abbildung  \ref{fig:www-subpath2}). Das resultierende Ergebnis des Pfades ,,C:\textbackslash{}data\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' erfolgt durch die zwei Konfigurationseinträge dann ,,\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' (für Linux vgl. Abbildung \ref{fig:www-erg}). Da nun aber auch noch ein Anwender auf dem Endgerät ein entsprechender Eintrag zum Verwenden der Freigabe machen kann, unter Windows durch ,,net use'' oder Linux mit ,,mount'', wird ein Pfad auf dem Endgerät z. B. ,,X:\textbackslash{}'' oder unter Linux ,,/other\_mount''  genannt. So können mehr Programme mit den Daten arbeiten. Die gewählte Datei ist auf dem Gerät unter ,,X:\textbackslash{}unterlagen.zip'' erreichbar (für Linux vgl. Abbildung \ref{fig:www-erg2} ).
-Dazu kann der Anwender in seinen ,,Einstellungen'' die Konfiguration ,,config.wichtigedaten.replacefrom=\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}server1\textbackslash{}\textbackslash{}wichtig'' und ,,config.wichtigedaten.replacewith=X:\textbackslash{}\textbackslash{}'' einstellen  (für Linux vgl. Abbildung \ref{fig:www-subpath3} ). Dabei ist zu beachten, dass ,,reguläre Ausdrücke'' Sonderzeichen interpretieren. 
-%%RALF
-Die Verdopplung der ,,backslash'' resultieren dadurch. Mehr Informationen können der Java API entnommen werden  \cite{javaregex}.
+Es kann auch nur der Unterordner ,,C:\textbackslash{}data\textbackslash{}wichtig'' als Netzwerklaufwerk ,,wichtig'' freigegeben sein. Dann muss vom Administrator der absolute Pfad durch Verwendung von der Konfiguration ,,config.wichtigedaten.subpath=C:\textbackslash{}data\textbackslash{}wichtig'' angepasst werden (für Linux vgl. Abbildung \ref{fig:www-subpath} und das daraus resultierende Ergebnis in Abbildung \ref{fig:www-subpath_0}). Da die Erreichbarkeit so nicht gewährleistet ist, muss ein weiterer Eintrag erfolgen, um den Netzwerkpfad zum ,,provider'' anzugeben. Dies erfolgt durch ,,config.wichtigedaten.baseurl=\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig'' (für Linux mit lokalem ,,mount'' vgl. Abbildung  \ref{fig:www-subpath2}). Das resultierende Ergebnis des Pfades ,,C:\textbackslash{}data\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' ist durch die zwei Konfigurationseinträge  ,,\textbackslash{}\textbackslash{}server1\textbackslash{}wichtig\textbackslash{}unterlagen.zip'' (für Linux vgl. Abbildung \ref{fig:www-erg}). Da ein Anwender abweichende Eintrag der Freigabe erzeugen kann, unter Windows durch ,,net use'' oder Linux mit ,,mount'', z. B. ,,X:\textbackslash{}'' oder unter Linux ,,/other\_mount'' (vgl. Abbildung \ref{fig:www-erg2})  damit mehr Programme mit den Daten arbeiten können, muss dieser in seinen ,,Einstellungen'' die Konfiguration ,,config.wichtigedaten.replacefrom=\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}server1\textbackslash{}\textbackslash{}wichtig'' und ,,config.wichtigedaten.replacewith=X:\textbackslash{}\textbackslash{}'' einstellen  (für Linux vgl. Abbildung \ref{fig:www-subpath3} ). Dabei ist zu beachten, dass ,,reguläre Ausdrücke'' Sonderzeichen interpretieren, was zu einer Verdopplung der ,,backslash'' führt. Mehr Informationen können der Java API entnommen werden  \cite{javaregex}.
 
 \begin{figure}[htbp] 
     \centering
@@ -1235,7 +1225,7 @@ Die Verdopplung der ,,backslash'' resultieren dadurch. Mehr Informationen könne
 \begin{figure}[htbp] 
     \centering
     \includegraphics[width=\textwidth]{Masterarbeit_Bilder/open_mount_dir_0.png}
-    \caption{Ergebnis der Angaben des Administrator, nach einer neuen Suche.}
+    \caption{Ergebnis der Angaben des Administrator nach einer neuen Suche.}
     \label{fig:www-erg}
 \end{figure}  
 
@@ -1243,7 +1233,7 @@ Die Verdopplung der ,,backslash'' resultieren dadurch. Mehr Informationen könne
 \begin{figure}[htbp] 
     \centering
     \includegraphics[width=0.8\textwidth]{Masterarbeit_Bilder/user_rewrite_other_mount.png}
-    \caption{Neuschreiben der Angaben des Administrator, als Anwender, ,,data'' wird durch ,,other\_mount'' ersetzt. Das System erwartet einen ,,regulären Ausdruck''. }
+    \caption{Neuschreiben der Angaben des Administrator, als Anwender. Der Pfad ,,data'' wird durch ,,other\_mount'' ersetzt. Das System erwartet einen ,,regulären Ausdruck''. }
     \label{fig:www-subpath3}
 \end{figure}  
 
@@ -1272,7 +1262,7 @@ Dieses Szenario wird von dieser Anwendung kaum unterstützt. Es ist einzig die M
 \begin{figure}[htbp] 
     \centering
     \includegraphics[width=\textwidth]{Masterarbeit_Bilder/www_cmd_publish.png}
-    \caption{ ,,publish'' Befehl auf dem ,,provider'' auslösen. Der Empfänger meldet sich nach entsprechender Nachricht des  ,,provider'' direkt um einen Dateiaustausch zu starten. Beim Melden überträgt der Empfänger seine Verbindungsinformationen.}
+    \caption{ ,,publish'' Befehl auf dem ,,provider'' auslösen. Der Empfänger meldet sich direkt nach entsprechender Nachricht des  ,,provider'' um einen Dateiaustausch zu starten. Beim Melden überträgt der Empfänger seine Verbindungsinformationen.}
     \label{fig:www-cmd-pub}
 \end{figure}  
 
@@ -1406,7 +1396,7 @@ Zum Reflektieren der Anforderungen werden diese der aktuellen Realisierung gegen
 	\item Übertragung der Dateien zwischen den DMS\\
    Diese wird nicht direkt ersichtlich  vom System unterstützt. Eine Freigabe und Übertragung ist durch den ,,publish'' Befehl möglich, jedoch kann durch Firewalls die Kommunikation nicht garantiert werden.  
 	\item Benachrichtigung über den Vorgang einer Datei\\
-	Das System versendet eine E-Mail an den hinterlegten Besitzer der Datei. Sollte keine Mailadresse bekannt sein, entfällt diese Funktion. Diese Funktion ist in der ,,database'' implementiert.
+	Das System versendet eine E-Mail an den hinterlegten Besitzer der Datei. Sollte keine E-Mail-Adresse bekannt sein, entfällt diese Funktion. Diese Funktion ist in der ,,database'' implementiert.
 	\item Persistente Speicherung auch der Attribute, die nicht vom Dateisystem unterstützt werden\\
 	Es wird eine Datenbank verwendet, um Attribute systemübergreifend zu speichern.
     Die einzigen, welche in den ,,erweiterten Attributen'' gespeichert werden, sind die Prüfsumme und deren Erzeugungsdatum. Um konkurrierende Zugriffe zu vermeiden wird ein drittes als Sperre verwendet. Der Grund für die begrenzte Speicherung liegt in der noch immer, gerade unter Linux, schlechten Systemunterstützung.
@@ -1429,21 +1419,21 @@ Durch die Oberfläche lässt sich nach Prüfsummen suchen, aktuell werden Tags s
 
 
 \section{Diskussion und Ausblick}
-Diese Anwendung unterstützt hinsichtlich der Aufgabenstellung die Suche.
-Aus zeitlichen Gründen ist die Dateisynchronisierung nicht so weit gekommen, dass diese durch den Anwenden intuitiv nutzbar ist. Wegen der Verwendung von HTTP ist es nicht möglich große Datenmengen zu transportieren, deshalb muss ein weiterer separater Dienst erstellt werden. Eine Möglichkeit wäre, die Realisierung durch eine Implementierung eines SSH-Dienstes, welcher Transfer, Tunnelaufbau und Befehlsausführung realisiert. 
+Diese Anwendung unterstützt hinsichtlich der Aufgabenstellung die Suche und eine einfache Dateisynchronisierung.
+Wegen der Verwendung von HTTP ist es nicht möglich große Datenmengen zu transportieren, deshalb muss ein weiterer separater Dienst erstellt werden. Eine Möglichkeit wäre, die Realisierung durch eine Implementierung eines SSH-Dienstes, welcher Transfer, Tunnelaufbau und Befehlsausführung realisiert. 
 
 Gedanklich wurde jedoch beachtet, dass ein Übertragen ähnliche Dateien berücksichtigen muss, um Verschiebungen zu erkennen und dadurch nicht neu zu übertragen. Das erfordert jedoch ein verzögertes Löschen. Die Nutzung externer Befehle macht das Programm sehr flexibel und Analysen vom ,,provider'' durch das Nutzen von Apache Tika, wie in der Einleitung \ref{chap:einleitung} erwähnt, verfeinert werden. Diese Bibliothek kann jedoch nicht alle Dateitypen erkennen.
 Auch die ,,database'' lässt sich erweitern und durch \href{http://lucene.apache.org/solr/}{ Apache Solr}
 besser indizieren. Die Integration lässt sich aber erst realisieren, wenn die Datenstruktur feststeht, da der Aufbau des Index und der Anfragen nicht ständig geändert werden kann. Die Flexibilität einer Datenbank hat Apache Solr nicht.
 
-OSGI ist als Schlagwort im Java-Umfeld immer wieder zu finden. Das macht die Anwendungen jedoch nicht so einfach paketierbar und eine eingebettete Version kann dadurch sehr schnell komplex werden. Auch ist mehr Verwaltung zu Beginn nötig, was das Entwickeln verlangsamt. Zudem ist der ,,overhead'' bei kleinen Anwendungen durch die nötigen Dienste zu groß.
+OSGI ist als Schlagwort im Java-Umfeld immer wieder zu finden. Das macht die Anwendungen jedoch nicht so einfach paketierbar da eine eingebettete Version selbst bei kleinen Anwendungen anspruchsvoll ist. Auch ist mehr Verwaltung zu Beginn nötig, was das Entwickeln verlangsamt. Zudem ist der ,,overhead'' bei kleinen Anwendungen durch die nötigen Dienste zu groß.
 
 \subsection{Version 2.0}
 Wie oben bereits angesprochen, ist ein SSH-Dienst sehr flexibel. Die Integration des Dienstes in die Anwendung würde ein Vermitteln zwischen den Peers durch Tunnel vereinfachen. Die Kommunikation könnte vom \acrshort{jms} auf die Kontrollverbindung des SSH umgestellt werden und würde durch Zertifikate die Sicherheit in der Kommunikation und Authentifizierung bringen. Beim Vermitteln würde das Mitlesen der Daten nicht möglich sein, sofern die betroffenen Peers ihre Fingerprints zuvor ausgetauscht haben.
 
-Dieser Ansatz wurde in ,,Version 1.0'' nicht verfolgt, weil die Generierung von Schlüsseln komplex ist und es noch keine einfache Möglichkeit gibt, im Programmcode dies in vorgegebener Zeit zu automatisieren.
-Es existieren eine menge Bibliotheken für SSH, jedoch nur wenige, die auch einen Server implementiert haben.
-SSH besteht aus mehreren Diensten und die getesteten Bibliotheken wie ,,Apache SSHD'', unterstützen diese Dienste nicht umfänglich genug, um damit eine Anwendung zu realisieren.
+Dieser Ansatz wurde in ,,Version 1.0'' nicht verfolgt, weil die Generierung von Zertifikaten komplex ist und keine einfache Möglichkeit existiert, im Programmcode dies in vorgegebener Zeit zu automatisieren.
+Es existieren eine menge Bibliotheken für SSH, jedoch nur wenige, die einen Server implementiert haben.
+SSH besteht aus mehreren kleinen Diensten und die getesteten Bibliotheken wie ,,Apache SSHD'', unterstützen nicht alle Funktionen, um eine Anwendung auf deren Basis zu realisieren.
 
 Die meisten Bibliotheken verbinden sich auf Linux Server, was den Anforderungen, Plattform unabhängig zu sein widerspricht. Es existieren zwar viele Portierungen des Openssh-Server, jedoch binden gerade unter Linux diese Dienste an das Betriebssystem an und lassen sich nur schwerlich für die Anwendung nutzen, ohne komplexe Konfigurationen zu erstellen.
 
