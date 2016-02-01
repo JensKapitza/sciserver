@@ -9,3 +9,9 @@ Es ist bereits jetzt die Idee die Kernarchitektur umzustellen, da die Kommunikat
 Idee: 
 - nutzen von SSH und ggf. Portforwarding am Master zur Dateiübertragung.
 - Nutzung von SSHFS
+
+
+Aktuelle Hints:
+Dieses Projekt verwendet HornetQ, welches zu Apache Artemis wurde. 
+Dadurch ist die hier verwendete Bibliothek stark veraltet!
+Anpassungen am JMS sind nötig.
