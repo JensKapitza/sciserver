@@ -15,3 +15,29 @@ Aktuelle Hints:
 Dieses Projekt verwendet HornetQ, welches zu Apache Artemis wurde. 
 Dadurch ist die hier verwendete Bibliothek stark veraltet!
 Anpassungen am JMS sind nötig.
+
+
+
+
+Finden der PID unter Linux durch das JNA Projekt:
+
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+
+
+interface CLibrary extends Library {
+    CLibrary INSTANCE = (CLibrary) Native.loadLibrary("c", CLibrary.class);
+    int getpid();
+    int getppid();
+    long time(long buf[]);
+
+}
+
+
+Im Programm dan nutzbar durch z.b.:
+
+System.out.println(CLibrary.INSTANCE.getpid());
+
+
+
+In Java 9 soll es einen einfachern Weg geben, um mit Prozessen zu Arbeiten, aber das dauert noch bis 2017 
