@@ -11,6 +11,9 @@ Idee:
 - Nutzung von SSHFS
 
 
+- master ersetzen mit payara-micro  mehr hier: https://payara.gitbooks.io/payara-server/content/documentation/payara-micro/payara-micro.html#3-starting-an-instance
+
+
 Aktuelle Hints:
 Dieses Projekt verwendet HornetQ, welches zu Apache Artemis wurde. 
 Dadurch ist die hier verwendete Bibliothek stark veraltet!
